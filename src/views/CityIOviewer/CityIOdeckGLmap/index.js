@@ -65,6 +65,7 @@ export default function CityIOdeckGLmap(props) {
     new TileLayer({
       data:
         'https://basemaps.cartocdn.com/rastertiles/dark_all/{z}/{x}/{y}.png',
+        // 'https://sqhkt-qlqh.tphcm.gov.vn/api/tiles/bandoso/{z}/{x}/{y}',
 
       /**
        * 

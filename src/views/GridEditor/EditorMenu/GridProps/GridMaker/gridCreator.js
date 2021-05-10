@@ -1,5 +1,8 @@
 import proj4 from "proj4";
 import { _hexToRgb } from "../../../EditorMap/EditorMap";
+import scenario from '../../../../../settings/Scenario_2_geojson_wgs84.json';
+import quyuoc from '../../../../../settings/quyuoc.json';
+
 
 function deg_to_rad(deg) {
     return (deg * Math.PI) / 180;
@@ -12,6 +15,44 @@ const randomProperty = (obj) => {
     var keys = Object.keys(obj);
     return obj[keys[(keys.length * Math.random()) << 0]];
 };
+
+const convertScenarioToWGS84 = (userPrj) => {
+    proj4.defs('User-Projection', userPrj);
+    userPrj = proj4.defs('User-Projection');
+    let features = scenario.features;
+    for (let i = 0; i < features.length; i++) {
+        // let color = (typeof features[i].properties.MaQuyUoc !== 'undefined') ? quyuoc[features[i].properties.MaQuyUoc] : quyuoc.DGT;
+        let color = "#00dd5c";
+        features[i].properties.color = color;
+        features[i].properties.stroke = color;
+        features[i].properties['stroke-width'] = 2;
+        features[i].properties['stroke-opacity'] = 1;
+        features[i].properties.fill = color;
+        features[i].properties['fill-opacity'] = 1;
+
+        // if (features[i].geometry.type == "MultiPolygon") {
+        //     for (let j = 0; j < features[i].geometry.coordinates.length; j++) {
+        //         features[i].geometry.coordinates[j] = VN2kToWGSMultiLineString(features[i].geometry.coordinates[j], userPrj);
+        //     }
+        // } else {
+        //     features[i].geometry.coordinates = VN2kToWGSMultiLineString(features[i].geometry.coordinates, userPrj);
+        // }
+    }
+    let geojson = {
+        "type": "FeatureCollection",
+        "features": features,
+    }
+    console.log(geojson);
+}
+
+const VN2kToWGSMultiLineString = (coordinates, userPrj) => {
+    for (let i = 0; i < coordinates.length; i++) {
+        for (let j = 0; j < coordinates[i].length; j++) {
+            coordinates[i][j] = proj4(userPrj, proj4.defs("EPSG:4326"), coordinates[i][j]);
+        }
+    }
+    return coordinates;
+}
 
 export const gridCreator = (gridProps, typesList) => {
     let top_left_lon = parseFloat(gridProps.longitude);
@@ -32,7 +73,7 @@ export const gridCreator = (gridProps, typesList) => {
     let bearing_rad = deg_to_rad(bearing);
     let la2 = Math.asin(
         Math.sin(la1) * Math.cos(Ad) +
-            Math.cos(la1) * Math.sin(Ad) * Math.cos(bearing_rad)
+        Math.cos(la1) * Math.sin(Ad) * Math.cos(bearing_rad)
     );
     let lo2 =
         lo1 +
@@ -135,6 +176,36 @@ export const gridCreator = (gridProps, typesList) => {
         geojsonPolygon.geometry.coordinates = [polygon_ll];
         gridPnts.push(geojsonPolygon);
     }
+
+
+    // let features = scenario.features;
+    // for (let i = 0; i < features.length; i++) {
+
+    //     features[i].properties.color = _hexToRgb('#e5e');
+    //     features[i].properties.height = features[i].properties.TangCaoTD;
+    //     features[i].properties.name = features[i].properties.ChucNang;
+    //     features[i].properties.interactive = 'Web';
+    //     features[i].properties.id = i;
+
+    //     if(features[i].geometry.type == 'MultiPolygon'){
+
+    //     }
+    //     else{
+
+    //     }
+    //     // features[i].geometry.coordinates = 
+
+    //     for (var v = 0; v < 5; v++) {
+    //         let ll = proj4(userPrj, webMercator, polygon_xy[v]);
+
+    //         polygon_ll.push(ll);
+    //     }
+
+    //     geojsonPolygon.geometry.coordinates = [polygon_ll];
+    //     gridPnts.push(geojsonPolygon);
+    // }
     geojsonFeatureCollection.features = gridPnts;
+
+    // convertScenarioToWGS84(userPrj);
     return geojsonFeatureCollection;
 };

@@ -3,8 +3,10 @@
         "mapStyle": {
             "sat": "mapbox://styles/relnox/cjs9rb33k2pix1fo833uweyjd?fresh=true",
             "dark": "mapbox://styles/relnox/cjl58dpkq2jjp2rmzyrdvfsds?fresh=true",
-            "blue": "mapbox://styles/relnox/ck0h5xn701bpr1dqs3he2lecq?fresh=true"
-        }
+            "blue": "mapbox://styles/relnox/ck0h5xn701bpr1dqs3he2lecq?fresh=true",
+            "custom": "mapbox://styles/vlab-company/ckdy9814i47lg19p7eh0ms8gb"
+        },
+        "projectName": "hcm_test_v1"
     },
 
    "GEOGRIDDATA": {
@@ -34,40 +36,7 @@
 
             "types": {
                 "Institutional": {
-                    "LBCS": [
-                        {
-                            "proportion": 0.3,
-                            "use": {
-                                "6700": 1
-                            }
-                        },
-                        {
-                            "proportion": 0.7,
-                            "use": {
-                                "2310": 0.3,
-                                "4100": 0.7
-                            }
-                        }
-                    ],
-                    "NAICS": [
-                        {
-                            "proportion": 0.3,
-                            "use": {
-                                "7121": 1
-                            }
-                        },
-                        {
-                            "proportion": 0.7,
-                            "use": {
-                                "6111": 0.3,
-                                "6113": 0.1,
-                                "6115": 0.1,
-                                "6116": 0.2,
-                                "8133": 0.15,
-                                "8134": 0.15
-                            }
-                        }
-                    ],
+                    
                     "interactive": "Web",
                     "color": "#B32745",
                     "height": 4,

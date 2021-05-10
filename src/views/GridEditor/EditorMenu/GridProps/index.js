@@ -26,7 +26,8 @@ export default function GridProps() {
     }));
 
     const [formValues, setformValues] = React.useState({
-        tableName: "CityScopeJS",
+        // tableName: "CityScopeJS",
+        tableName: settings.map.projectName,
         latitude: settings.GEOGRID.properties.header.latitude,
         longitude: settings.GEOGRID.properties.header.longitude,
         tz:settings.GEOGRID.properties.header.tz, 
