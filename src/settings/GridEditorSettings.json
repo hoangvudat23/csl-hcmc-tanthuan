@@ -6,12 +6,13 @@
             "blue": "mapbox://styles/relnox/ck0h5xn701bpr1dqs3he2lecq?fresh=true",
             "custom": "mapbox://styles/vlab-company/ckdy9814i47lg19p7eh0ms8gb"
         },
-        "projectName": "hcm_test_v1"
+        "projectName": "hcm_test_v1",
+        "gridTransparent": 180
     },
 
    "GEOGRIDDATA": {
         "color": [
-          0,0,0
+          0,0,0,0
         ],
         "height": 0,
         "id": 0,
@@ -24,19 +25,52 @@
         "properties": {
             "geogrid_to_tui_mapping": {},
             "header": {
-                "cellSize": 50,
+                "cellSize": 30,
                 "latitude": 10.765485,
                 "longitude": 106.708865,
                 "tz":7,
                 "ncols": 20,
                 "nrows": 20,
                 "rotation": -40,
-                "projection": "+proj=tmerc +lat_0=0 +lon_0=105.75 +k=0.9999 +x_0=500000 +y_0=0 +ellps=WGS84 +towgs84=-191.90441429,-39.30318279,-111.45032835,0.00928836,-0.01975479,0.00427372,0.252906278 +units=m +no_defs"
+                "projection": "+proj=tmerc +lat_0=0 +lon_0=107.75 +k=0.9999 +x_0=500000 +y_0=0 +ellps=WGS84 +units=m +no_defs"
             },
 
             "types": {
                 "Institutional": {
-                    
+                    "LBCS": [
+                        {
+                            "proportion": 0.3,
+                            "use": {
+                                "6700": 1
+                            }
+                        },
+                        {
+                            "proportion": 0.7,
+                            "use": {
+                                "2310": 0.3,
+                                "4100": 0.7
+                            }
+                        }
+                    ],
+                    "NAICS": [
+                        {
+                            "proportion": 0.3,
+                            "use": {
+                                "7121": 1
+                            }
+                        },
+                        {
+                            "proportion": 0.7,
+                            "use": {
+                                "6111": 0.3,
+                                "6113": 0.1,
+                                "6115": 0.1,
+                                "6116": 0.2,
+                                "8133": 0.15,
+                                "8134": 0.15
+                            }
+                        }
+                    ],
                     "interactive": "Web",
                     "color": "#B32745",
                     "height": 4,

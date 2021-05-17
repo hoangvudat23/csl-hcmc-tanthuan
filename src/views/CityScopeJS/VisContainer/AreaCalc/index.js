@@ -7,6 +7,7 @@ import Typography from "@material-ui/core/Typography";
 import "../../../../../node_modules/react-vis/dist/style.css";
 
 export default function AreaCalc(props) {
+    console.log('vào Donut');
     const radialRadius = 250;
     const [hoveredRadial, setHoveredRadial] = useState(false);
     const [areaData, setAreaData] = useState(null);

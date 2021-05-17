@@ -5,6 +5,7 @@ import BarChart from "./BarChart";
 import AreaCalc from "./AreaCalc";
 
 function VisContainer(props) {
+    console.log('vào viscontainer');
     return (
         <>
             {props.cityIOdata && (

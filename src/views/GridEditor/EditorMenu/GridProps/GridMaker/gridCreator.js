@@ -1,9 +1,7 @@
 import proj4 from "proj4";
 import { _hexToRgb } from "../../../EditorMap/EditorMap";
-import scenario from '../../../../../settings/Scenario_2_geojson_wgs84.json';
-import quyuoc from '../../../../../settings/quyuoc.json';
-
-
+import scenario from '../../../../../settings/Scenario_2_wgs84_color.json';
+import { featureCollection, centroid, bbox, tag } from "@turf/turf";
 function deg_to_rad(deg) {
     return (deg * Math.PI) / 180;
 }
@@ -52,6 +50,49 @@ const VN2kToWGSMultiLineString = (coordinates, userPrj) => {
         }
     }
     return coordinates;
+}
+
+const joinGridAndPrivateGeojson = (privateGeojson, gridGeojson, types) => {
+    console.log('geoJson', gridGeojson);
+    console.log('privateGeojson', privateGeojson);
+    console.log('types', types);
+    // Get grid cell centroids
+    let gridCentroids = featureCollection(gridGeojson.features.map(obj => {
+        let cellCentroid = centroid(obj)
+        cellCentroid.properties = {
+            'color': undefined,
+        } // Later populated with the sjoin
+        return cellCentroid
+    }))
+    console.log('gridCentroids', gridCentroids);
+
+    // Assing landuse to centroid with polygons (Spatial join)
+    let gridCentroidsWithLanduse = tag(gridCentroids, privateGeojson, 'color', 'color')
+    console.log('gridCentroidsWithLanduse', gridCentroidsWithLanduse);
+
+    // Set each cell properties according to types
+    for (let i = 0; i < gridCentroidsWithLanduse.features.length; i++) {
+        let obj = gridCentroidsWithLanduse.features[i];
+
+        // let selected_type;
+        // if (obj.properties.name === undefined) {
+        //     // Default landuse is Residential (this must change)
+        //     selected_type = types.filter(type => type.name === 'Residential')[0]
+        // } else {
+        //     selected_type = types.filter(type => type.name === obj.properties.name)[0]
+        // }
+
+        // gridGeojson.features[i].properties = {
+        //     color: _hexToRgb(selected_type.color),
+        //     height: selected_type.height,
+        //     name: selected_type.name,
+        //     interactive: selected_type.interactive,
+        //     id: i,
+        // }
+
+        /* my self */
+        gridGeojson.features[i].properties.color = _hexToRgb(obj.properties.color);
+    }
 }
 
 export const gridCreator = (gridProps, typesList) => {
@@ -139,7 +180,6 @@ export const gridCreator = (gridProps, typesList) => {
 
     for (let i = 0; i < x_rot_trans.length; i++) {
         let rndType = randomProperty(types);
-
         let geojsonPolygon = {
             type: "Feature",
             geometry: {
@@ -176,36 +216,8 @@ export const gridCreator = (gridProps, typesList) => {
         geojsonPolygon.geometry.coordinates = [polygon_ll];
         gridPnts.push(geojsonPolygon);
     }
-
-
-    // let features = scenario.features;
-    // for (let i = 0; i < features.length; i++) {
-
-    //     features[i].properties.color = _hexToRgb('#e5e');
-    //     features[i].properties.height = features[i].properties.TangCaoTD;
-    //     features[i].properties.name = features[i].properties.ChucNang;
-    //     features[i].properties.interactive = 'Web';
-    //     features[i].properties.id = i;
-
-    //     if(features[i].geometry.type == 'MultiPolygon'){
-
-    //     }
-    //     else{
-
-    //     }
-    //     // features[i].geometry.coordinates = 
-
-    //     for (var v = 0; v < 5; v++) {
-    //         let ll = proj4(userPrj, webMercator, polygon_xy[v]);
-
-    //         polygon_ll.push(ll);
-    //     }
-
-    //     geojsonPolygon.geometry.coordinates = [polygon_ll];
-    //     gridPnts.push(geojsonPolygon);
-    // }
     geojsonFeatureCollection.features = gridPnts;
-
+    joinGridAndPrivateGeojson(scenario, geojsonFeatureCollection, types);
     // convertScenarioToWGS84(userPrj);
     return geojsonFeatureCollection;
 };

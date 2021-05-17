@@ -9,6 +9,7 @@ import {
 } from '../../../../redux/actions'
 import { useDispatch } from 'react-redux'
 import settings from '../../../../settings/GridEditorSettings.json'
+import { CloudLightning } from 'react-feather'
 
 export default function TypesEditor() {
   const createtypesArray = (LanduseTypesList) => {

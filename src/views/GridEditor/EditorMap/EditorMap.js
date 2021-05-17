@@ -6,16 +6,18 @@ import DeckGL from "@deck.gl/react";
 import "mapbox-gl/dist/mapbox-gl.css";
 import { GeoJsonLayer } from "deck.gl";
 import settings from "../../../settings/GridEditorSettings.json";
+import scenarioGeojson from "../../../settings/Scenario_2_wgs84_color.json";
 import { listenToBaseMapCenter } from "../../../redux/actions";
 
 export const _hexToRgb = (hex) => {
     var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
     return result
         ? [
-              parseInt(result[1], 16),
-              parseInt(result[2], 16),
-              parseInt(result[3], 16),
-          ]
+            parseInt(result[1], 16),
+            parseInt(result[2], 16),
+            parseInt(result[3], 16),
+            settings.map.gridTransparent,
+        ]
         : null;
 };
 
@@ -226,6 +228,25 @@ class BaseMap extends Component {
                 },
             })
         );
+
+        layers.push(
+            new GeoJsonLayer({
+                id: 'scenario-geojson-layer',
+                data: scenarioGeojson,
+                pickable: false,
+                stroked: true,
+                filled: true,
+                extruded: false,
+                lineWidthScale: 2,
+                lineWidthMinPixels: 2,
+                getFillColor: d => _hexToRgb(d.properties.color),
+                // getFillColor: [163, 155, 8, 200],
+                // getLineColor: d => colorToRGBArray(d.properties.color),
+                // getRadius: 100,
+                getLineWidth: 2,
+                getElevation: 30
+            })
+        )
 
         return layers;
     }

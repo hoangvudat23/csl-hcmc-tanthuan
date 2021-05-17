@@ -18,6 +18,7 @@ export default function GridMaker(props) {
     return (
         <Button
             onClick={() => {
+                console.log(reduxState);
                 handleGridCreation();
             }}
             variant="outlined"

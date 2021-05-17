@@ -5,7 +5,7 @@ import { _GlobeView as GlobeView, COORDINATE_SYSTEM } from '@deck.gl/core'
 import { TileLayer } from '@deck.gl/geo-layers'
 import { FlyToInterpolator } from 'deck.gl'
 import 'mapbox-gl/dist/mapbox-gl.css'
-import { LineLayer, IconLayer, TextLayer, BitmapLayer } from '@deck.gl/layers'
+import { LineLayer, IconLayer, TextLayer, BitmapLayer, GeoJsonLayer } from '@deck.gl/layers'
 import icon from './legoio.png'
 
 import SelectedTable from './SelectedTable'
@@ -13,6 +13,7 @@ import SelectedTable from './SelectedTable'
 // * draggable pin https://github.com/visgl/react-map-gl/tree/6.1-release/examples/draggable-markers
 
 export default function CityIOdeckGLmap(props) {
+  console.log(1232);
   const [markerInfo, setMarkerInfo] = useState([])
   const [clicked, setClicked] = useState()
   const [zoom, setZoom] = useState()

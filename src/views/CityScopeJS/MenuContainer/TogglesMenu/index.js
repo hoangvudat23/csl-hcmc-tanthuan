@@ -20,7 +20,8 @@ function TogglesMenu(props) {
 
     const togglesMeta = settings.menu.toggles;
     const listOfToggles = Object.keys(togglesMeta);
-
+    console.log('menuState',menuState);
+    console.log('cityioData',cityioData);
     /**
      * gets props with initial menu state
      * and turn on the layer on init
