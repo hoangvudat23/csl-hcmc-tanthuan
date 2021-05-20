@@ -53,9 +53,6 @@ const VN2kToWGSMultiLineString = (coordinates, userPrj) => {
 }
 
 const joinGridAndPrivateGeojson = (privateGeojson, gridGeojson, types) => {
-    console.log('geoJson', gridGeojson);
-    console.log('privateGeojson', privateGeojson);
-    console.log('types', types);
     // Get grid cell centroids
     let gridCentroids = featureCollection(gridGeojson.features.map(obj => {
         let cellCentroid = centroid(obj)
@@ -64,11 +61,9 @@ const joinGridAndPrivateGeojson = (privateGeojson, gridGeojson, types) => {
         } // Later populated with the sjoin
         return cellCentroid
     }))
-    console.log('gridCentroids', gridCentroids);
 
     // Assing landuse to centroid with polygons (Spatial join)
     let gridCentroidsWithLanduse = tag(gridCentroids, privateGeojson, 'color', 'color')
-    console.log('gridCentroidsWithLanduse', gridCentroidsWithLanduse);
 
     // Set each cell properties according to types
     for (let i = 0; i < gridCentroidsWithLanduse.features.length; i++) {

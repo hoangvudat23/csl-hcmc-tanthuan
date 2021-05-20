@@ -4,8 +4,9 @@ import CityIO from './CityIO/cityIO'
 import CityIOviewer from '../CityIOviewer'
 import LoadingSpinner from './CityIO/LoadingSpinner'
 import CSjsMain from './CSjsMain'
+import CSjsMainCustom from './CSjsMainCustom'
 
-export default function CityScopeJS() {
+export default function CityScopeJSChartSidebar() {
   // get the table name for cityIO comp
   const [tableName, setTableName] = useState()
   const [isDone, setIsdone] = useState(false)
@@ -37,7 +38,7 @@ export default function CityScopeJS() {
   return (
     <>
       {tableName && <CityIO tableName={tableName} />}
-      {isReady && <CSjsMain cityIOdata={cityIOdata} tableName={tableName}/>}
+      {isReady && <CSjsMainCustom cityIOdata={cityIOdata} tableName={tableName} onlyChartSidebar={true} />}
       {isDone && <CityIOviewer />}
       <LoadingSpinner />
     </>
