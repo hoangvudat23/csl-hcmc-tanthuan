@@ -9,13 +9,13 @@ localStorage.removeItem('view-option');
 
 let arrayOptionAllowance = ["GRID", "ABM", "GEOJSON", "AGGREGATED_TRIPS", "ACCESS", "ROTATE", "TEXTUAL", "SHADOWS",]
 let arrayModeAllowance = ["ON", "OFF"]
-app.get('/api/get-option', (req, res) => {
+app.get('/get-option', (req, res) => {
     let option = localStorage.getItem('view-option');
     let mode = localStorage.getItem('mode');
     res.send({option, mode});
 })
 
-app.post('/api/set-option/:option/:mode', (req, res) => {
+app.post('/set-option/:option/:mode', (req, res) => {
     if (arrayOptionAllowance.includes(req.params.option) && arrayModeAllowance.includes(req.params.mode)) {
         let option = req.params.option;
         let mode = req.params.mode;
