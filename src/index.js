@@ -5,6 +5,9 @@ import { HashRouter } from "react-router-dom";
 import App from "./App";
 import Provider from "./redux/Provider";
 import store from "./redux/store";
+// console.log(require('./Express/index'));
+
+// console.log(require('express'));
 
 // ! basename={process.env.PUBLIC_URL}
 

@@ -12,16 +12,16 @@ import Switch from "@material-ui/core/Switch";
 
 function TogglesMenu(props) {
     const { handleToggle } = props;
-
-    const { menuState, cityioData } = useSelector((state) => ({
+        const { menuState, cityioData } = useSelector((state) => ({
         menuState: state.MENU,
         cityioData: state.CITYIO,
     }));
 
     const togglesMeta = settings.menu.toggles;
     const listOfToggles = Object.keys(togglesMeta);
-    console.log('menuState',menuState);
-    console.log('cityioData',cityioData);
+    // console.log('listOfToggles',listOfToggles);
+    // console.log('menuState',menuState);
+    // console.log('cityioData',cityioData);
     /**
      * gets props with initial menu state
      * and turn on the layer on init
@@ -29,6 +29,7 @@ function TogglesMenu(props) {
     let togglesCompsArray = [];
     // array of loaded API modules
     const loadedModules = Object.keys(cityioData);
+    console.log('loadedModules',loadedModules);
     // create each toggle
     for (let i = 0; i < listOfToggles.length; i++) {
         // check if the mdoule of this toggle
