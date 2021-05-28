@@ -59,31 +59,35 @@ export default function CSjsMainCustom(props) {
   async function listenChangingOption() {
     // recursively get hashes
     const options = await getAPICall(`${process.env.REACT_APP_EXPRESS_PUBLIC_URL}/get-option`);
-    console.log(options);
-    let option = options.option;
-    let mode = options.mode;
-    if (option) {
-      let requireModule = togglesMeta[option].requireModule;
-      if (loadedModules.includes(requireModule) || requireModule === false) {
-        const i = menuState.indexOf(option);
-        const updatedMenuState = [...menuState];
-        if (mode == "ON") {
-          if (i === -1) {
-            updatedMenuState.push(option);
-          }
-          else{
-            console.log(123);
+    if (options) {
+      console.log(options);
+      let table = options.table;
+      let option = options.option;
+      let mode = options.mode;
+      if (table == tableName) {
+        if (option) {
+          let requireModule = togglesMeta[option].requireModule;
+          if (loadedModules.includes(requireModule) || requireModule === false) {
+            const i = menuState.indexOf(option);
+            const updatedMenuState = [...menuState];
+            if (mode == "ON") {
+              if (i === -1) {
+                updatedMenuState.push(option);
+              }
+              else {
+                console.log(123);
+              }
+            }
+            else {
+              if (i !== -1) {
+                updatedMenuState.splice(i, 1);
+              }
+            }
+            dispatch(listenToMenuUI(updatedMenuState));
           }
         }
-        else {
-          if (i !== -1) {
-            updatedMenuState.splice(i, 1);
-          }
-        }
-        dispatch(listenToMenuUI(updatedMenuState));
       }
     }
-
     setTimeout(listenChangingOption, 1000);
   }
 

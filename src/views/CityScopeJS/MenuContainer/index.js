@@ -4,13 +4,14 @@ import { listenToMenuUI } from "../../../redux/actions";
 import EditMenu from "./EditMenu";
 import TogglesMenu from "./TogglesMenu";
 import SaveMenu from "./SaveMenu";
-import { Button, Typography, List, ListItem } from "@material-ui/core";
+import { Button, Typography, List, ListItem, FormControl, FormLabel, FormControlLabel, RadioGroup, Radio } from "@material-ui/core";
 import EditIcon from "@material-ui/icons/Edit";
 import CloudUploadIcon from "@material-ui/icons/CloudUpload";
 import NavigationIcon from "@material-ui/icons/Navigation";
 import axios from "axios";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import settings from "../../../settings/settings.json";
+import ChooseScenario from "./ChooseScenario";
 
 const getAPICall = async (URL) => {
     try {
@@ -40,41 +41,41 @@ function MenuContainer(props) {
         }
         dispatch(listenToMenuUI(updatedMenuState));
     };
-    useEffect(() => {
-        const timer = setTimeout(listenChangingOption, 1000);
-        return () => clearTimeout(timer);
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
+    // useEffect(() => {
+    //     const timer = setTimeout(listenChangingOption, 1000);
+    //     return () => clearTimeout(timer);
+    //     // eslint-disable-next-line react-hooks/exhaustive-deps
+    // }, []);
 
-    /* Listening View Option Change */
-    async function listenChangingOption() {
-        // recursively get hashes
-        const options = await getAPICall(`${process.env.REACT_APP_EXPRESS_PUBLIC_URL}/get-option`);
-        console.log(options);
-        let option = options.option;
-        let mode = options.mode;
-        if (option) {
-            let requireModule = togglesMeta[option].requireModule;
-            if (loadedModules.includes(requireModule) || requireModule === false) {
-                const i = menuState.indexOf(option);
-                const updatedMenuState = [...menuState];
-                console.log(updatedMenuState);
-                if (mode == "ON") {
-                    if (i === -1) {
-                        updatedMenuState.push(option);
-                    }
-                }
-                else {
-                    if (i !== -1) {
-                        updatedMenuState.splice(i, 1);
-                    }
-                }
-                dispatch(listenToMenuUI(updatedMenuState));
-            }
-        }
+    // /* Listening View Option Change */
+    // async function listenChangingOption() {
+    //     // recursively get hashes
+    //     const options = await getAPICall(`${process.env.REACT_APP_EXPRESS_PUBLIC_URL}/get-option`);
+    //     console.log(options);
+    //     let option = options.option;
+    //     let mode = options.mode;
+    //     if (option) {
+    //         let requireModule = togglesMeta[option].requireModule;
+    //         if (loadedModules.includes(requireModule) || requireModule === false) {
+    //             const i = menuState.indexOf(option);
+    //             const updatedMenuState = [...menuState];
+    //             console.log(updatedMenuState);
+    //             if (mode == "ON") {
+    //                 if (i === -1) {
+    //                     updatedMenuState.push(option);
+    //                 }
+    //             }
+    //             else {
+    //                 if (i !== -1) {
+    //                     updatedMenuState.splice(i, 1);
+    //                 }
+    //             }
+    //             dispatch(listenToMenuUI(updatedMenuState));
+    //         }
+    //     }
 
-        setTimeout(listenChangingOption, 1000);
-    }
+    //     setTimeout(listenChangingOption, 1000);
+    // }
 
     /* END Listening */
 
@@ -124,7 +125,7 @@ function MenuContainer(props) {
                         startIcon={
                             <>
                                 <NavigationIcon />
-                                {[...menuState]}
+                                {'RESET VIEW'}
                             </>
                         }
                         color="default"
@@ -134,6 +135,7 @@ function MenuContainer(props) {
             </List>
 
             <TogglesMenu handleToggle={handleToggle} />
+            <ChooseScenario/>
         </>
     );
 }
