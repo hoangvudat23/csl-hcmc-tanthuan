@@ -25,7 +25,7 @@ app.get('/get-option', (req, res) => {
     res.send({option, mode, table});
 })
 
-app.post('/set-option/:option/:mode', (req, res) => {
+app.post('/set-option', (req, res) => {
     let reqParams = req.body;
     let option = reqParams.option
     let mode = reqParams.mode;
