@@ -42,6 +42,7 @@ export default function CSjsMainCustom(props) {
   const onlyMap = props.onlyMap
   const onlyOptionMenu = props.onlyOptionMenu
   const onlyChartSidebar = props.onlyChartSidebar
+  const mapAndChartSidebar = props.mapAndChartSidebar
 
   const menuState = useSelector((state) => state.MENU);
   const loadedModules = Object.keys(cityIOdata);
@@ -129,6 +130,34 @@ export default function CSjsMainCustom(props) {
               <MapContainer />
             </Card>
           </Grid>}
+          {mapAndChartSidebar && <Grid item xs={6} l={6} md={6} xl={6}>
+            <Card
+              elevation={15}
+              style={{
+                maxHeight: '60vh',
+                overflow: 'auto',
+              }}
+            >
+              <VisContainer cityIOdata={cityIOdata} />
+            </Card>
+          </Grid>
+            
+          }
+          {mapAndChartSidebar && <Grid item xs={6} l={6} md={6} xl={6}>
+              <Card
+                elevation={15}
+                style={{
+                  height: '60vh',
+                  width: '100%',
+                  position: 'relative',
+                }}
+              >
+                {/* <Test/> */}
+                <MapContainer pitchMap={45}/>
+              </Card>
+            </Grid>
+
+          }
           {onlyChartSidebar && <Grid item xs={12} l={12} md={12} xl={12}>
             <Card
               elevation={15}

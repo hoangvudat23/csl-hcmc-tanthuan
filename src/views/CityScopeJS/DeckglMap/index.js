@@ -22,7 +22,8 @@ import {
   GeojsonLayer,
 } from './deckglLayers'
 
-export default function Map() {
+export default function Map(props) {
+  const pitchMap = props.pitchMap
   const [draggingWhileEditing, setDraggingWhileEditing] = useState(false)
   const [selectedCellsState, setSelectedCellsState] = useState(null)
   const [viewState, setViewState] = useState(settings.map.initialViewState)
@@ -146,7 +147,7 @@ export default function Map() {
       longitude: header.longitude,
       latitude: header.latitude,
       zoom: 15,
-      pitch: 0,
+      pitch: pitchMap ?? 0,
       bearing: 360 - header.rotation,
       orthographic: true,
     })
