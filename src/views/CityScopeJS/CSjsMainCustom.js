@@ -153,7 +153,7 @@ export default function CSjsMainCustom(props) {
                 }}
               >
                 {/* <Test/> */}
-                <MapContainer pitchMap={45}/>
+                <MapContainer pitchMap={45} zoomMap={14}/>
               </Card>
             </Grid>
 
