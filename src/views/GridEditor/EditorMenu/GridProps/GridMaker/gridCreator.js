@@ -16,7 +16,7 @@ const randomProperty = (obj) => {
 
 const convertScenarioToWGS84 = (types) => {
     let features = scenario.features;
-    console.log(types);
+    // console.log(types);
     for (let i = 0; i < features.length; i++) {
         var color = types.find(el => el.TypeCode == features[i].properties['TypeCode']).color;
         if (typeof color == 'undefined') {
@@ -25,8 +25,19 @@ const convertScenarioToWGS84 = (types) => {
         let rgbArr = (features[i].properties['RGB']).split(',')
         rgbArr = rgbArr.map(el => parseFloat(el));
         rgbArr.push(220);
+
+        let height = 0;
+        if (features[i].properties.Height) {
+            height = features[i].properties.Height
+            if (height.includes("-")) {
+                height = height.split('');
+                height = height[height.length - 1];
+            }
+            height = parseFloat(height);
+        }
         // let color = "#00dd5c";
         // features[i].properties.color = color;
+        features[i].properties.height = height;
         features[i].properties.color = rgbArr;
         features[i].properties.stroke = '#3f3f3f';
         features[i].properties['stroke-width'] = 0.5;

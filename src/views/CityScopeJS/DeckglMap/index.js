@@ -193,7 +193,7 @@ export default function Map() {
     }),
     ACCESS: AccessLayer({
       data: access,
-      cellSize: cityioData.GEOGRID.properties.header.cellSize,
+      cellSize: cityioData.GEOGRID?.properties?.header.cellSize,
     }),
     TEXTUAL: TextualLayer({
       data: textualData && textualData,

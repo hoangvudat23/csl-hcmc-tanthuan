@@ -8,7 +8,7 @@ import globalSettings from '../../../../../settings/settings.json'
 import Typography from '@material-ui/core/Typography'
 import { useSelector } from 'react-redux'
 import Link from '@material-ui/core/Link'
-import scenario from '../../../../../settings/LandUse_0_color.json'
+import scenario from '../../../../../settings/LandUse_2_color.json'
 
 const reqResonseUI = (response, tableName) => {
   let cityscopeJSendpoint =
@@ -51,7 +51,6 @@ const makeGEOGRIDobject = (struct, typesList, geoJsonFeatures, gridProps) => {
         ? JSON.parse(oldType.NAICS)
         : oldType.NAICS
   })
-  console.log(newTypesList);
 
   GEOGRID_object.properties.types = newTypesList
 
@@ -133,7 +132,7 @@ export default function CommitGrid(props) {
     // console.log('GEOGRIDstruct', GEOGRIDstruct);
     // console.log('typesList', typesList);
     // console.log('geoJsonFeatures', geoJsonFeatures);
-    console.log('gridProps', gridProps);
+    // console.log('gridProps', gridProps);
     let GEOGRID_object = makeGEOGRIDobject(
       GEOGRIDstruct,
       typesList,
@@ -162,11 +161,11 @@ export default function CommitGrid(props) {
       GEOGRIDDATA: GEOGRIDDATA_object,
     }
 
-    // axios(geoGridOptions(table_url, new_table_grid))
-    //   .then(function (response) {
-    //     setReqResonse(reqResonseUI(response, tableName))
-    //   })
-    //   .catch((error) => console.log(`ERROR: ${error}`))
+    axios(geoGridOptions(table_url, new_table_grid))
+      .then(function (response) {
+        setReqResonse(reqResonseUI(response, tableName))
+      })
+      .catch((error) => console.log(`ERROR: ${error}`))
   }
 
   return (

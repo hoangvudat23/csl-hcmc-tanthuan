@@ -8,86 +8,40 @@ import "../../../../../node_modules/react-vis/dist/style.css";
 import scenario from "../../../../settings/LandUse_0_color.json";
 
 export default function AreaCalc(props) {
-    const radialRadius = 500;
+    const radialRadius = 250;
     const [hoveredRadial, setHoveredRadial] = useState(false);
     const [areaData, setAreaData] = useState(null);
-
+    const header = props.cityioData.GEOGRID?.properties?.header;
     useEffect(() => {
-        // const calcArea = () => {
-        //     let gridProps = props.cityioData.GEOGRID.properties;
-        //     let cellSize = gridProps.header.cellSize;
-        //     let geoGridData = props.cityioData.GEOGRIDDATA;
-
-        //     let calcAreaObj = {};
-        //     geoGridData.forEach((gridCellData) => {
-        //         let typeName = gridCellData.name;
-        //         if (
-        //             //    if this type is not null
-        //             gridCellData.name !== "None"
-        //         ) {
-        //             if (calcAreaObj.hasOwnProperty(typeName)) {
-        //                 calcAreaObj[typeName].count =
-        //                     calcAreaObj[typeName].count + 1;
-        //                 // avoid landuse with no height
-        //                 let height =
-        //                     gridCellData.height < 1 ? 1 : gridCellData.height;
-        //                 calcAreaObj[typeName].area =
-        //                     calcAreaObj[typeName].area + height * cellSize;
-        //             } else {
-        //                 calcAreaObj[typeName] = {};
-        //                 calcAreaObj[typeName].area = 0;
-        //                 calcAreaObj[typeName].count = 0;
-        //                 calcAreaObj[typeName].name = typeName;
-        //                 calcAreaObj[typeName].color = rgbToHex(
-        //                     gridCellData.color[0],
-        //                     gridCellData.color[1],
-        //                     gridCellData.color[2]
-        //                 );
-        //             }
-        //         }
-        //     });
-        //     //  convert to react-vis happy data format
-        //     let radialData = [];
-        //     for (const k in calcAreaObj) {
-        //         radialData.push(calcAreaObj[k]);
-        //     }
-
-        //     let data = {
-        //         children: radialData,
-        //         color: 1,
-        //     };
-        //     console.log('radialData', radialData);
-
-        //     return data;
-        // };
         const calcArea = () => {
             let gridProps = props.cityioData.GEOGRID.properties;
             let cellSize = gridProps.header.cellSize;
             let geoGridData = props.cityioData.GEOGRIDDATA;
-            console.log('geoGridData',geoGridData);
 
             let calcAreaObj = {};
             geoGridData.forEach((gridCellData) => {
-                let typeName = gridCellData.LandUseTyp;
-                let typeCode = gridCellData.TypeCode;
-                let color = (gridCellData.RGB).split(',');
-                let shapeArea = Math.round(gridCellData.ShapeArea * 100)/100;
+                let typeName = gridCellData.name;
                 if (
                     //    if this type is not null
-                    gridCellData.TypeCode !== "None"
+                    gridCellData.name !== "None"
                 ) {
-                    if (calcAreaObj.hasOwnProperty(typeCode)) {
-                        // calcAreaObj[typeCode].area = calcAreaObj[typeCode].area + gridCellData.Shape_Area;
-                        calcAreaObj[typeCode].area = calcAreaObj[typeCode].area + shapeArea;
+                    if (calcAreaObj.hasOwnProperty(typeName)) {
+                        calcAreaObj[typeName].count =
+                            calcAreaObj[typeName].count + 1;
+                        // avoid landuse with no height
+                        let height =
+                            gridCellData.height < 1 ? 1 : gridCellData.height;
+                        calcAreaObj[typeName].area =
+                            calcAreaObj[typeName].area + height * cellSize;
                     } else {
-                        calcAreaObj[typeCode] = {};
-                        // calcAreaObj[typeCode].area = gridCellData.Shape_Area;
-                        calcAreaObj[typeCode].area = shapeArea;
-                        calcAreaObj[typeCode].name = typeName;
-                        calcAreaObj[typeCode].color = rgbToHex(
-                           parseInt(color[0]),
-                           parseInt(color[1]),
-                           parseInt(color[2]),
+                        calcAreaObj[typeName] = {};
+                        calcAreaObj[typeName].area = 0;
+                        calcAreaObj[typeName].count = 0;
+                        calcAreaObj[typeName].name = typeName;
+                        calcAreaObj[typeName].color = rgbToHex(
+                            gridCellData.color[0],
+                            gridCellData.color[1],
+                            gridCellData.color[2]
                         );
                     }
                 }
@@ -106,7 +60,59 @@ export default function AreaCalc(props) {
 
             return data;
         };
-        const d = calcArea();
+        const calcAreaForHCM = () => {
+            let gridProps = props.cityioData.GEOGRID.properties;
+            let cellSize = gridProps.header.cellSize;
+            let geoGridData = props.cityioData.GEOGRIDDATA;
+            // console.log('geoGridData',geoGridData);
+
+            let calcAreaObj = {};
+            geoGridData.forEach((gridCellData) => {
+                let typeName = gridCellData.LandUseTyp;
+                let typeCode = gridCellData.TypeCode;
+                let color = (gridCellData.RGB).split(',');
+                let shapeArea = Math.round(gridCellData.ShapeArea * 100) / 100;
+                if (
+                    //    if this type is not null
+                    gridCellData.TypeCode !== "None"
+                ) {
+                    if (calcAreaObj.hasOwnProperty(typeCode)) {
+                        // calcAreaObj[typeCode].area = calcAreaObj[typeCode].area + gridCellData.Shape_Area;
+                        calcAreaObj[typeCode].area = calcAreaObj[typeCode].area + shapeArea;
+                    } else {
+                        calcAreaObj[typeCode] = {};
+                        // calcAreaObj[typeCode].area = gridCellData.Shape_Area;
+                        calcAreaObj[typeCode].area = shapeArea;
+                        calcAreaObj[typeCode].name = typeName;
+                        calcAreaObj[typeCode].color = rgbToHex(
+                            parseInt(color[0]),
+                            parseInt(color[1]),
+                            parseInt(color[2]),
+                        );
+                    }
+                }
+            });
+            //  convert to react-vis happy data format
+            let radialData = [];
+            for (const k in calcAreaObj) {
+                radialData.push(calcAreaObj[k]);
+            }
+
+            let data = {
+                children: radialData,
+                color: 1,
+            };
+            // console.log('radialData', radialData);
+
+            return data;
+        };
+        let d;
+        if (header.tableName && header.tableName.includes('hcm_')) {
+            d = calcAreaForHCM();
+        }
+        else {
+            d = calcArea();
+        }
         setAreaData(d);
     }, [props]);
 

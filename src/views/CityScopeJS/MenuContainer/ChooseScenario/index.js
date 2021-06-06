@@ -1,12 +1,31 @@
 import React from "react";
 import settings from "../../../../settings/settings.json";
 import gridSetting from "../../../../settings/GridEditorSettings.json"
-import { FormControl, FormLabel, FormControlLabel, RadioGroup, Radio, CircularProgress } from "@material-ui/core";
+import { FormControl, FormLabel, FormControlLabel, RadioGroup, Radio, CircularProgress, Stepper, Step, StepLabel, StepButton } from "@material-ui/core";
 import { useState } from "react";
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import axios from 'axios'
 import scenario1 from '../../../../settings/LandUse_0_color.json'
 import scenario2 from '../../../../settings/LandUse_2_color.json'
+import {
+    getCityioData,
+    setReadyState,
+    setLoadingState,
+    setScenarioNames,
+    addLoadingModules,
+    removeLoadingModules,
+} from "../../../../redux/actions";
+
+const getAPICall = async (URL) => {
+    try {
+        // ! should add 'retry' here
+        // ! https://stackoverflow.com/questions/56074531/how-to-retry-5xx-requests-using-axios
+        const response = await axios.get(URL);
+        return response.data;
+    } catch (err) {
+        console.log(err);
+    }
+};
 
 const makeGEOGRIDDATAobject = (geoJsonFeatures) => {
     let GEOGRIDDATA_object = []
@@ -36,7 +55,6 @@ const makeGEOGRIDobject = (struct, typesList, geoJsonFeatures, gridProps) => {
                 ? JSON.parse(oldType.NAICS)
                 : oldType.NAICS
     })
-    console.log(newTypesList);
 
     GEOGRID_object.properties.types = newTypesList
 
@@ -76,7 +94,7 @@ const postGridToCityIO = async (myTypeList, myGeoJsonFeatures) => {
 
     // take grid struct from settings
     // console.log('GEOGRIDstruct', GEOGRIDstruct);
-    console.log('typesList', typesList);
+    // console.log('typesList', typesList);
     // console.log('geoJsonFeatures', geoJsonFeatures);
     // console.log('gridProps', gridProps);
     let GEOGRID_object = makeGEOGRIDobject(
@@ -107,13 +125,6 @@ const postGridToCityIO = async (myTypeList, myGeoJsonFeatures) => {
         GEOGRID: GEOGRID_object,
         GEOGRIDDATA: GEOGRIDDATA_object,
     }
-
-    // axios(geoGridOptions(table_url, new_table_grid))
-    //     .then(function (response) {
-    //         // setReqResonse(reqResonseUI(response, tableName))
-    //         console.log("Switched to new scenario")
-    //     })
-    //     .catch((error) => console.log(`ERROR: ${error}`))
     let response = await axios(geoGridOptions(table_url, new_table_grid));
     return response.data;
 }
@@ -152,6 +163,10 @@ const createtypesArray = (LanduseTypesList) => {
     return typesArray
 }
 
+function getSteps() {
+    return ["2021", "2030"];
+}
+
 function ChooseScenario(props) {
     const [radioValue, setRadioValue] = useState('scenario1');
     const [loading, setLoading] = useState(false);
@@ -178,18 +193,104 @@ function ChooseScenario(props) {
         setLoading(false);
     }
 
+    /* ONLY GETTING DATA */
+    const [hashes, setHashes] = useState({});
+    const cityioData = useSelector((state) => state.CITYIO);
+
+    const dispatch = useDispatch();
+
+    const [activeStep, setActiveStep] = useState(0);
+    const steps = getSteps();
+
+    async function getModules(tableName) {
+        let cityioURL = `${settings.cityIO.baseURL}${tableName}/`;
+        const newHashes = await getAPICall(cityioURL + "meta/hashes/");
+        const promises = [];
+        const loadingModules = [];
+        const pickedModules = settings.cityIO.cityIOmodules.map((x) => x.name);
+        // for each of the modules in settings, add api call to promises
+        pickedModules.forEach((module) => {
+            if (hashes[module] !== newHashes[module]) {
+                promises.push(getAPICall(`${cityioURL}${module}/`));
+                loadingModules.push(module);
+                // if(newHashes[module]){
+                // }
+            } else {
+                promises.push(null);
+            }
+        });
+        dispatch(addLoadingModules(loadingModules));
+        const modules = await Promise.all(promises);
+        setHashes(newHashes);
+        // console.log('modules', modules);
+
+        // update cityio object with modules data
+        const modulesData = pickedModules.reduce((obj, k, i) => {
+            if (modules[i]) {
+                console.log(`updating ${k}`);
+                return { ...obj, [k]: modules[i] };
+            } else {
+                return obj;
+            }
+        }, cityioData);
+        modulesData.tableName = tableName;
+        // console.log('modulesData', modulesData);
+
+        dispatch(removeLoadingModules(loadingModules));
+
+        // send to cityio
+        dispatch(getCityioData(modulesData));
+        console.log("done updating from cityIO");
+
+        // initializes rendering of Menu and Map containers
+        dispatch(setReadyState(true));
+        dispatch(setLoadingState(false));
+    }
+
+    const handleStepByGetCityIOData = (step) => async () => {
+        setActiveStep(step);
+        let tableName = null;
+        switch (step) {
+            case 0:
+                tableName = 'hcm_test_v1';
+                break;
+            case 1:
+                tableName = 'hcm_test_v2';
+                break;
+        }
+        setLoading(true);
+        await getModules(tableName);
+        setLoading(false);
+    }
+
 
 
     return (
         <>
-            <FormControl component="fieldset">
+            {/* <FormControl component="fieldset">
                 <FormLabel component="legend">Scenarios</FormLabel>
                 <RadioGroup aria-label="my-scenario" name="my-scenario" value={radioValue} onChange={handleRadioChange} >
                     <FormControlLabel value="scenario1" control={<Radio />} label="Scenario 1" disabled={loading} />
                     <FormControlLabel value="scenario2" control={<Radio />} label="Scenario 2" disabled={loading} />
                 </RadioGroup>
-                {loading && <CircularProgress />}
-            </FormControl>
+                
+            </FormControl> */}
+            <Stepper alternativeLabel nonLinear activeStep={activeStep}>
+                {steps.map((label, index) => {
+                    return (
+                        <Step key={label}>
+                            <StepButton
+                                onClick={handleStepByGetCityIOData(index)}
+                                icon={'•'}
+                                disabled={loading}
+                            >
+                                <StepLabel>{label}</StepLabel>
+                            </StepButton>
+                        </Step>
+                    );
+                })}
+            </Stepper>
+            {loading && <CircularProgress />}
         </>
     )
 }
