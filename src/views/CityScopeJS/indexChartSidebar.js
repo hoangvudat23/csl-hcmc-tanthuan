@@ -5,6 +5,15 @@ import CityIOviewer from '../CityIOviewer'
 import LoadingSpinner from './CityIO/LoadingSpinner'
 import CSjsMain from './CSjsMain'
 import CSjsMainCustom from './CSjsMainCustom'
+import MapContainer from './DeckglMap'
+import {
+  makeStyles,
+  Grid,
+  Card,
+  CardContent,
+  Container,
+} from '@material-ui/core'
+
 
 export default function CityScopeJSChartSidebar() {
   // get the table name for cityIO comp
@@ -14,10 +23,11 @@ export default function CityScopeJSChartSidebar() {
   // to search for  a table
   useEffect(() => {
     let url = window.location.toString()
+    console.log(url);
     let pre = 'cityscope='
     let cityscopePrjName = url.substring(url.indexOf(pre) + pre.length).toLowerCase()
 
-    
+
     // check URL for proper CS project link
     if (url.indexOf(pre) !== -1 && cityscopePrjName.length > 0) {
       setTableName(cityscopePrjName)
@@ -38,7 +48,7 @@ export default function CityScopeJSChartSidebar() {
   return (
     <>
       {tableName && <CityIO tableName={tableName} />}
-      {isReady && <CSjsMainCustom cityIOdata={cityIOdata} tableName={tableName} onlyChartSidebar={true} />}
+      {isReady && <CSjsMainCustom cityIOdata={cityIOdata} tableName={tableName} mapAndChartSidebar={true} />}
       {isDone && <CityIOviewer />}
       <LoadingSpinner />
     </>
