@@ -49,6 +49,7 @@ export default function CSjsMainCustom(props) {
   const togglesMeta = settings.menu.toggles;
 
   const dispatch = useDispatch();
+  let myMenuState = [...menuState];
 
   /* Listening View Option Change */
   useEffect(() => {
@@ -69,22 +70,24 @@ export default function CSjsMainCustom(props) {
         if (option) {
           let requireModule = togglesMeta[option].requireModule;
           if (loadedModules.includes(requireModule) || requireModule === false) {
-            const i = menuState.indexOf(option);
-            const updatedMenuState = [...menuState];
+            // const i = menuState.indexOf(option);
+            // const updatedMenuState = [...menuState];
+            const i = myMenuState.indexOf(option);
+            console.log(myMenuState);
             if (mode == "ON") {
               if (i === -1) {
-                updatedMenuState.push(option);
-              }
-              else {
-                console.log(123);
+                // updatedMenuState.push(option);
+                myMenuState.push(option);
               }
             }
             else {
               if (i !== -1) {
-                updatedMenuState.splice(i, 1);
+                // updatedMenuState.splice(i, 1);
+                myMenuState.splice(i, 1);
               }
             }
-            dispatch(listenToMenuUI(updatedMenuState));
+            // dispatch(listenToMenuUI(updatedMenuState));
+            dispatch(listenToMenuUI(myMenuState));
           }
         }
       }

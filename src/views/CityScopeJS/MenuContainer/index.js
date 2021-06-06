@@ -41,41 +41,57 @@ function MenuContainer(props) {
         }
         dispatch(listenToMenuUI(updatedMenuState));
     };
-    // useEffect(() => {
-    //     const timer = setTimeout(listenChangingOption, 1000);
-    //     return () => clearTimeout(timer);
-    //     // eslint-disable-next-line react-hooks/exhaustive-deps
-    // }, []);
+
+    let myMenuState = [...menuState];
+    useEffect(() => {
+        // listenChangingOption();
+        const timer = setTimeout(listenChangingOption, 1000);
+        return () => clearTimeout(timer);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
 
     // /* Listening View Option Change */
-    // async function listenChangingOption() {
-    //     // recursively get hashes
-    //     const options = await getAPICall(`${process.env.REACT_APP_EXPRESS_PUBLIC_URL}/get-option`);
-    //     console.log(options);
-    //     let option = options.option;
-    //     let mode = options.mode;
-    //     if (option) {
-    //         let requireModule = togglesMeta[option].requireModule;
-    //         if (loadedModules.includes(requireModule) || requireModule === false) {
-    //             const i = menuState.indexOf(option);
-    //             const updatedMenuState = [...menuState];
-    //             console.log(updatedMenuState);
-    //             if (mode == "ON") {
-    //                 if (i === -1) {
-    //                     updatedMenuState.push(option);
-    //                 }
-    //             }
-    //             else {
-    //                 if (i !== -1) {
-    //                     updatedMenuState.splice(i, 1);
-    //                 }
-    //             }
-    //             dispatch(listenToMenuUI(updatedMenuState));
-    //         }
-    //     }
+    async function listenChangingOption() {
+        // recursively get hashes
+        const options = await getAPICall(`${process.env.REACT_APP_EXPRESS_PUBLIC_URL}/get-option`);
+        if (options) {
+            console.log(options);
+            let option = options.option;
+            let mode = options.mode;
+            let table = options.table;
+            if (table == tableName) {
 
-    //     setTimeout(listenChangingOption, 1000);
-    // }
+                if (option) {
+                    let requireModule = togglesMeta[option].requireModule;
+                    if (loadedModules.includes(requireModule) || requireModule === false) {
+                        // const i = menuState.indexOf(option);
+                        // const updatedMenuState = [...menuState];
+                        // console.log(updatedMenuState);
+                        /* Meme */
+                        const i = myMenuState.indexOf(option);
+                        console.log(myMenuState);
+                        /* END meme */
+                        if (mode == "ON") {
+                            if (i === -1) {
+                                // updatedMenuState.push(option);
+                                myMenuState.push(option);
+                            }
+                        }
+                        else {
+                            if (i !== -1) {
+                                // updatedMenuState.splice(i, 1);
+                                myMenuState.splice(i, 1);
+                            }
+                        }
+                        // dispatch(listenToMenuUI(updatedMenuState));
+                        dispatch(listenToMenuUI(myMenuState));
+                    }
+                }
+            }
+        }
+
+        setTimeout(listenChangingOption, 1000);
+    }
 
     /* END Listening */
 
@@ -131,11 +147,12 @@ function MenuContainer(props) {
                         color="default"
                         onClick={handleToggle("RESET_VIEW")}
                     />
+                    {menuState}
                 </ListItem>
             </List>
 
             <TogglesMenu handleToggle={handleToggle} />
-            <ChooseScenario/>
+            <ChooseScenario />
         </>
     );
 }
