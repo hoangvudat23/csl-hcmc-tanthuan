@@ -169,13 +169,14 @@ function getSteps() {
 
 function ChooseScenario(props) {
     const chosenScenario = props.chosenScenario;
+    const displayUI = props.displayUI;
     const [radioValue, setRadioValue] = useState('scenario1');
     const [loading, setLoading] = useState(false);
     // const reduxState = useSelector((state) => state)
     // console.log(reduxState.TYPES_LIST);
 
     useEffect(() => {
-        async function autoChangeScenario(){
+        async function autoChangeScenario() {
             await getModules(chosenScenario);
         }
         autoChangeScenario();
@@ -282,7 +283,7 @@ function ChooseScenario(props) {
                 </RadioGroup>
                 
             </FormControl> */}
-            {/* <Stepper alternativeLabel nonLinear activeStep={activeStep}>
+            {displayUI && <Stepper alternativeLabel nonLinear activeStep={activeStep}>
                 {steps.map((label, index) => {
                     return (
                         <Step key={label}>
@@ -296,8 +297,8 @@ function ChooseScenario(props) {
                         </Step>
                     );
                 })}
-            </Stepper>
-            {loading && <CircularProgress />} */}
+            </Stepper>}
+            {loading && <CircularProgress />}
         </>
     )
 }

@@ -151,7 +151,7 @@ function MenuContainer(props) {
             </List>
 
             <TogglesMenu handleToggle={handleToggle} />
-            <ChooseScenario chosenScenario={chosenScenario} />
+            <ChooseScenario chosenScenario={chosenScenario} displayUI={true}/>
         </>
     );
 }
