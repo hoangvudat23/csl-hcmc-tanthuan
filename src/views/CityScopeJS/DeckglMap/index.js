@@ -140,6 +140,7 @@ export default function Map(props) {
   //  * to cityIO header data
   //  * https://github.com/uber/deck.gl/blob/master/test/apps/viewport-transitions-flyTo/src/app.js
   //  */
+
   const _setViewStateToTableHeader = () => {
     const header = cityioData.GEOGRID.properties.header
 
@@ -147,7 +148,7 @@ export default function Map(props) {
       ...viewState,
       longitude: header.longitude,
       latitude: header.latitude,
-      zoom: zoomMap ?? 15,
+      zoom: zoomMap ?? 14,
       pitch: pitchMap ?? 0,
       bearing: 360 - header.rotation,
       orthographic: true,

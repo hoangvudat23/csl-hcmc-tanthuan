@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import settings from "../../../../settings/settings.json";
 import gridSetting from "../../../../settings/GridEditorSettings.json"
 import { FormControl, FormLabel, FormControlLabel, RadioGroup, Radio, CircularProgress, Stepper, Step, StepLabel, StepButton } from "@material-ui/core";
@@ -168,17 +168,24 @@ function getSteps() {
 }
 
 function ChooseScenario(props) {
+    const chosenScenario = props.chosenScenario;
     const [radioValue, setRadioValue] = useState('scenario1');
     const [loading, setLoading] = useState(false);
-
     // const reduxState = useSelector((state) => state)
     // console.log(reduxState.TYPES_LIST);
 
+    useEffect(() => {
+        async function autoChangeScenario(){
+            await getModules(chosenScenario);
+        }
+        autoChangeScenario();
+    }, [chosenScenario]);
+
     const handleRadioChange = async (event) => {
-        let chosenScenario = event.target.value
+        let myChosenScenario = event.target.value
         let fileScenario = null;
-        setRadioValue(chosenScenario);
-        switch (chosenScenario) {
+        setRadioValue(myChosenScenario);
+        switch (myChosenScenario) {
             case 'scenario1':
                 fileScenario = scenario1;
                 break;
@@ -275,7 +282,7 @@ function ChooseScenario(props) {
                 </RadioGroup>
                 
             </FormControl> */}
-            <Stepper alternativeLabel nonLinear activeStep={activeStep}>
+            {/* <Stepper alternativeLabel nonLinear activeStep={activeStep}>
                 {steps.map((label, index) => {
                     return (
                         <Step key={label}>
@@ -290,7 +297,7 @@ function ChooseScenario(props) {
                     );
                 })}
             </Stepper>
-            {loading && <CircularProgress />}
+            {loading && <CircularProgress />} */}
         </>
     )
 }

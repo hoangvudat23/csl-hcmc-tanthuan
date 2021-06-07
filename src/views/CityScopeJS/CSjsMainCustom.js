@@ -10,11 +10,13 @@ import {
   Container,
 } from '@material-ui/core'
 import Page from '../../layouts/Page'
+
 import axios from "axios";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import settings from "../../settings/settings.json";
 import { useSelector, useDispatch } from "react-redux";
 import { listenToMenuUI } from "../../redux/actions";
+import ChooseScenario from "./MenuContainer/ChooseScenario"
 
 
 const useStyles = makeStyles((theme) => ({
@@ -50,6 +52,8 @@ export default function CSjsMainCustom(props) {
 
   const dispatch = useDispatch();
   let myMenuState = [...menuState];
+  const [chosenScenario, setChosenScenario] = useState("hcm_test_v1");
+  let myChosenScenario = 'hcm_test_v1';
 
   /* Listening View Option Change */
   useEffect(() => {
@@ -61,6 +65,7 @@ export default function CSjsMainCustom(props) {
   async function listenChangingOption() {
     // recursively get hashes
     const options = await getAPICall(`${process.env.REACT_APP_EXPRESS_PUBLIC_URL}/get-option`);
+    const scenarioObject = await getAPICall(`${process.env.REACT_APP_EXPRESS_PUBLIC_URL}/get-scenario`);
     if (options) {
       console.log(options);
       let table = options.table;
@@ -70,26 +75,29 @@ export default function CSjsMainCustom(props) {
         if (option) {
           let requireModule = togglesMeta[option].requireModule;
           if (loadedModules.includes(requireModule) || requireModule === false) {
-            // const i = menuState.indexOf(option);
-            // const updatedMenuState = [...menuState];
             const i = myMenuState.indexOf(option);
-            console.log(myMenuState);
             if (mode == "ON") {
               if (i === -1) {
-                // updatedMenuState.push(option);
                 myMenuState.push(option);
               }
             }
             else {
               if (i !== -1) {
-                // updatedMenuState.splice(i, 1);
                 myMenuState.splice(i, 1);
               }
             }
-            // dispatch(listenToMenuUI(updatedMenuState));
             dispatch(listenToMenuUI(myMenuState));
           }
         }
+      }
+    }
+    if (scenarioObject) {
+      console.log(scenarioObject);
+      let scenario = scenarioObject.scenario;
+      if (scenario && scenario != myChosenScenario) {
+        console.log(111);
+        myChosenScenario = scenario;
+        setChosenScenario(scenario);
       }
     }
     setTimeout(listenChangingOption, 1000);
@@ -143,25 +151,21 @@ export default function CSjsMainCustom(props) {
             >
               <VisContainer cityIOdata={cityIOdata} />
             </Card>
-          </Grid>
-            
-          }
+          </Grid>}
           {mapAndChartSidebar && <Grid item xs={6} l={6} md={6} xl={6}>
-              <Card
-                elevation={15}
-                style={{
-                  height: '60vh',
-                  width: '100%',
-                  position: 'relative',
-                }}
-              >
-                {/* <Test/> */}
-                <MapContainer pitchMap={45} zoomMap={14}/>
-              </Card>
-            </Grid>
-
-          }
-          {onlyChartSidebar && <Grid item xs={12} l={12} md={12} xl={12}>
+            <Card
+              elevation={15}
+              style={{
+                height: '60vh',
+                width: '100%',
+                position: 'relative',
+              }}
+            >
+              {/* <Test/> */}
+              <MapContainer pitchMap={30} zoomMap={14} />
+            </Card>
+          </Grid>}
+          {/* {onlyChartSidebar && <Grid item xs={12} l={12} md={12} xl={12}>
             <Card
               elevation={15}
               style={{
@@ -171,7 +175,10 @@ export default function CSjsMainCustom(props) {
             >
               <VisContainer cityIOdata={cityIOdata} />
             </Card>
-          </Grid>}
+          </Grid>} */}
+          <Grid>
+            <ChooseScenario chosenScenario={chosenScenario} />
+          </Grid>
         </Grid>
       </Container>
     </Page>

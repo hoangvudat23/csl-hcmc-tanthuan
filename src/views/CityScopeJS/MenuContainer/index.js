@@ -43,6 +43,9 @@ function MenuContainer(props) {
     };
 
     let myMenuState = [...menuState];
+    const [chosenScenario, setChosenScenario] = useState("hcm_test_v1");
+    let myChosenScenario = 'hcm_test_v1';
+
     useEffect(() => {
         // listenChangingOption();
         const timer = setTimeout(listenChangingOption, 1000);
@@ -52,44 +55,41 @@ function MenuContainer(props) {
 
     // /* Listening View Option Change */
     async function listenChangingOption() {
-        // recursively get hashes
         const options = await getAPICall(`${process.env.REACT_APP_EXPRESS_PUBLIC_URL}/get-option`);
+        const scenarioObject = await getAPICall(`${process.env.REACT_APP_EXPRESS_PUBLIC_URL}/get-scenario`);
         if (options) {
             console.log(options);
+            let table = options.table;
             let option = options.option;
             let mode = options.mode;
-            let table = options.table;
             if (table == tableName) {
-
                 if (option) {
                     let requireModule = togglesMeta[option].requireModule;
                     if (loadedModules.includes(requireModule) || requireModule === false) {
-                        // const i = menuState.indexOf(option);
-                        // const updatedMenuState = [...menuState];
-                        // console.log(updatedMenuState);
-                        /* Meme */
                         const i = myMenuState.indexOf(option);
-                        console.log(myMenuState);
-                        /* END meme */
                         if (mode == "ON") {
                             if (i === -1) {
-                                // updatedMenuState.push(option);
                                 myMenuState.push(option);
                             }
                         }
                         else {
                             if (i !== -1) {
-                                // updatedMenuState.splice(i, 1);
                                 myMenuState.splice(i, 1);
                             }
                         }
-                        // dispatch(listenToMenuUI(updatedMenuState));
                         dispatch(listenToMenuUI(myMenuState));
                     }
                 }
             }
         }
-
+        if (scenarioObject) {
+            console.log(scenarioObject);
+            let scenario = scenarioObject.scenario;
+            if (scenario && scenario != myChosenScenario) {
+                myChosenScenario = scenario;
+                setChosenScenario(scenario);
+            }
+        }
         setTimeout(listenChangingOption, 1000);
     }
 
@@ -147,12 +147,11 @@ function MenuContainer(props) {
                         color="default"
                         onClick={handleToggle("RESET_VIEW")}
                     />
-                    {menuState}
                 </ListItem>
             </List>
 
             <TogglesMenu handleToggle={handleToggle} />
-            <ChooseScenario />
+            <ChooseScenario chosenScenario={chosenScenario} />
         </>
     );
 }
