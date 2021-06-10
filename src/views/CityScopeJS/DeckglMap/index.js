@@ -25,6 +25,7 @@ import {
 export default function Map(props) {
   const pitchMap = props.pitchMap
   const zoomMap = props.zoomMap
+  const onlyMap = props.onlyMap
   const [draggingWhileEditing, setDraggingWhileEditing] = useState(false)
   const [selectedCellsState, setSelectedCellsState] = useState(null)
   const [viewState, setViewState] = useState(settings.map.initialViewState)
@@ -226,7 +227,6 @@ export default function Map(props) {
     }
     return layers
   }
-
   return (
     <div
       className="baseMap"
@@ -264,10 +264,11 @@ export default function Map(props) {
         layers={_renderLayers()}
         effects={effectsRef.current}
         controller={{
-          touchZoom: true,
-          touchRotate: true,
-          dragPan: !draggingWhileEditing,
-          dragRotate: !draggingWhileEditing,
+          touchZoom: onlyMap ? false : true,
+          touchRotate: onlyMap ? false : true,
+          scrollZoom: onlyMap ? false : true,
+          dragPan: onlyMap ? false : !draggingWhileEditing,
+          dragRotate: onlyMap ? false : !draggingWhileEditing,
           keyboard: false,
         }}
       >

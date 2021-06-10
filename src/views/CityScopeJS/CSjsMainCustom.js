@@ -138,7 +138,7 @@ export default function CSjsMainCustom(props) {
               }}
             >
               {/* <Test/> */}
-              <MapContainer />
+              <MapContainer onlyMap={true} />
             </Card>
           </Grid>}
           {mapAndChartSidebar && <Grid item xs={6} l={6} md={6} xl={6}>

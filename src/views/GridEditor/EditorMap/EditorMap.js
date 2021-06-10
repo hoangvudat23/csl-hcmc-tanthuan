@@ -6,7 +6,7 @@ import DeckGL from "@deck.gl/react";
 import "mapbox-gl/dist/mapbox-gl.css";
 import { GeoJsonLayer } from "deck.gl";
 import settings from "../../../settings/GridEditorSettings.json";
-import scenarioGeojson from "../../../settings/LandUse_0_color.json";
+import scenarioGeojson from "../../../settings/LandUse_2_color.json";
 import { listenToBaseMapCenter } from "../../../redux/actions";
 
 export const _hexToRgb = (hex) => {
