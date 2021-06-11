@@ -25,6 +25,7 @@ import {
 export default function Map(props) {
   const pitchMap = props.pitchMap
   const zoomMap = props.zoomMap
+  const autoRotate = props.autoRotate
   const onlyMap = props.onlyMap
   const [draggingWhileEditing, setDraggingWhileEditing] = useState(false)
   const [selectedCellsState, setSelectedCellsState] = useState(null)
@@ -64,10 +65,15 @@ export default function Map(props) {
   ])
 
   var ABMOn = menu.includes('ABM')
-  var rotateOn = menu.includes('ROTATE')
+  if (autoRotate) {
+    var rotateOn = autoRotate;
+  } else {
+    var rotateOn = menu.includes('ROTATE')
+  }
   var shadowsOn = menu.includes('SHADOWS')
   var editOn = menu.includes('EDIT')
   var resetViewOn = menu.includes('RESET_VIEW')
+
 
   useEffect(() => {
     // fix deck view rotate

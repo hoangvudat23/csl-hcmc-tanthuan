@@ -1,7 +1,7 @@
 import MenuContainer from './MenuContainer'
 import MapContainer from './DeckglMap'
 import LoadingSpinner from './CityIO/LoadingSpinner'
-import VisContainer from './VisContainer'
+import VisContainer from './VisContainer/index_custom'
 import {
   makeStyles,
   Grid,
@@ -145,8 +145,8 @@ export default function CSjsMainCustom(props) {
             <Card
               elevation={15}
               style={{
-                maxHeight: '60vh',
-                overflow: 'auto',
+                maxHeight: '100%',
+                overflow: 'hidden',
               }}
             >
               <VisContainer cityIOdata={cityIOdata} />
@@ -156,13 +156,14 @@ export default function CSjsMainCustom(props) {
             <Card
               elevation={15}
               style={{
-                height: '60vh',
+                height: '90vh',
                 width: '100%',
+                overflow: 'hidden',
                 position: 'relative',
               }}
             >
               {/* <Test/> */}
-              <MapContainer pitchMap={30} zoomMap={14} />
+              <MapContainer pitchMap={30} zoomMap={14} autoRotate={true}/>
             </Card>
           </Grid>}
           {/* {onlyChartSidebar && <Grid item xs={12} l={12} md={12} xl={12}>
