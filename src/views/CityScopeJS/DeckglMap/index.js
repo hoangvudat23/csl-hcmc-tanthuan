@@ -74,7 +74,6 @@ export default function Map(props) {
   var editOn = menu.includes('EDIT')
   var resetViewOn = menu.includes('RESET_VIEW')
 
-
   useEffect(() => {
     // fix deck view rotate
     _rightClickViewRotate()
