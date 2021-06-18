@@ -5,8 +5,8 @@ import { FormControl, FormLabel, FormControlLabel, RadioGroup, Radio, CircularPr
 import { useState } from "react";
 import { useSelector, useDispatch } from 'react-redux'
 import axios from 'axios'
-import scenario1 from '../../../../settings/LandUse_0_color.json'
-import scenario2 from '../../../../settings/LandUse_2_color.json'
+import scenario1 from '../../../../settings/LandUse_0.json'
+import scenario2 from '../../../../settings/LandUse_2.json'
 import {
     getCityioData,
     setReadyState,
