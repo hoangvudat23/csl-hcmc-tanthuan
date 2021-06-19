@@ -5,7 +5,7 @@ import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import Typography from "@material-ui/core/Typography";
 import "../../../../../node_modules/react-vis/dist/style.css";
-import scenario from "../../../../settings/LandUse_0_color.json";
+import scenario from "../../../../settings/LandUse_0.json";
 
 export default function AreaCalc(props) {
     const radialRadius = 250;

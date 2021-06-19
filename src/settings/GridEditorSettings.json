@@ -353,6 +353,12 @@
                     "IDSColor": 195,
                     "RGB": "95,63,127",
                     "color": "#5f3f7f"
+                },
+                "Cemetery": {
+                    "TypeCode": "NT",
+                    "IDSColor": 251,
+                    "RGB": "101,101,101",
+                    "color": "#656565"
                 }
             }
         },

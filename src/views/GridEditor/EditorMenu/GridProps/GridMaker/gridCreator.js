@@ -1,6 +1,6 @@
 import proj4 from "proj4";
 import { _hexToRgb } from "../../../EditorMap/EditorMap";
-import scenario from '../../../../../settings/LandUse_2.json';
+import scenario from '../../../../../settings/LandUse_3.json';
 import { featureCollection, centroid, bbox, tag } from "@turf/turf";
 function deg_to_rad(deg) {
     return (deg * Math.PI) / 180;
@@ -18,7 +18,15 @@ const convertScenarioToWGS84 = (types) => {
     let features = scenario.features;
     // console.log(types);
     for (let i = 0; i < features.length; i++) {
-        var color = types.find(el => el.TypeCode == features[i].properties['TypeCode']).color;
+        var color = types.find((el) => {
+            // console.log(el.TypeCode);
+            return el.TypeCode === features[i].properties['TypeCode']
+        });
+        // console.log(features[i].properties['TypeCode']);
+        // console.log(color);
+        color = color.color
+        // if(typeof color !== 'undefined'){
+        // }
         if (typeof color == 'undefined') {
             console.log('undefine TypeCode', features[i].properties['TypeCode']);
         }
@@ -26,19 +34,19 @@ const convertScenarioToWGS84 = (types) => {
         rgbArr = rgbArr.map(el => parseFloat(el));
         rgbArr.push(220);
 
-        let height = 0;
-        if (features[i].properties.Height) {
-            height = features[i].properties.Height
-            if (height.includes("-")) {
-                height = height.split('');
-                height = height[height.length - 1];
-            }
-            height = parseFloat(height);
-        }
-        // let color = "#00dd5c";
-        // features[i].properties.color = color;
-        features[i].properties.height = height;
+        // let height = 0;
+        // if (features[i].properties.Height) {
+        //     height = features[i].properties.Height
+        //     if (height.includes("-")) {
+        //         height = height.split('');
+        //         height = height[height.length - 1];
+        //     }
+        //     height = parseFloat(height);
+        // }
+
+        // features[i].properties.height = height;
         features[i].properties.color = rgbArr;
+        // features[i].properties.color = JSON.parse(features[i].properties.color);
         features[i].properties.stroke = '#3f3f3f';
         features[i].properties['stroke-width'] = 0.5;
         features[i].properties['stroke-opacity'] = 1;
