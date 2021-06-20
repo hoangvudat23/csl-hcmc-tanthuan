@@ -163,7 +163,7 @@ export default function CSjsMainCustom(props) {
               }}
             >
               {/* <Test/> */}
-              <iframe allowfullscreen="true" width="100%" height="100%" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://www.arcgis.com/apps/CEWebViewer/viewer.html?&3dWebScene=31d84c469a404bcbb13797d501286217&view=686441.41,11.16,-1189886.87,686778.3,2828.18,-1185381.71,0.95&lyr=1,1,1,1&wkid=32648&v=2"></iframe>
+              <iframe title="cityScience" allowfullscreen="true" width="100%" height="100%" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://www.arcgis.com/apps/CEWebViewer/viewer.html?&3dWebScene=31d84c469a404bcbb13797d501286217&view=686441.41,11.16,-1189886.87,686778.3,2828.18,-1185381.71,0.95&lyr=1,1,1,1&wkid=32648&v=2"></iframe>
               {/* <MapContainer pitchMap={30} zoomMap={14} autoRotate={true}/> */}
             </Card>
           </Grid>}
