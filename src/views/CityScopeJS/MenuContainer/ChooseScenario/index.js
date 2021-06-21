@@ -5,8 +5,8 @@ import { FormControl, FormLabel, FormControlLabel, RadioGroup, Radio, CircularPr
 import { useState } from "react";
 import { useSelector, useDispatch } from 'react-redux'
 import axios from 'axios'
-import scenario1 from '../../../../settings/LandUse_0.json'
-import scenario2 from '../../../../settings/LandUse_2.json'
+// import scenario1 from '../../../../settings/LandUse_0.json'
+// import scenario2 from '../../../../settings/LandUse_2.json'
 import {
     getCityioData,
     setReadyState,
@@ -188,10 +188,10 @@ function ChooseScenario(props) {
         setRadioValue(myChosenScenario);
         switch (myChosenScenario) {
             case 'scenario1':
-                fileScenario = scenario1;
+                // fileScenario = scenario1;
                 break;
             case 'scenario2':
-                fileScenario = scenario2;
+                // fileScenario = scenario2;
                 break;
         }
         let geoJsonFeatures = fileScenario.features;

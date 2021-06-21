@@ -19,8 +19,13 @@ export default function BarChart(props) {
     { x: 12, y: 15 },
     ]
      */
+    const defaultData = [
+        { x: 0, y: 0 },
+        { x: 0, y: 0 },
+        { x: 0, y: 0 },
+    ];
 
-    const [barChartData, setBarChartData] = useState(null);
+    const [barChartData, setBarChartData] = useState(defaultData);
     const [hoveredNode, setHoveredNode] = useState(null);
 
     useEffect(() => {

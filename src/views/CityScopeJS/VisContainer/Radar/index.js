@@ -32,6 +32,7 @@ export default function Radar(props) {
             props.cityioData.indicators &&
             props.cityioData.indicators.length > 0
         ) {
+            console.log(121);
             const d = createRadarData(props.cityioData.indicators);
             setRadarData(d);
         }
@@ -39,7 +40,7 @@ export default function Radar(props) {
 
     return (
         <div>
-            {radarData && radarData.domains && (
+            {(radarData && radarData.domains) ? (
                 <>
                     <RadarChart
                         className="Radar blur"
@@ -100,7 +101,66 @@ export default function Radar(props) {
                         }}
                     />
                 </>
-            )}
+            ): (<>
+                    <RadarChart
+                        className="Radar blur"
+                        animation
+                        data={[]}
+                        domains={[]}
+                        colorRange={colorRange}
+                        style={{
+                            polygons: {
+                                fillOpacity: 0.2,
+                                strokeWidth: 2,
+                            },
+                            axes: {
+                                text: {
+                                    opacity: 0,
+                                    fontWeight: 700,
+                                    fill: "white",
+                                    fontFamily: "Roboto Mono",
+                                },
+                                strokeWidth: 0,
+                            },
+                            labels: {
+                                fontFamily: "Roboto Mono",
+
+                                textAnchor: "middle",
+                                fontSize: 10,
+                                fill: "white",
+                            },
+                        }}
+                        margin={{
+                            left: radarSize / 6,
+                            top: radarSize / 6,
+                            bottom: radarSize / 6,
+                            right: radarSize / 6,
+                        }}
+                        width={radarSize}
+                        height={radarSize}
+                    >
+                        <CircularGridLines
+                            style={{
+                                fill: "white",
+                                fillOpacity: 0.1,
+                                backgroundColor: "#FFF",
+                                opacity: 0.5,
+                                stroke: "white",
+                                width: 0.1,
+                            }}
+                            tickValues={[...new Array(11)].map(
+                                (v, i) => i / 10 - 1
+                            )}
+                        />
+                    </RadarChart>
+                    <DiscreteColorLegend
+                        items={["Design", "Reference"]}
+                        colors={colorRange}
+                        style={{
+                            fontFamily: "Roboto Mono",
+                        }}
+                    />
+                </>)}
         </div>
     );
 }
