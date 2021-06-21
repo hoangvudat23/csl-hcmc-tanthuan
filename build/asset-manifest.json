@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "https://cs-map.vlab.tech/static/css/main.5a7bb4bd.chunk.css",
-    "main.js": "https://cs-map.vlab.tech/static/js/main.27e07ac0.chunk.js",
-    "main.js.map": "https://cs-map.vlab.tech/static/js/main.27e07ac0.chunk.js.map",
+    "main.js": "https://cs-map.vlab.tech/static/js/main.9a4c744c.chunk.js",
+    "main.js.map": "https://cs-map.vlab.tech/static/js/main.9a4c744c.chunk.js.map",
     "runtime-main.js": "https://cs-map.vlab.tech/static/js/runtime-main.42542312.js",
     "runtime-main.js.map": "https://cs-map.vlab.tech/static/js/runtime-main.42542312.js.map",
     "static/css/2.b2646fa7.chunk.css": "https://cs-map.vlab.tech/static/css/2.b2646fa7.chunk.css",
@@ -12,7 +12,7 @@
     "static/css/2.b2646fa7.chunk.css.map": "https://cs-map.vlab.tech/static/css/2.b2646fa7.chunk.css.map",
     "static/css/main.5a7bb4bd.chunk.css.map": "https://cs-map.vlab.tech/static/css/main.5a7bb4bd.chunk.css.map",
     "static/js/2.2334d65e.chunk.js.LICENSE.txt": "https://cs-map.vlab.tech/static/js/2.2334d65e.chunk.js.LICENSE.txt",
-    "static/js/main.27e07ac0.chunk.js.LICENSE.txt": "https://cs-map.vlab.tech/static/js/main.27e07ac0.chunk.js.LICENSE.txt",
+    "static/js/main.9a4c744c.chunk.js.LICENSE.txt": "https://cs-map.vlab.tech/static/js/main.9a4c744c.chunk.js.LICENSE.txt",
     "static/media/legoio.148c5ab6.png": "https://cs-map.vlab.tech/static/media/legoio.148c5ab6.png"
   },
   "entrypoints": [
@@ -20,6 +20,6 @@
     "static/css/2.b2646fa7.chunk.css",
     "static/js/2.2334d65e.chunk.js",
     "static/css/main.5a7bb4bd.chunk.css",
-    "static/js/main.27e07ac0.chunk.js"
+    "static/js/main.9a4c744c.chunk.js"
   ]
 }

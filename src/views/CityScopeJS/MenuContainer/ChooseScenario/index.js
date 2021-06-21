@@ -188,10 +188,10 @@ function ChooseScenario(props) {
         setRadioValue(myChosenScenario);
         switch (myChosenScenario) {
             case 'scenario1':
-                // fileScenario = scenario1;
+                fileScenario = 'scenario1';
                 break;
             case 'scenario2':
-                // fileScenario = scenario2;
+                fileScenario = 'scenario2';
                 break;
         }
         let geoJsonFeatures = fileScenario.features;
