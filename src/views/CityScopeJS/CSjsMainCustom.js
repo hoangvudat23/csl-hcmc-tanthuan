@@ -23,8 +23,8 @@ const useStyles = makeStyles((theme) => ({
   root: {
     margin: 'auto',
     height: '100%',
-    paddingBottom: theme.spacing(3),
-    paddingTop: theme.spacing(3),
+    // paddingBottom: theme.spacing(3),
+    // paddingTop: theme.spacing(3),
   },
 }))
 
@@ -52,8 +52,8 @@ export default function CSjsMainCustom(props) {
 
   const dispatch = useDispatch();
   let myMenuState = [...menuState];
-  const [chosenScenario, setChosenScenario] = useState("hcm_test_v1");
-  let myChosenScenario = 'hcm_test_v1';
+  const [chosenScenario, setChosenScenario] = useState("hcm_scenario_0");
+  let myChosenScenario = 'hcm_scenario_0';
 
   /* Listening View Option Change */
   useEffect(() => {
@@ -67,7 +67,6 @@ export default function CSjsMainCustom(props) {
     const options = await getAPICall(`${process.env.REACT_APP_EXPRESS_PUBLIC_URL}/get-option`);
     const scenarioObject = await getAPICall(`${process.env.REACT_APP_EXPRESS_PUBLIC_URL}/get-scenario`);
     if (options) {
-      console.log(options);
       let table = options.table;
       let option = options.option;
       let mode = options.mode;
@@ -92,10 +91,8 @@ export default function CSjsMainCustom(props) {
       }
     }
     if (scenarioObject) {
-      console.log(scenarioObject);
       let scenario = scenarioObject.scenario;
       if (scenario && scenario != myChosenScenario) {
-        console.log(111);
         myChosenScenario = scenario;
         setChosenScenario(scenario);
       }
@@ -108,8 +105,17 @@ export default function CSjsMainCustom(props) {
   return (
     <Page className={classes.root} title="CitySCopeJS">
       <LoadingSpinner />
-      <Container maxWidth={null}>
-        <Grid container spacing={5}>
+      <Container maxWidth={null}
+        style={{
+          height: '100%',
+          padding: '0px'
+        }}>
+        {/* <Grid container spacing={5}> */}
+        <Grid container
+          style={{
+            height: '100%'
+          }}
+        >
           {onlyOptionMenu && <Grid item xs={12} l={12} md={12} xl={12} container>
             <Grid item container direction="column" spacing={2}>
               <Grid item xs={12} l={12} md={12} xl={12}>
@@ -132,7 +138,8 @@ export default function CSjsMainCustom(props) {
             <Card
               elevation={15}
               style={{
-                height: '90vh',
+                // height: '90vh',
+                height: '100%',
                 width: '100%',
                 position: 'relative',
               }}
@@ -146,6 +153,7 @@ export default function CSjsMainCustom(props) {
               elevation={15}
               style={{
                 maxHeight: '100%',
+                height: '100%',
                 overflow: 'hidden',
               }}
             >
@@ -156,7 +164,7 @@ export default function CSjsMainCustom(props) {
             <Card
               elevation={15}
               style={{
-                height: '90vh',
+                height: '100%',
                 width: '100%',
                 overflow: 'hidden',
                 position: 'relative',
@@ -164,7 +172,7 @@ export default function CSjsMainCustom(props) {
             >
               {/* <Test/> */}
               {/* <iframe title="cityScience" allowfullscreen="true" width="100%" height="100%" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://www.arcgis.com/apps/CEWebViewer/viewer.html?&3dWebScene=31d84c469a404bcbb13797d501286217&view=686441.41,11.16,-1189886.87,686778.3,2828.18,-1185381.71,0.95&lyr=1,1,1,1&wkid=32648&v=2"></iframe> */}
-              <MapContainer pitchMap={30} zoomMap={14} autoRotate={true}/>
+              <MapContainer pitchMap={30} zoomMap={14} autoRotate={true} />
             </Card>
           </Grid>}
           {/* {onlyChartSidebar && <Grid item xs={12} l={12} md={12} xl={12}>

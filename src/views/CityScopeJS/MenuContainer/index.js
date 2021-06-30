@@ -43,8 +43,8 @@ function MenuContainer(props) {
     };
 
     let myMenuState = [...menuState];
-    const [chosenScenario, setChosenScenario] = useState("hcm_test_v1");
-    let myChosenScenario = 'hcm_test_v1';
+    const [chosenScenario, setChosenScenario] = useState("hcm_scenario_0");
+    let myChosenScenario = 'hcm_scenario_0';
 
     useEffect(() => {
         // listenChangingOption();

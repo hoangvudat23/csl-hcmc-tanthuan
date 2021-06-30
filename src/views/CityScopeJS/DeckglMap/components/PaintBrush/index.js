@@ -23,10 +23,11 @@ export default function PaintBrushContainer({
             )
         );
     } else {
-        return (
-            hoveredObj && (
-                <CellMeta mousePos={mousePos} hoveredObj={hoveredObj} />
-            )
-        );
+        return null;
+        // return (
+        //     hoveredObj && (
+        //         <CellMeta mousePos={mousePos} hoveredObj={hoveredObj} />
+        //     )
+        // );
     }
 }

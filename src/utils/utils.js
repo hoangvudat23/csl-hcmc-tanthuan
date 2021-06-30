@@ -170,8 +170,11 @@ currentDateMidnight.setHours(0, 0, 0, 0)
 
 export const _setupSunEffects = (effectsRef, tableHeader) => {
   // get time zone from the tz value if exist
+  console.log('tableHeader.tz',tableHeader.tz);
+
   if (tableHeader.tz) {
-    currentDateMidnight.setHours(tableHeader.tz, 0, 0, 0)
+    // currentDateMidnight.setHours(tableHeader.tz, 0, 0, 0)
+    currentDateMidnight.setHours(12, 0, 0, 0)
   }
   const ambientLight = new AmbientLight({
     color: [255, 255, 255],
@@ -189,6 +192,7 @@ export const _setupSunEffects = (effectsRef, tableHeader) => {
 }
 
 export const updateSunDirection = (time, effectsRef) => {
+  console.log(2323);
   const thisLocationTime = currentDateMidnight.getTime() + time * 1000
   var date = new Date(thisLocationTime)
 

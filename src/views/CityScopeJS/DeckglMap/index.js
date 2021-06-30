@@ -75,7 +75,6 @@ export default function Map(props) {
   var resetViewOn = menu.includes('RESET_VIEW')
 
   useEffect(() => {
-    console.log(9283);
     // fix deck view rotate
     _rightClickViewRotate()
     // setup sun effects

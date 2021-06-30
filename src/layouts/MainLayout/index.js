@@ -14,7 +14,7 @@ const useStyles = makeStyles((theme) => ({
   },
 
   content: {
-    paddingTop: 48,
+    // paddingTop: 48,
     flex: '1 1 auto',
     height: '100vh',
     overflow: 'auto',
@@ -27,11 +27,11 @@ const MainLayout = () => {
 
   return (
     <div className={classes.root}>
-      <NavBar
+      {/* <NavBar
         openNavDrawer={!navMenuState}
         onMobileNavOpen={() => setNavMenuState(!navMenuState)}
       />
-      <TopBar onMobileNavOpen={() => setNavMenuState(!navMenuState)} />
+      <TopBar onMobileNavOpen={() => setNavMenuState(!navMenuState)} /> */}
       <div className={classes.content}>
         <Outlet />
       </div>
