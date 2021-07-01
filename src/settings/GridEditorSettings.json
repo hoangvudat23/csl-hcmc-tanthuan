@@ -40,325 +40,379 @@
                     "TypeCode": "CAN",
                     "IDSColor": 53,
                     "RGB": "255,80,70",
-                    "color": "#ff5046"
+                    "color": "#ff5046",
+                    "interactive": "Web"
                 },
                 "Land with public purposes": {
                     "TypeCode": "CCC",
                     "IDSColor": 59,
                     "RGB": "255,170,160",
-                    "color": "#ffaaa0"
+                    "color": "#ffaaa0",
+                    "interactive": "Web"
                 },
                 "Defense land": {
                     "TypeCode": "CQP",
                     "IDSColor": 52,
                     "RGB": "255,100,80",
-                    "color": "#ff6450"
+                    "color": "#ff6450",
+                    "interactive": "Web"
                 },
                 "Land for post and telecommunications": {
                     "TypeCode": "DBV",
                     "IDSColor": 67,
                     "RGB": "255,170,160",
-                    "color": "#ffaaa0"
+                    "color": "#ffaaa0",
+                    "interactive": "Web"
                 },
                 "Market land": {
                     "TypeCode": "DCH",
                     "IDSColor": 81,
                     "RGB": "255,170,160",
-                    "color": "#ffaaa0"
+                    "color": "#ffaaa0",
+                    "interactive": "Web"
                 },
                 "Land with historical-cultural relics": {
                     "TypeCode": "DDT",
                     "IDSColor": 84,
                     "RGB": "255,170,160",
-                    "color": "#ffaaa0"
+                    "color": "#ffaaa0",
+                    "interactive": "Web"
                 },
                 "Land for construction of education and training": {
                     "TypeCode": "DGD",
                     "IDSColor": 75,
                     "RGB": "255,170,160",
-                    "color": "#ffaaa0"
+                    "color": "#ffaaa0",
+                    "interactive": "Web"
                 },
                 "Transportation QHSDDTNMT": {
                     "TypeCode": "DGT",
                     "IDSColor": 60,
                     "RGB": "255,170,50",
-                    "color": "#ffaa32"
+                    "color": "#ffaa32",
+                    "interactive": "Web"
                 },
                 "Land for energy facility": {
                     "TypeCode": "DNL",
                     "IDSColor": 66,
                     "RGB": "255,170,160",
-                    "color": "#ffaaa0"
+                    "color": "#ffaaa0",
+                    "interactive": "Web"
                 },
                 "Land for disposal, waste treatment": {
                     "TypeCode": "DRA",
                     "IDSColor": 85,
                     "RGB": "205,170,205",
-                    "color": "#cdaacd"
+                    "color": "#cdaacd",
+                    "interactive": "Web"
                 },
                 "Irrigation land": {
                     "TypeCode": "DTL",
                     "IDSColor": 63,
                     "RGB": "170,255,255",
-                    "color": "#aaffff"
+                    "color": "#aaffff",
+                    "interactive": "Web"
                 },
                 "Land for construction of offices of non - business units": {
                     "TypeCode": "DTS",
                     "IDSColor": 48,
                     "RGB": "250,170,160",
-                    "color": "#faaaa0"
+                    "color": "#faaaa0",
+                    "interactive": "Web"
                 },
                 "Land for construction of physical training and sport": {
                     "TypeCode": "DTT",
                     "IDSColor": 78,
                     "RGB": "255,170,160",
-                    "color": "#ffaaa0"
+                    "color": "#ffaaa0",
+                    "interactive": "Web"
                 },
                 "Land for construction of cultural": {
                     "TypeCode": "DVH",
                     "IDSColor": 69,
                     "RGB": "255,170,160",
-                    "color": "#ffaaa0"
+                    "color": "#ffaaa0",
+                    "interactive": "Web"
                 },
                 "Land for construction of health facilities": {
                     "TypeCode": "DYT",
                     "IDSColor": 72,
                     "RGB": "255,170,160",
-                    "color": "#ffaaa0"
+                    "color": "#ffaaa0",
+                    "interactive": "Web"
                 },
                 "Urban residential land": {
                     "TypeCode": "ODT",
                     "IDSColor": 42,
                     "RGB": "255,160,255",
-                    "color": "#ffa0ff"
+                    "color": "#ffa0ff",
+                    "interactive": "Web"
                 },
                 "Land non-agricultural production facilities": {
                     "TypeCode": "SKC",
                     "IDSColor": 56,
                     "RGB": "250,170,160",
-                    "color": "#faaaa0"
+                    "color": "#faaaa0",
+                    "interactive": "Web"
                 },
                 "Land with rivers, streams, canals, springs": {
                     "TypeCode": "SON",
                     "IDSColor": 91,
                     "RGB": "160,255,255",
-                    "color": "#a0ffff"
+                    "color": "#a0ffff",
+                    "interactive": "Web"
                 },
                 "Land for beliefs facility": {
                     "TypeCode": "TIN",
                     "IDSColor": 88,
                     "RGB": "255,170,160",
-                    "color": "#ffaaa0"
+                    "color": "#ffaaa0",
+                    "interactive": "Web"
                 },
                 "Land for religious facility": {
                     "TypeCode": "TON",
                     "IDSColor": 87,
                     "RGB": "255,170,160",
-                    "color": "#ffaaa0"
+                    "color": "#ffaaa0",
+                    "interactive": "Web"
                 },
                 "Land for construction of offices": {
                     "TypeCode": "TSC",
                     "IDSColor": 45,
                     "RGB": "255,170,160",
-                    "color": "#ffaaa0"
+                    "color": "#ffaaa0",
+                    "interactive": "Web"
                 },
                 "Thematic park (amusement park)": {
                     "TypeCode": "CXCD",
                     "IDSColor": 94,
                     "RGB": "0,127,0",
-                    "color": "#007f00"
+                    "color": "#007f00",
+                    "interactive": "Web"
                 },
                 "Greenary - park land QHPK": {
                     "TypeCode": "CXCL",
                     "IDSColor": 126,
                     "RGB": "0,76,57",
-                    "color": "#004c39"
+                    "color": "#004c39",
+                    "interactive": "Web"
                 },
                 "Water surface QHPK": {
                     "TypeCode": "MN",
                     "IDSColor": 152,
                     "RGB": "0,82,165",
-                    "color": "#0052a5"
+                    "color": "#0052a5",
+                    "interactive": "Web"
                 },
                 "Educational NCDT": {
                     "TypeCode": "NCDT",
                     "IDSColor": 144,
                     "RGB": "0,95,127",
-                    "color": "#005f7f"
+                    "color": "#005f7f",
+                    "interactive": "Web"
                 },
                 "Educational GD2": {
                     "TypeCode": "GD2",
                     "IDSColor": 24,
                     "RGB": "127,31,0",
-                    "color": "#7f1f00"
+                    "color": "#7f1f00",
+                    "interactive": "Web"
                 },
                 "Office - production and trading": {
                     "TypeCode": "CQCT",
                     "IDSColor": 34,
                     "RGB": "127,63,0",
-                    "color": "#7f3f00"
+                    "color": "#7f3f00",
+                    "interactive": "Web"
                 },
                 "Educational GD1": {
                     "TypeCode": "GD1",
                     "IDSColor": 15,
                     "RGB": "127,63,63",
-                    "color": "#7f3f3f"
+                    "color": "#7f3f3f",
+                    "interactive": "Web"
                 },
                 "School": {
                     "TypeCode": "GD",
                     "IDSColor": 15,
                     "RGB": "127,63,63",
-                    "color": "#7f3f3f"
+                    "color": "#7f3f3f",
+                    "interactive": "Web"
                 },
                 "Existing and Renovated Residential": {
                     "TypeCode": "NNO",
                     "IDSColor": 42,
                     "RGB": "165,124,0",
-                    "color": "#a57c00"
+                    "color": "#a57c00",
+                    "interactive": "Web"
                 },
                 "Wetland": {
                     "TypeCode": "DK",
                     "IDSColor": 254,
                     "RGB": "204,204,204",
-                    "color": "#cccccc"
+                    "color": "#cccccc",
+                    "interactive": "Web"
                 },
                 "Public Facility": {
                     "TypeCode": "CCDVO",
                     "IDSColor": 1,
                     "RGB": "255,0,0",
-                    "color": "#ff0000"
+                    "color": "#ff0000",
+                    "interactive": "Web"
                 },
                 "Resort/Outdoor entertainment": {
                     "TypeCode": "CCDT",
                     "IDSColor": 1,
                     "RGB": "255,0,0",
-                    "color": "#ff0000"
+                    "color": "#ff0000",
+                    "interactive": "Web"
                 },
                 "Mixed-use": {
                     "TypeCode": "HH",
                     "IDSColor": 21,
                     "RGB": "255,159,127",
-                    "color": "#ff9f7f"
+                    "color": "#ff9f7f",
+                    "interactive": "Web"
                 },
                 "Transportation QHPK": {
                     "TypeCode": "DGT",
                     "IDSColor": 7,
                     "RGB": "255,255,255",
-                    "color": "#ffffff"
+                    "color": "#ffffff",
+                    "interactive": "Web"
                 },
                 "National defense - security": {
                     "TypeCode": "ANQP",
                     "IDSColor": 69,
                     "RGB": "33,38,19",
-                    "color": "#212613"
+                    "color": "#212613",
+                    "interactive": "Web"
                 },
                 "Production land - warehouse": {
                     "TypeCode": "KTBB",
                     "IDSColor": 177,
                     "RGB": "38,38,126",
-                    "color": "#26267e"
+                    "color": "#26267e",
+                    "interactive": "Web"
                 },
                 "Sport - Greenery": {
                     "TypeCode": "CXDVO",
                     "IDSColor": 76,
                     "RGB": "38,76,0",
-                    "color": "#264c00"
+                    "color": "#264c00",
+                    "interactive": "Web"
                 },
                 "Religious": {
                     "TypeCode": "TGDT",
                     "IDSColor": 16,
                     "RGB": "76,0,0",
-                    "color": "#4c0000"
+                    "color": "#4c0000",
+                    "interactive": "Web"
                 },
                 "Greenary - park land QHSSK": {
                     "TypeCode": "CXDT",
                     "IDSColor": 72,
                     "RGB": "82,165,0",
-                    "color": "#52a500"
+                    "color": "#52a500",
+                    "interactive": "Web"
                 },
                 "Technical Infrastructure": {
                     "TypeCode": "HTKT",
                     "IDSColor": 195,
                     "RGB": "95,63,127",
-                    "color": "#5f3f7f"
+                    "color": "#5f3f7f",
+                    "interactive": "Web"
                 },
                 "Transportation QHSSK": {
                     "TypeCode": "DGT",
                     "IDSColor": 7,
                     "RGB": "255,255,255",
-                    "color": "#ffffff"
+                    "color": "#ffffff",
+                    "interactive": "Web"
                 },
                 "Water surface": {
                     "TypeCode": "MN",
                     "IDSColor": 152,
                     "RGB": "0,82,165",
-                    "color": "#0052a5"
+                    "color": "#0052a5",
+                    "interactive": "Web"
                 },
                 "Open Space": {
                     "TypeCode": "CXCD",
                     "IDSColor": 94,
                     "RGB": "0,127,0",
-                    "color": "#007f00"
+                    "color": "#007f00",
+                    "interactive": "Web"
                 },
                 "New Residential": {
                     "TypeCode": "DVO",
                     "IDSColor": 30,
                     "RGB": "255,127,0",
-                    "color": "#ff7f00"
+                    "color": "#ff7f00",
+                    "interactive": "Web"
                 },
                 "Hotel": {
                     "TypeCode": "DL",
                     "IDSColor": 210,
                     "RGB": "255,0,255",
-                    "color": "#ff00ff"
+                    "color": "#ff00ff",
+                    "interactive": "Web"
                 },
                 "Community": {
                     "TypeCode": "CCDT",
                     "IDSColor": 1,
                     "RGB": "255,0,0",
-                    "color": "#ff0000"
+                    "color": "#ff0000",
+                    "interactive": "Web"
                 },
                 "Schools": {
                     "TypeCode": "GD",
                     "IDSColor": 15,
                     "RGB": "127,63,63",
-                    "color": "#7f3f3f"
+                    "color": "#7f3f3f",
+                    "interactive": "Web"
                 },
                 "Religion - Relic": {
                     "TypeCode": "TGDT",
                     "IDSColor": 16,
                     "RGB": "76,0,0",
-                    "color": "#4c0000"
+                    "color": "#4c0000",
+                    "interactive": "Web"
                 },
                 "Existing agency": {
                     "TypeCode": "CQCT",
                     "IDSColor": 34,
                     "RGB": "127,63,0",
-                    "color": "#7f3f00"
+                    "color": "#7f3f00",
+                    "interactive": "Web"
                 },
                 "Institutional Buildings": {
                     "TypeCode": "NCDT",
                     "IDSColor": 144,
                     "RGB": "0,95,127",
-                    "color": "#005f7f"
+                    "color": "#005f7f",
+                    "interactive": "Web"
                 },
                 "Urban Hybrid": {
                     "TypeCode": "HH",
                     "IDSColor": 21,
                     "RGB": "255,159,127",
-                    "color": "#ff9f7f"
+                    "color": "#ff9f7f",
+                    "interactive": "Web"
                 },
                 "Parking Garage": {
                     "TypeCode": "HTKT",
                     "IDSColor": 195,
                     "RGB": "95,63,127",
-                    "color": "#5f3f7f"
+                    "color": "#5f3f7f",
+                    "interactive": "Web"
                 },
                 "Cemetery": {
                     "TypeCode": "NT",
                     "IDSColor": 251,
                     "RGB": "101,101,101",
-                    "color": "#656565"
+                    "color": "#656565",
+                    "interactive": "Web"
                 }
             }
         },

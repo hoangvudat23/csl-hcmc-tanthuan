@@ -1,6 +1,6 @@
 import proj4 from "proj4";
 import { _hexToRgb } from "../../../EditorMap/EditorMap";
-import scenario from '../../../../../settings/settings';
+import scenario from '../../../../../settings/settings.json'; // just skip error
 import { featureCollection, centroid, bbox, tag } from "@turf/turf";
 function deg_to_rad(deg) {
     return (deg * Math.PI) / 180;
@@ -45,6 +45,7 @@ const convertScenarioToWGS84 = (types) => {
         // }
 
         // features[i].properties.height = height;
+        features[i].properties.id = i;
         features[i].properties.color = rgbArr;
         // features[i].properties.color = JSON.parse(features[i].properties.color);
         features[i].properties.stroke = '#3f3f3f';
@@ -106,6 +107,18 @@ const joinGridAndPrivateGeojson = (privateGeojson, gridGeojson, types) => {
         /* my self */
         gridGeojson.features[i].properties.color = _hexToRgb(obj.properties.color);
     }
+}
+
+const addIdScenario = () => {
+    let features = scenario.features;
+    for (let i = 0; i < features.length; i++) {
+        features[i].properties.id = i;
+    }
+    let geojson = {
+        "type": "FeatureCollection",
+        "features": features,
+    }
+    console.log(JSON.stringify(geojson));
 }
 
 export const gridCreator = (gridProps, typesList) => {
@@ -232,5 +245,6 @@ export const gridCreator = (gridProps, typesList) => {
     geojsonFeatureCollection.features = gridPnts;
     // joinGridAndPrivateGeojson(scenario, geojsonFeatureCollection, types);
     // convertScenarioToWGS84(types);
+    addIdScenario();
     return geojsonFeatureCollection;
 };

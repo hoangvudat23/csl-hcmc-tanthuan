@@ -8,7 +8,7 @@ import globalSettings from '../../../../../settings/settings.json'
 import Typography from '@material-ui/core/Typography'
 import { useSelector } from 'react-redux'
 import Link from '@material-ui/core/Link'
-import scenario from '../../../../../settings/settings'
+import scenario from '../../../../../settings/settings.json' // just skip error
 
 const reqResonseUI = (response, tableName) => {
   let cityscopeJSendpoint =
