@@ -10,6 +10,7 @@ localStorage.removeItem('view-option');
 localStorage.removeItem('mode');
 localStorage.removeItem('table');
 localStorage.removeItem('scenario');
+localStorage.removeItem('scenario_table');
 
 // for parsing application/json
 app.use(bodyParser.json());
@@ -28,7 +29,8 @@ app.get('/get-option', (req, res) => {
 })
 app.get('/get-scenario', (req, res) => {
     let scenario = localStorage.getItem('scenario');
-    res.send({ scenario });
+    let scenario_table = localStorage.getItem('scenario_table');
+    res.send({ scenario, scenario_table });
 })
 
 app.post('/set-option', (req, res) => {
@@ -51,9 +53,12 @@ app.post('/set-option', (req, res) => {
 app.post('/choose-scenario', (req, res) => {
     let reqParams = req.body;
     let scenario = reqParams.scenario;
+    let table = reqParams.table;
     if (arrayScenarioAllowance.includes(scenario)) {
-        localStorage.setItem('scenario', scenario)
+        localStorage.setItem('scenario', scenario);
+        localStorage.setItem('scenario_table', table);
         console.log(scenario);
+        console.log(table);
         res.send(`Scenario: ${scenario}`);
     }
     else {

@@ -52,7 +52,7 @@ export default function CSjsMainCustom(props) {
 
   const dispatch = useDispatch();
   let myMenuState = [...menuState];
-  const [chosenScenario, setChosenScenario] = useState("hcm_scenario_0");
+  const [chosenScenario, setChosenScenario] = useState("");
   let myChosenScenario = 'hcm_scenario_0';
 
   /* Listening View Option Change */
@@ -91,10 +91,13 @@ export default function CSjsMainCustom(props) {
       }
     }
     if (scenarioObject) {
-      let scenario = scenarioObject.scenario;
-      if (scenario && scenario != myChosenScenario) {
-        myChosenScenario = scenario;
-        setChosenScenario(scenario);
+      let table = scenarioObject.scenario_table;
+      if (table == tableName){
+        let scenario = scenarioObject.scenario;
+        if (scenario && scenario != myChosenScenario) {
+          myChosenScenario = scenario;
+          setChosenScenario(scenario);
+        }
       }
     }
     setTimeout(listenChangingOption, 1000);

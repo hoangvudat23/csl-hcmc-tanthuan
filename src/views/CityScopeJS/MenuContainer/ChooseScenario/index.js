@@ -176,10 +176,12 @@ function ChooseScenario(props) {
     // console.log(reduxState.TYPES_LIST);
 
     useEffect(() => {
-        async function autoChangeScenario() {
-            await getModules(chosenScenario);
+        if (chosenScenario) {
+            async function autoChangeScenario() {
+                await getModules(chosenScenario);
+            }
+            autoChangeScenario();
         }
-        autoChangeScenario();
     }, [chosenScenario]);
 
     const handleRadioChange = async (event) => {

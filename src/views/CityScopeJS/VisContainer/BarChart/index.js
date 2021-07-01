@@ -7,6 +7,7 @@ import {
 } from "react-vis";
 import "react-vis/dist/style.css";
 import { Typography, Box } from "@material-ui/core";
+import sampleIndicatorData from "../../../../settings/sampleIndicatorData.json";
 
 export default function BarChart(props) {
     const radarSize = 250;
@@ -19,14 +20,10 @@ export default function BarChart(props) {
     { x: 12, y: 15 },
     ]
      */
-    const defaultData = [
-        { x: 0, y: 0 },
-        { x: 0, y: 0 },
-        { x: 0, y: 0 },
-    ];
 
-    const [barChartData, setBarChartData] = useState(defaultData);
+    const [barChartData, setBarChartData] = useState(null);
     const [hoveredNode, setHoveredNode] = useState(null);
+    const [sampleBarChartData, setSampleBarChartData] = useState(null);
 
     useEffect(() => {
         if (
@@ -36,8 +33,10 @@ export default function BarChart(props) {
             props.cityioData.indicators.length > 0
         ) {
             const d = generateData(props.cityioData.indicators);
-
             setBarChartData(d.barChartData);
+        } else {
+            const sampleBarChartData = generateData(sampleIndicatorData);
+            setSampleBarChartData(sampleBarChartData.barChartData);
         }
     }, [props]);
 
@@ -60,7 +59,7 @@ export default function BarChart(props) {
 
     return (
         <>
-            {barChartData && (
+            {barChartData ? (
                 <>
                     <Box flexDirection="column">
                         <Box alignContent="center" p={3}>
@@ -106,7 +105,42 @@ export default function BarChart(props) {
                         </Box>
                     </Box>
                 </>
-            )}
+            ) :
+                (
+                    <>
+                        <Box flexDirection="column">
+                            <Box alignContent="center" p={3}>
+                                <FlexibleWidthXYPlot
+                                    opacity={0.2}
+                                    xType="ordinal"
+                                    width={radarSize}
+                                    height={radarSize}
+                                    stackBy="y"
+                                    yDomain={[0, 1]}
+                                >
+                                    <XAxis
+                                        style={{
+                                            text: {
+                                                fill: "#FFF",
+                                                fontFamily: "Roboto Mono",
+                                            },
+                                        }}
+                                        tickLabelAngle={90}
+                                    />
+                                    <YAxis style={{ text: { fill: "#FFF" } }} />
+                                    <VerticalBarSeries
+                                        animation={true}
+                                        onValueMouseOver={(d) => {
+                                            setHoveredNode(d);
+                                        }}
+                                        data={sampleBarChartData}
+                                    />
+                                </FlexibleWidthXYPlot>
+                            </Box>
+                        </Box>
+                    </>
+                )
+            }
         </>
     );
 }

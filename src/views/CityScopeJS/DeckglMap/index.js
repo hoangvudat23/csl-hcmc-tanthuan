@@ -271,8 +271,8 @@ export default function Map(props) {
         controller={{
           touchZoom: onlyMap ? false : true,
           touchRotate: onlyMap ? false : true,
-          scrollZoom: onlyMap ? false : true,
-          dragPan: onlyMap ? false : !draggingWhileEditing,
+          scrollZoom: true,
+          dragPan: onlyMap ? true : !draggingWhileEditing,
           dragRotate: onlyMap ? false : !draggingWhileEditing,
           keyboard: false,
         }}

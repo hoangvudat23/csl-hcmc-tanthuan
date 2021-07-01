@@ -6,7 +6,7 @@
             "blue": "mapbox://styles/relnox/ck0h5xn701bpr1dqs3he2lecq?fresh=true",
             "custom": "mapbox://styles/vlab-company/ckdy9814i47lg19p7eh0ms8gb"
         },
-        "projectName": "hcm_test_v1",
+        "projectName": "hcm_scenario_0",
         "gridTransparent": 180
     },
     "GEOGRIDDATA": {
@@ -27,7 +27,7 @@
             "geogrid_to_tui_mapping": {},
             "header": {
                 "cellSize": 30,
-                "latitude": 10.759316,
+                "latitude": 10.760616,
                 "longitude": 106.705454,
                 "tz": 7,
                 "ncols": 20,

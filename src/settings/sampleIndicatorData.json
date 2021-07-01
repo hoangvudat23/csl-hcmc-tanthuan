@@ -1,0 +1,191 @@
+[
+    {
+        "category": "innovation",
+        "name": "Knowledge",
+        "raw_value": -8.385636661067391,
+        "units": null,
+        "value": 0.6535908347331523,
+        "viz_type": "bar"
+    },
+    {
+        "category": "innovation",
+        "name": "Skills",
+        "raw_value": -4.778964842903398,
+        "units": null,
+        "value": 1,
+        "viz_type": "bar"
+    },
+    {
+        "category": "innovation",
+        "name": "R&D Funding",
+        "raw_value": 26506.753407652577,
+        "units": "Millions of US Dollars",
+        "value": 0.42337292184836794,
+        "viz_type": "bar"
+    },
+    {
+        "name": "Access to housing",
+        "raw_value": 1207.922444021614,
+        "units": "Capacity",
+        "value": 1,
+        "viz_type": "bar"
+    },
+    {
+        "name": "Access to employment",
+        "raw_value": 6102.2595652832415,
+        "units": "Capacity",
+        "value": 0.8717513664690345,
+        "viz_type": "bar"
+    },
+    {
+        "name": "Access to parks",
+        "raw_value": 51375.06478709302,
+        "units": "Capacity",
+        "value": 0.6421883098386627,
+        "viz_type": "bar"
+    },
+    {
+        "name": "Access to education",
+        "raw_value": 10.810380471831344,
+        "units": "Capacity",
+        "value": 0.21620760943662687,
+        "viz_type": "bar"
+    },
+    {
+        "name": "Access to 3rd Places",
+        "raw_value": 499.3791099797088,
+        "units": "Capacity",
+        "value": 0.5869933312172156,
+        "viz_type": "bar"
+    },
+    {
+        "name": "Mobility CO2 Performance",
+        "raw_value": 6.738994419285701,
+        "units": "kg/day",
+        "value": 0.7515722258163284,
+        "viz_type": "bar"
+    },
+    {
+        "name": "Mobility Health Impacts",
+        "raw_value": 0.0012887372224096225,
+        "units": "mortality/year",
+        "value": 0.3221843056024056,
+        "viz_type": "bar"
+    },
+    {
+        "name": "Average Salary",
+        "raw_value": 58499.5860049001,
+        "units": "USD",
+        "value": 0.7312448250612512,
+        "viz_type": "bar"
+    },
+    {
+        "name": "Productivity",
+        "raw_value": 14132121176.62148,
+        "units": "USD",
+        "value": 1,
+        "viz_type": "bar"
+    },
+    {
+        "name": "Employment Density",
+        "raw_value": 7557.802083333333,
+        "units": "employees/sq_km",
+        "value": 1,
+        "viz_type": "bar"
+    },
+    {
+        "name": "Buildings Energy Performance",
+        "raw_value": 41398.489910085686,
+        "units": "'000 Btu/person year",
+        "value": 1,
+        "viz_type": "bar"
+    },
+    {
+        "name": "Diversity Jobs",
+        "raw_value": 0.5970016821860499,
+        "units": null,
+        "value": 0.5970016821860499,
+        "viz_type": "bar"
+    },
+    {
+        "name": "Diversity Third Places",
+        "raw_value": 0.6176687093416,
+        "units": null,
+        "value": 0.6176687093416,
+        "viz_type": "bar"
+    },
+    {
+        "name": "Diversity Education",
+        "raw_value": 0,
+        "units": null,
+        "value": 0,
+        "viz_type": "bar"
+    },
+    {
+        "name": "Diversity Housing",
+        "raw_value": 0.6900066692594286,
+        "units": null,
+        "value": 0.6900066692594286,
+        "viz_type": "bar"
+    },
+    {
+        "name": "Innovation Potential",
+        "raw_value": null,
+        "ref_value": 0.26,
+        "units": null,
+        "value": 0.6923212521938401,
+        "viz_type": "radar",
+        "domain": [
+            0,
+            1
+        ]
+    },
+    {
+        "name": "Sustainable Mobility",
+        "raw_value": null,
+        "ref_value": 0.42,
+        "units": null,
+        "value": 0.536878265709367,
+        "viz_type": "radar",
+        "domain": [
+            0,
+            1
+        ]
+    },
+    {
+        "name": "Economic Performance",
+        "raw_value": null,
+        "ref_value": 0.48,
+        "units": null,
+        "value": 0.8320616268118253,
+        "viz_type": "radar",
+        "domain": [
+            0,
+            1
+        ]
+    },
+    {
+        "name": "Sustainable Buildings",
+        "raw_value": null,
+        "ref_value": 0.63,
+        "units": null,
+        "value": 1,
+        "viz_type": "radar",
+        "domain": [
+            0,
+            1
+        ]
+    },
+    {
+        "name": "Community Benefits",
+        "raw_value": null,
+        "ref_value": 0.38,
+        "units": null,
+        "value": 0.5664763760611486,
+        "viz_type": "radar",
+        "domain": [
+            0,
+            1
+        ]
+    }
+]

@@ -231,6 +231,6 @@ export const gridCreator = (gridProps, typesList) => {
     }
     geojsonFeatureCollection.features = gridPnts;
     // joinGridAndPrivateGeojson(scenario, geojsonFeatureCollection, types);
-    convertScenarioToWGS84(types);
+    // convertScenarioToWGS84(types);
     return geojsonFeatureCollection;
 };
