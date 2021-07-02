@@ -10,7 +10,8 @@ import { Typography, Box } from "@material-ui/core";
 import sampleIndicatorData from "../../../../settings/sampleIndicatorData.json";
 
 export default function BarChart(props) {
-    const radarSize = 250;
+    const radarSize = 400;
+    const radarFontSize = 20;
 
     /**
    data format 
@@ -23,6 +24,7 @@ export default function BarChart(props) {
 
     const [barChartData, setBarChartData] = useState(null);
     const [hoveredNode, setHoveredNode] = useState(null);
+    const [maxYColumn, setMaxYColumn] = useState(1);
     const [sampleBarChartData, setSampleBarChartData] = useState(null);
 
     useEffect(() => {
@@ -42,15 +44,18 @@ export default function BarChart(props) {
 
     const generateData = (indicators) => {
         let dataArr = [];
-
+        let maxY = 1;
         for (let i = 0; i < indicators.length; i++) {
             if (indicators[i].viz_type === "bar") {
                 dataArr.push({
                     x: indicators[i].name,
                     y: indicators[i].value,
                 });
+                /* Set max Y column */
+                maxY = indicators[i].value > maxY ? indicators[i].value : maxY;
             }
         }
+        setMaxYColumn(maxY);
 
         return {
             barChartData: dataArr,
@@ -69,18 +74,19 @@ export default function BarChart(props) {
                                 width={radarSize}
                                 height={radarSize}
                                 stackBy="y"
-                                yDomain={[0, 1]}
+                                yDomain={[0, maxYColumn]}
                             >
                                 <XAxis
                                     style={{
                                         text: {
                                             fill: "#FFF",
                                             fontFamily: "Roboto Mono",
+                                            fontSize: radarFontSize
                                         },
                                     }}
                                     tickLabelAngle={90}
                                 />
-                                <YAxis style={{ text: { fill: "#FFF" } }} />
+                                <YAxis style={{ text: { fill: "#FFF", fontSize: radarFontSize } }} />
                                 <VerticalBarSeries
                                     animation={true}
                                     onValueMouseOver={(d) => {
@@ -90,7 +96,7 @@ export default function BarChart(props) {
                                 />
                             </FlexibleWidthXYPlot>
                         </Box>
-                        <Box alignContent="center">
+                        {/* <Box alignContent="center">
                             {hoveredNode && (
                                 <>
                                     <Typography variant="caption" gutterBottom>
@@ -102,7 +108,7 @@ export default function BarChart(props) {
                                     </Typography>
                                 </>
                             )}
-                        </Box>
+                        </Box> */}
                     </Box>
                 </>
             ) :
@@ -123,11 +129,12 @@ export default function BarChart(props) {
                                             text: {
                                                 fill: "#FFF",
                                                 fontFamily: "Roboto Mono",
+                                                fontSize: radarFontSize
                                             },
                                         }}
                                         tickLabelAngle={90}
                                     />
-                                    <YAxis style={{ text: { fill: "#FFF" } }} />
+                                    <YAxis style={{ text: { fill: "#FFF", fontSize: radarFontSize } }} />
                                     <VerticalBarSeries
                                         animation={true}
                                         onValueMouseOver={(d) => {

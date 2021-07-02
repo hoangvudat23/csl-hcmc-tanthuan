@@ -4,7 +4,8 @@ import "react-vis/dist/style.css";
 import "./Radar.css";
 import sampleIndicatorData from "../../../../settings/sampleIndicatorData.json";
 
-const radarSize = 300;
+const radarSize = 1000;
+const radarFontSize = 20;
 const colorRange = ["#ff5278", "#660016"];
 
 export default function Radar(props) {
@@ -64,14 +65,14 @@ export default function Radar(props) {
                                     fontWeight: 700,
                                     fill: "white",
                                     fontFamily: "Roboto Mono",
+                                    width: "100",
                                 },
                                 strokeWidth: 0,
                             },
                             labels: {
                                 fontFamily: "Roboto Mono",
-
                                 textAnchor: "middle",
-                                fontSize: 10,
+                                fontSize: radarFontSize,
                                 fill: "white",
                             },
                         }}
@@ -131,7 +132,7 @@ export default function Radar(props) {
                             fontFamily: "Roboto Mono",
 
                             textAnchor: "middle",
-                            fontSize: 10,
+                            fontSize: radarFontSize,
                             fill: "white",
                         },
                     }}

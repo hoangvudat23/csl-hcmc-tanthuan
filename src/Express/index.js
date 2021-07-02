@@ -18,7 +18,7 @@ app.use(bodyParser.json());
 // for parsing application/xwww-
 app.use(bodyParser.urlencoded({ extended: true }));
 
-let arrayOptionAllowance = ["GRID", "ABM", "GEOJSON", "AGGREGATED_TRIPS", "ACCESS", "ROTATE", "TEXTUAL", "SHADOWS",]
+let arrayOptionAllowance = ["GRID", "ABM", "GEOJSON", "AGGREGATED_TRIPS", "ACCESS", "TEXTUAL", "SHADOWS",]
 let arrayModeAllowance = ["ON", "OFF"]
 let arrayScenarioAllowance = ["hcm_scenario_0", "hcm_scenario_1", "hcm_scenario_2", "hcm_scenario_3"]
 app.get('/get-option', (req, res) => {

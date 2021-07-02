@@ -118,6 +118,7 @@
         "name": "Diversity Education",
         "raw_value": 0,
         "units": null,
+
         "value": 0,
         "viz_type": "bar"
     },
@@ -129,11 +130,11 @@
         "viz_type": "bar"
     },
     {
-        "name": "Innovation Potential",
+        "name": "Access to transportation",
         "raw_value": null,
         "ref_value": 0.26,
         "units": null,
-        "value": 0.6923212521938401,
+        "value":1,
         "viz_type": "radar",
         "domain": [
             0,
@@ -141,11 +142,11 @@
         ]
     },
     {
-        "name": "Sustainable Mobility",
+        "name": "Life work symmetry",
         "raw_value": null,
         "ref_value": 0.42,
         "units": null,
-        "value": 0.536878265709367,
+        "value":1,
         "viz_type": "radar",
         "domain": [
             0,
@@ -153,11 +154,11 @@
         ]
     },
     {
-        "name": "Economic Performance",
+        "name": "Access to healthcare",
         "raw_value": null,
         "ref_value": 0.48,
         "units": null,
-        "value": 0.8320616268118253,
+        "value":1,
         "viz_type": "radar",
         "domain": [
             0,
@@ -165,11 +166,11 @@
         ]
     },
     {
-        "name": "Sustainable Buildings",
+        "name": "Access to shopping",
         "raw_value": null,
         "ref_value": 0.63,
         "units": null,
-        "value": 1,
+        "value":1,
         "viz_type": "radar",
         "domain": [
             0,
@@ -177,11 +178,83 @@
         ]
     },
     {
-        "name": "Community Benefits",
+        "name": "Congestion",
         "raw_value": null,
         "ref_value": 0.38,
         "units": null,
-        "value": 0.5664763760611486,
+        "value":1,
+        "viz_type": "radar",
+        "domain": [
+            0,
+            1
+        ]
+    },
+    {
+        "name": "Access to education",
+        "raw_value": null,
+        "ref_value": 0.26,
+        "units": null,
+        "value":1,
+        "viz_type": "radar",
+        "domain": [
+            0,
+            1
+        ]
+    },
+    {
+        "name": "Gentrification level",
+        "raw_value": null,
+        "ref_value": 0.42,
+        "units": null,
+        "value":1,
+        "viz_type": "radar",
+        "domain": [
+            0,
+            1
+        ]
+    },
+    {
+        "name": "Incom Diversity",
+        "raw_value": null,
+        "ref_value": 0.48,
+        "units": null,
+        "value":1,
+        "viz_type": "radar",
+        "domain": [
+            0,
+            1
+        ]
+    },
+    {
+        "name": "Amenities balance",
+        "raw_value": null,
+        "ref_value": 0.63,
+        "units": null,
+        "value":1,
+        "viz_type": "radar",
+        "domain": [
+            0,
+            1
+        ]
+    },
+    {
+        "name": "Jobs balance",
+        "raw_value": null,
+        "ref_value": 0.38,
+        "units": null,
+        "value":1,
+        "viz_type": "radar",
+        "domain": [
+            0,
+            1
+        ]
+    },
+    {
+        "name": "House balance",
+        "raw_value": null,
+        "ref_value": 0.38,
+        "units": null,
+        "value":1,
         "viz_type": "radar",
         "domain": [
             0,

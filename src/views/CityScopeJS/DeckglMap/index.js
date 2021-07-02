@@ -82,6 +82,13 @@ export default function Map(props) {
     // zoom map on CS table location
     _setViewStateToTableHeader()
     setLoaded(true)
+    if(pitchMap){
+      let brightTime = 12;
+      if(cityioData.GEOGRID.properties.header.tz){
+        brightTime += cityioData.GEOGRID.properties.header.tz;
+      }
+      updateSunDirection(brightTime, effectsRef)
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
@@ -152,11 +159,14 @@ export default function Map(props) {
 
     setViewState({
       ...viewState,
-      longitude: header.longitude,
-      latitude: header.latitude,
-      zoom: zoomMap ?? 14,
+      // longitude: header.longitude,
+      // latitude: header.latitude,
+      // bearing: 360 - header.rotation,
+      longitude: 106.704854, // District 4
+      latitude: 10.760616, // District 4
+      bearing: 0.3, // District 4
+      zoom: zoomMap ?? 15.95, // 4k
       pitch: pitchMap ?? 0,
-      bearing: 360 - header.rotation,
       orthographic: true,
     })
   }
@@ -269,11 +279,11 @@ export default function Map(props) {
         layers={_renderLayers()}
         effects={effectsRef.current}
         controller={{
-          touchZoom: onlyMap ? false : true,
-          touchRotate: onlyMap ? false : true,
-          scrollZoom: true,
-          dragPan: onlyMap ? true : !draggingWhileEditing,
-          dragRotate: onlyMap ? false : !draggingWhileEditing,
+          touchZoom: onlyMap || pitchMap ? false : true,
+          touchRotate: onlyMap || pitchMap ? false : true,
+          scrollZoom: onlyMap || pitchMap ? false : true,
+          dragPan: onlyMap || pitchMap ? false : !draggingWhileEditing,
+          dragRotate: onlyMap || pitchMap ? false : !draggingWhileEditing,
           keyboard: false,
         }}
       >

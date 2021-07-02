@@ -7,7 +7,8 @@ import Typography from "@material-ui/core/Typography";
 import "../../../../../node_modules/react-vis/dist/style.css";
 
 export default function AreaCalc(props) {
-    const radialRadius = 250;
+    const radialRadius = 400;
+    const areaFontSize = 15;
     const [hoveredRadial, setHoveredRadial] = useState(false);
     const [areaData, setAreaData] = useState(null);
     const header = props.cityioData.GEOGRID?.properties?.header;
@@ -130,7 +131,7 @@ export default function AreaCalc(props) {
                         labelsStyle={{
                             textAnchor: "middle",
                             font: "sans-serif",
-                            fontSize: 11,
+                            fontSize: areaFontSize,
                             fill: "#FFF",
                             textShadow: "2px 2px 2px #000",
                             fontFamily: "Roboto Mono",
