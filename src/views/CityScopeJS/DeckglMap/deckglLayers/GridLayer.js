@@ -16,8 +16,11 @@ export default function GridLayer({
         wireframe: true,
         lineWidthScale: 1,
         lineWidthMinPixels: 2,
-        getElevation: (d) => d.properties.height,
-        getFillColor: (d) => d.properties.color,
+        getElevation: (d) => d.properties.color,
+        getFillColor: (d) => {
+            // return d.properties.color
+            return d.properties.TypeCode == "DGT" ? [0, 0, 0, 0] : d.properties.color;
+        },
 
         onClick: (event) => {
             if (selectedType && editOn && keyDownState !== "Shift")

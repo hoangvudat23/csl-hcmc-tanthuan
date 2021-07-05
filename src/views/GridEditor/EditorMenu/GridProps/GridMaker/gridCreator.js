@@ -1,7 +1,7 @@
 import proj4 from "proj4";
 import { _hexToRgb } from "../../../EditorMap/EditorMap";
-import scenario from '../../../../../settings/settings.json'; // just skip error
 import { featureCollection, centroid, bbox, tag } from "@turf/turf";
+import scenario from '../../../../../settings/settings.json'; // just skip error
 function deg_to_rad(deg) {
     return (deg * Math.PI) / 180;
 }
@@ -245,6 +245,6 @@ export const gridCreator = (gridProps, typesList) => {
     geojsonFeatureCollection.features = gridPnts;
     // joinGridAndPrivateGeojson(scenario, geojsonFeatureCollection, types);
     // convertScenarioToWGS84(types);
-    addIdScenario();
+    // addIdScenario();
     return geojsonFeatureCollection;
 };

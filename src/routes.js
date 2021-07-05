@@ -17,7 +17,7 @@ const routes = [
       { path: '/onlyMap', element: <CityScopeJSMapCenter /> },
       { path: '/onlyChartSidebar', element: <CityScopeJSChartSidebar /> },
       { path: '/onlyOptionsMenu', element: <CityScopeJSOptionsMenu /> },
-      { path: '/editor/', element: <GridEditor /> },
+      // { path: '/editor/', element: <GridEditor /> },
       { path: '/projection', element: <ProjectionMapping /> },
       { path: '/cityioviewer', element: <Navigate to="/" /> },
 
