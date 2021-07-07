@@ -22,6 +22,8 @@ import {
   GeojsonLayer,
 } from './deckglLayers'
 
+import building from "../../../settings/LandUse_0_white_color.json";
+
 export default function Map(props) {
   const pitchMap = props.pitchMap
   const zoomMap = props.zoomMap
@@ -64,6 +66,8 @@ export default function Map(props) {
     state.ABM_MODE,
   ])
 
+  const currentScennario = useSelector((state) => state.CURRENT_SCENARIO);
+
   var ABMOn = menu.includes('ABM')
   if (autoRotate) {
     var rotateOn = autoRotate;
@@ -82,13 +86,13 @@ export default function Map(props) {
     // zoom map on CS table location
     _setViewStateToTableHeader()
     setLoaded(true)
-    if(pitchMap){
-      let brightTime = 12;
-      if(cityioData.GEOGRID.properties.header.tz){
-        brightTime += cityioData.GEOGRID.properties.header.tz;
-      }
-      updateSunDirection(brightTime, effectsRef)
-    }
+    // if (pitchMap) {
+    //   let brightTime = 12;
+    //   if (cityioData.GEOGRID.properties.header.tz) {
+    //     brightTime += cityioData.GEOGRID.properties.header.tz;
+    //   }
+    //   updateSunDirection(brightTime, effectsRef)
+    // }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
@@ -194,21 +198,24 @@ export default function Map(props) {
       cityioData,
       ABMmode,
     }),
-    GRID: GridLayer({
+    // GRID: GridLayer({
+    //   data: GEOGRID,
+    //   editOn: menu.includes('EDIT'),
+    //   state: {
+    //     selectedType,
+    //     keyDownState,
+    //     selectedCellsState,
+    //     pickingRadius,
+    //   },
+    //   updaters: {
+    //     setSelectedCellsState,
+    //     setDraggingWhileEditing,
+    //     setHoveredObj,
+    //   },
+    //   deckGL,
+    // }),
+    GRID: GeojsonLayer({
       data: GEOGRID,
-      editOn: menu.includes('EDIT'),
-      state: {
-        selectedType,
-        keyDownState,
-        selectedCellsState,
-        pickingRadius,
-      },
-      updaters: {
-        setSelectedCellsState,
-        setDraggingWhileEditing,
-        setHoveredObj,
-      },
-      deckGL,
     }),
     ACCESS: AccessLayer({
       data: access,
@@ -221,6 +228,10 @@ export default function Map(props) {
 
     GEOJSON: GeojsonLayer({
       data: geojsonData && geojsonData,
+    }),
+
+    OUTSIDE_INTERACTIVE_AREA: GeojsonLayer({
+      data: building
     }),
   }
 
@@ -235,10 +246,19 @@ export default function Map(props) {
 
   const _renderLayers = () => {
     let layers = []
-    for (var layer of layerOrder) {
-      if (menu.includes(layer)) {
-        layers.push(layersKey[layer])
+    if (!pitchMap) {
+      for (var layer of layerOrder) {
+        if (menu.includes(layer)) {
+          layers.push(layersKey[layer])
+        }
       }
+    }
+    else {
+      /* Add Building layer if having pitchMap*/
+      // if (currentScennario == 'hcm_scenario_0') {
+      layers.push(layersKey['OUTSIDE_INTERACTIVE_AREA']);
+      // }
+      /* --! Add Building */
     }
     return layers
   }
@@ -284,7 +304,7 @@ export default function Map(props) {
           scrollZoom: onlyMap || pitchMap ? false : true,
           dragPan: onlyMap || pitchMap ? false : !draggingWhileEditing,
           dragRotate: onlyMap || pitchMap ? false : !draggingWhileEditing,
-          keyboard: false,
+          keyboard: true,
         }}
       >
         <StaticMap

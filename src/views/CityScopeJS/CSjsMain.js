@@ -26,7 +26,6 @@ export default function CSjsMain(props) {
   const classes = useStyles()
   const tableName = props.tableName
   const cityIOdata = props.cityIOdata
-
   return (
     <Page className={classes.root} title="CitySCopeJS">
       <LoadingSpinner />

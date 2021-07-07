@@ -34,6 +34,25 @@ const convertScenarioToWGS84 = (types) => {
         rgbArr = rgbArr.map(el => parseFloat(el));
         rgbArr.push(220);
 
+        if(features[i].properties['InPoly_FID'] >= 0){
+            delete features[i].properties['InPoly_FID'];
+        }
+        if(features[i].properties['SimPgnFlag'] >= 0){
+            delete features[i].properties['SimPgnFlag'];
+        }
+        if(features[i].properties['MaxSimpTol'] >= 0){
+            delete features[i].properties['MaxSimpTol'];
+        }
+        if(features[i].properties['MinSimpTol'] >= 0){
+            delete features[i].properties['MinSimpTol'];
+        }
+        if(features[i].properties['Shape_Leng'] >= 0){
+            delete features[i].properties['Shape_Leng'];
+        }
+        if(features[i].properties['Shape_Area'] >= 0){
+            delete features[i].properties['Shape_Area'];
+        }
+
         // let height = 0;
         // if (features[i].properties.Height) {
         //     height = features[i].properties.Height

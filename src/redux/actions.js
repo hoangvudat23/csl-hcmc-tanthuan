@@ -61,9 +61,9 @@ export function removeLoadingModules(data) {
   return { type: REMOVE_LOADING_MODULES, data }
 }
 
-export const SET_CURRENT_VIEW_OPTION = 'SET_CURRENT_VIEW_OPTION'
-export function setCurrentViewOption(data) {
-  return { type: SET_CURRENT_VIEW_OPTION, data }
+export const SET_CURRENT_SCENARIO = 'SET_CURRENT_SCENARIO'
+export function setCurrentScenario(data) {
+  return { type: SET_CURRENT_SCENARIO, data }
 }
 
 /**

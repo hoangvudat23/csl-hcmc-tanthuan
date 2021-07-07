@@ -172,7 +172,6 @@ export const _setupSunEffects = (effectsRef, tableHeader) => {
   // get time zone from the tz value if exist
   if (tableHeader.tz) {
     currentDateMidnight.setHours(tableHeader.tz, 0, 0, 0)
-    // currentDateMidnight.setHours(17, 0, 0, 0)
   }
   const ambientLight = new AmbientLight({
     color: [255, 255, 255],

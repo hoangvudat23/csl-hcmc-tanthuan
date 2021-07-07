@@ -48,8 +48,8 @@ function MenuContainer(props) {
 
     useEffect(() => {
         // listenChangingOption();
-        const timer = setTimeout(listenChangingOption, 1000);
-        return () => clearTimeout(timer);
+        // const timer = setTimeout(listenChangingOption, 1000);
+        // return () => clearTimeout(timer);
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
@@ -151,7 +151,7 @@ function MenuContainer(props) {
             </List>
 
             <TogglesMenu handleToggle={handleToggle} />
-            <ChooseScenario chosenScenario={chosenScenario} displayUI={true}/>
+            {/* <ChooseScenario chosenScenario={chosenScenario} displayUI={true}/> */}
         </>
     );
 }

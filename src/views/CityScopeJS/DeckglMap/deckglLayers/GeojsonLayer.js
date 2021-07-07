@@ -11,7 +11,7 @@ export default function GeojsonLayer({ data }) {
     filled: true,
     extruded: true,
     lineWidthScale: 1,
-    getFillColor: (d) => hexToRgb(d.properties.fill),
+    getFillColor: (d) => {return hexToRgb(d.properties.fill)},
     getLineColor: (d) => hexToRgb(d.properties.stroke),
     lineWidthMinPixels: 2,
     getElevation: (d) => d.properties.height,

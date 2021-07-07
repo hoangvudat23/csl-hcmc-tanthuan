@@ -35,7 +35,6 @@ export default function Radar(props) {
             props.cityioData.indicators &&
             props.cityioData.indicators.length > 0
         ) {
-            console.log(121);
             const d = createRadarData(props.cityioData.indicators);
             setRadarData(d);
         } else {

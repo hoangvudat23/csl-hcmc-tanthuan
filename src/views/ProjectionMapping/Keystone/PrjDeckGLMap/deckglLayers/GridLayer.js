@@ -9,7 +9,7 @@ export default function GridLayer({ active, data }) {
         wireframe: true,
         lineWidthScale: 1,
         lineWidthMinPixels: 2,
-        getElevation: (d) => d.properties.height,
+        // getElevation: (d) => d.properties.height,
         getFillColor: (d) => d.properties.color,
 
         transitions: {
