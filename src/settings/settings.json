@@ -52,7 +52,7 @@
       },
       "TEXTUAL": {
         "displayName": "Toggle Information",
-        "showOnInit": true,
+        "showOnInit": false,
         "requireModule": "GEOGRID"
       },
       "SHADOWS": {

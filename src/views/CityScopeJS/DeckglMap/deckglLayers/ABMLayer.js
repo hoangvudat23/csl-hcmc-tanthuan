@@ -24,7 +24,7 @@ export default function ABMLayer({
       return col
     },
     shadowEnabled: false,
-    getWidth: 1,
+    getWidth: 3,
     widthScale: _remapValues(zoomLevel),
     opacity: 0.8,
     rounded: true,

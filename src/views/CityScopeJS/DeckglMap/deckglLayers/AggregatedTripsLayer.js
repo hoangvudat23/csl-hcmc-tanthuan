@@ -23,7 +23,7 @@ export default function AggregatedTripsLayer({ data, cityioData, ABMmode }) {
             return col;
         },
         opacity: 0.2,
-        getWidth: 1.5,
+        getWidth: 2.5,
 
         updateTriggers: {
             getColor: ABMmode,

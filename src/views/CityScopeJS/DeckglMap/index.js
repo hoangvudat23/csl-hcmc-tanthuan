@@ -260,6 +260,7 @@ export default function Map(props) {
       // }
       /* --! Add Building */
     }
+    // console.log('layers', layers);
     return layers
   }
   return (
