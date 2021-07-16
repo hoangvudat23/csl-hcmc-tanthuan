@@ -4,11 +4,13 @@ import "react-vis/dist/style.css";
 import "./Radar.css";
 import sampleIndicatorData from "../../../../settings/sampleIndicatorData.json";
 
-const radarSize = 1000;
-const radarFontSize = 20;
+// const radarSize = 1000;
+// const radarFontSize = 20;
 const colorRange = ["#ff5278", "#660016"];
 
 export default function Radar(props) {
+    const radarSize = props.radarSize;
+    const radarFontSize = props.radarFontSize;
     const [radarData, setRadarData] = useState(null);
     const [sampleRadarData, setSampleRadarData] = useState(null);
 
@@ -28,7 +30,6 @@ export default function Radar(props) {
     };
 
     useEffect(() => {
-        console.log('props radar', props);
         if (
             props &&
             props.cityioData &&
@@ -98,13 +99,13 @@ export default function Radar(props) {
                             )}
                         />
                     </RadarChart>
-                    <DiscreteColorLegend
+                    {/* <DiscreteColorLegend
                         items={["Design", "Reference"]}
                         colors={colorRange}
                         style={{
                             fontFamily: "Roboto Mono",
                         }}
-                    />
+                    /> */}
                 </>
             ) : (<>
                 <RadarChart

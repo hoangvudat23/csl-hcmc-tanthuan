@@ -42,6 +42,11 @@ const initialState = {
     },
     TYPES_LIST: null,
     GRID_CREATED: null,
+
+    /**
+     * STATE FOR VIS CONTAINER
+     */
+    ONLY_CHART: 'all'
 };
 
 export default initialState;

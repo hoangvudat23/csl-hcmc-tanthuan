@@ -10,8 +10,10 @@ import { Typography, Box } from "@material-ui/core";
 import sampleIndicatorData from "../../../../settings/sampleIndicatorData.json";
 
 export default function BarChart(props) {
-    const radarSize = 400;
-    const radarFontSize = 20;
+    // const radarSize = 400;
+    // const radarFontSize = 20;
+    const radarSize = props.radarSize;
+    const radarFontSize = props.radarFontSize;
 
     /**
    data format 
@@ -86,7 +88,7 @@ export default function BarChart(props) {
                                     }}
                                     tickLabelAngle={90}
                                 />
-                                <YAxis style={{ text: { fill: "#FFF", fontSize: radarFontSize } }} />
+                                <YAxis style={{ text: { fill: "#FFF", fontSize: (radarFontSize >= 50) ? radarFontSize - 30 : radarFontSize } }} />
                                 <VerticalBarSeries
                                     animation={true}
                                     onValueMouseOver={(d) => {

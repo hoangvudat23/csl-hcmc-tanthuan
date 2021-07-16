@@ -11,6 +11,8 @@ localStorage.removeItem('mode');
 localStorage.removeItem('table');
 localStorage.removeItem('scenario');
 localStorage.removeItem('scenario_table');
+localStorage.removeItem('chart');
+localStorage.removeItem('chart_table');
 
 // for parsing application/json
 app.use(bodyParser.json());
@@ -21,16 +23,25 @@ app.use(bodyParser.urlencoded({ extended: true }));
 let arrayOptionAllowance = ["GRID", "ABM", "GEOJSON", "AGGREGATED_TRIPS", "ACCESS", "TEXTUAL", "SHADOWS",]
 let arrayModeAllowance = ["ON", "OFF"]
 let arrayScenarioAllowance = ["hcm_scenario_0", "hcm_scenario_1", "hcm_scenario_2", "hcm_scenario_3"]
+let arrayChartAllowance = ["pie", "radar", "bar", "all"];
+
 app.get('/get-option', (req, res) => {
     let option = localStorage.getItem('view-option');
     let mode = localStorage.getItem('mode');
     let table = localStorage.getItem('table');
     res.send({ option, mode, table });
 })
+
 app.get('/get-scenario', (req, res) => {
     let scenario = localStorage.getItem('scenario');
     let scenario_table = localStorage.getItem('scenario_table');
     res.send({ scenario, scenario_table });
+})
+
+app.get('/get-chart', (req, res) => {
+    let chart = localStorage.getItem('chart');
+    let chart_table = localStorage.getItem('chart_table');
+    res.send({ chart, chart_table });
 })
 
 app.post('/set-option', (req, res) => {
@@ -63,6 +74,22 @@ app.post('/choose-scenario', (req, res) => {
     }
     else {
         res.status('422').send(`Scenario is not valid!`);
+    }
+})
+
+app.post('/display-chart', (req, res) => {
+    let reqParams = req.body;
+    let chart = reqParams.chart;
+    let table = reqParams.table;
+    if (arrayChartAllowance.includes(chart)) {
+        localStorage.setItem('chart', chart);
+        localStorage.setItem('chart_table', table);
+        console.log(chart);
+        console.log(table);
+        res.send(`Chart: ${chart}`);
+    }
+    else {
+        res.status('422').send(`Chart is not valid!`);
     }
 })
 

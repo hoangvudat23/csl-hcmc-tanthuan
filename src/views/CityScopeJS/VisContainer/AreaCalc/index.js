@@ -7,8 +7,10 @@ import Typography from "@material-ui/core/Typography";
 import "../../../../../node_modules/react-vis/dist/style.css";
 
 export default function AreaCalc(props) {
-    const radialRadius = 400;
-    const areaFontSize = 15;
+    // const radialRadius = 400;
+    // const areaFontSize =  15;
+    const radialRadius = props.radialRadius;
+    const areaFontSize =  props.areaFontSize;
     const [hoveredRadial, setHoveredRadial] = useState(false);
     const [areaData, setAreaData] = useState(null);
     const header = props.cityioData.GEOGRID?.properties?.header;
@@ -83,7 +85,7 @@ export default function AreaCalc(props) {
                         calcAreaObj[typeCode] = {};
                         // calcAreaObj[typeCode].area = gridCellData.Shape_Area;
                         calcAreaObj[typeCode].area = shapeArea;
-                        calcAreaObj[typeCode].name = typeName;
+                        calcAreaObj[typeCode].name = `${typeName} \n (${shapeArea})`;
                         calcAreaObj[typeCode].color = rgbToHex(
                             parseInt(color[0]),
                             parseInt(color[1]),
@@ -132,6 +134,7 @@ export default function AreaCalc(props) {
                             textAnchor: "middle",
                             font: "sans-serif",
                             fontSize: areaFontSize,
+                            whiteSpace: "pre-line",
                             fill: "#FFF",
                             textShadow: "2px 2px 2px #000",
                             fontFamily: "Roboto Mono",
@@ -145,7 +148,7 @@ export default function AreaCalc(props) {
                         height={radialRadius}
                         padAngle={0.01}
                     >
-                        {hoveredRadial !== false && (
+                        {/* {hoveredRadial !== false && (
                             <Hint value={hoveredRadial}>
                                 <div
                                     style={{
@@ -161,12 +164,12 @@ export default function AreaCalc(props) {
                                     </Typography>
                                 </div>
                             </Hint>
-                        )}
+                        )} */}
                     </RadialChart>
                 </ListItem>
             )}
 
-            {hoveredRadial.name && (
+            {/* {hoveredRadial.name && (
                 <List>
                     <ListItem>
                         <Typography variant="caption">
@@ -177,7 +180,7 @@ export default function AreaCalc(props) {
                         <Typography>{hoveredRadial.area} sqm</Typography>
                     </ListItem>
                 </List>
-            )}
+            )} */}
         </List>
     );
 }

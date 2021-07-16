@@ -103,3 +103,12 @@ export const LISTEN_TO_BASE_MAP_CENTER = 'LISTEN_TO_BASE_MAP_CENTER'
 export function listenToBaseMapCenter(data) {
   return { type: LISTEN_TO_BASE_MAP_CENTER, data }
 }
+
+/**
+ * Display VisContainer
+ */
+
+ export const SET_ONLY_CHART = 'SET_ONLY_CHART'
+ export function setOnlyChart(data) {
+   return { type: SET_ONLY_CHART, data }
+ }

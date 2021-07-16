@@ -86,13 +86,13 @@ export default function Map(props) {
     // zoom map on CS table location
     _setViewStateToTableHeader()
     setLoaded(true)
-    // if (pitchMap) {
-    //   let brightTime = 12;
-    //   if (cityioData.GEOGRID.properties.header.tz) {
-    //     brightTime += cityioData.GEOGRID.properties.header.tz;
-    //   }
-    //   updateSunDirection(brightTime, effectsRef)
-    // }
+    if (pitchMap) {
+      let brightTime = 12;
+      if (cityioData.GEOGRID.properties.header.tz) {
+        brightTime += cityioData.GEOGRID.properties.header.tz;
+      }
+      updateSunDirection(brightTime, effectsRef)
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 

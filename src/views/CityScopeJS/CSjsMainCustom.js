@@ -54,6 +54,8 @@ export default function CSjsMainCustom(props) {
   let myMenuState = [...menuState];
   const [chosenScenario, setChosenScenario] = useState("");
   let myChosenScenario = 'hcm_scenario_0';
+  const [chosenChart, setChosenChart] = useState("all");
+  let myChosenChart = 'all';
 
   /* Listening View Option Change */
   useEffect(() => {
@@ -66,6 +68,7 @@ export default function CSjsMainCustom(props) {
     // recursively get hashes
     const options = await getAPICall(`${process.env.REACT_APP_EXPRESS_PUBLIC_URL}/get-option`);
     const scenarioObject = await getAPICall(`${process.env.REACT_APP_EXPRESS_PUBLIC_URL}/get-scenario`);
+    const chartObject = await getAPICall(`${process.env.REACT_APP_EXPRESS_PUBLIC_URL}/get-chart`);
     if (options) {
       let table = options.table;
       let option = options.option;
@@ -98,6 +101,17 @@ export default function CSjsMainCustom(props) {
           myChosenScenario = scenario;
           setChosenScenario(scenario);
           dispatch(setCurrentScenario(scenario));
+        }
+      }
+    }
+
+    if (chartObject) {
+      let table = chartObject.chart_table;
+      if (table == tableName) {
+        let chart = chartObject.chart;
+        if (chart && chart != myChosenChart) {
+          myChosenChart = chart;
+          setChosenChart(chart);
         }
       }
     }
@@ -162,7 +176,7 @@ export default function CSjsMainCustom(props) {
                 boxShadow: 'none'
               }}
             >
-              <VisContainer cityIOdata={cityIOdata} />
+              <VisContainer cityIOdata={cityIOdata} chosenChart={chosenChart} />
             </Card>
           </Grid>}
           {mapAndChartSidebar && <Grid item xs={6} l={6} md={6} xl={6}>

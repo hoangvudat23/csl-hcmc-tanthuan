@@ -17,7 +17,8 @@ import {
   REMOVE_LOADING_MODULES,
   SET_UI_WEBSOCKET_DATA,
   SET_UI_WEBSOCKET_READY,
-  SET_CURRENT_SCENARIO
+  SET_CURRENT_SCENARIO,
+  SET_ONLY_CHART,
 } from './actions'
 import initialState from './initialState'
 
@@ -86,8 +87,15 @@ export default function reducer(state = initialState, action) {
     case LISTEN_TO_BASE_MAP_CENTER:
       return { ...state, BASE_MAP_CENTER: action.data }
     case SET_CURRENT_SCENARIO:
-      console.log('action.data',action.data);
       return { ...state, CURRENT_SCENARIO: action.data }
+
+    /**
+     * Display VisContainer
+     */
+
+    case SET_ONLY_CHART:
+      return { ...state, ONLY_CHART: action.data }
+
     default:
       return state
   }
