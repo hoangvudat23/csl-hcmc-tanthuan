@@ -2,6 +2,8 @@ const { LocalStorage } = require("node-localstorage");
 const setting = require('../settings/settings.json');
 const express = require('express')
 var bodyParser = require('body-parser');
+const cors = require('cors');
+const fs = require('fs');
 const app = express();
 const port = setting.expressPort;
 
@@ -19,6 +21,11 @@ app.use(bodyParser.json());
 
 // for parsing application/xwww-
 app.use(bodyParser.urlencoded({ extended: true }));
+
+// for cors
+app.use(cors());
+app.options('*', cors());
+
 
 let arrayOptionAllowance = ["GRID", "ABM", "GEOJSON", "AGGREGATED_TRIPS", "ACCESS", "TEXTUAL", "SHADOWS",]
 let arrayModeAllowance = ["ON", "OFF"]
@@ -91,6 +98,22 @@ app.post('/display-chart', (req, res) => {
     else {
         res.status('422').send(`Chart is not valid!`);
     }
+})
+
+app.post('/save-only-map-settings', (req, res) => {
+    let reqParams = req.body;
+    let data = reqParams.setting;
+    try {
+        fs.writeFileSync('../settings/onlyMapSetting.json', data, (err) => {
+            // In case of a error throw err.
+            if (err){
+                res.status('500').send(err);
+            };
+        })
+    } catch (err) {
+        res.status('500').send(err);
+    }
+    res.send(`Save settings successfully`);
 })
 
 

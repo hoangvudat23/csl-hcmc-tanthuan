@@ -23,6 +23,8 @@ import {
 } from './deckglLayers'
 
 import building from "../../../settings/LandUse_0_white_color.json";
+import axios from 'axios'
+import onlyMapSetting from '../../../settings/onlyMapSetting.json';
 
 export default function Map(props) {
   const pitchMap = props.pitchMap
@@ -86,13 +88,14 @@ export default function Map(props) {
     // zoom map on CS table location
     _setViewStateToTableHeader()
     setLoaded(true)
-    if (pitchMap) {
-      let brightTime = 12;
-      if (cityioData.GEOGRID.properties.header.tz) {
-        brightTime += cityioData.GEOGRID.properties.header.tz;
-      }
-      updateSunDirection(brightTime, effectsRef)
+
+    // set bright time
+    let brightTime = 12;
+    if (cityioData.GEOGRID.properties.header.tz) {
+      brightTime += cityioData.GEOGRID.properties.header.tz;
     }
+    updateSunDirection(brightTime, effectsRef)
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
@@ -148,6 +151,17 @@ export default function Map(props) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [resetViewOn])
 
+  const writeOnlyMapSetting = () => {
+    axios.post(`${process.env.REACT_APP_EXPRESS_PUBLIC_URL}/save-only-map-settings`, {
+      setting: JSON.stringify(viewState)
+    }).then(res => {
+      alert(res.data);
+    }).catch(err => {
+      alert(err.response.data);
+      console.log(err);
+    })
+  }
+
   const onViewStateChange = ({ viewState }) => {
     setViewState(viewState)
   }
@@ -166,10 +180,10 @@ export default function Map(props) {
       // longitude: header.longitude,
       // latitude: header.latitude,
       // bearing: 360 - header.rotation,
-      longitude: 106.704854, // District 4
-      latitude: 10.760616, // District 4
-      bearing: 0.3, // District 4
-      zoom: zoomMap ?? 15.95, // 4k
+      longitude: onlyMapSetting.longitude ?? 106.704854, // District 4
+      latitude:onlyMapSetting.latitude ?? 10.760616, // District 4
+      bearing: 0.35, // District 4
+      zoom: zoomMap ?? (onlyMapSetting.zoom ?? 15.95), // 4k
       pitch: pitchMap ?? 0,
       orthographic: true,
     })
@@ -267,7 +281,13 @@ export default function Map(props) {
     <div
       className="baseMap"
       onKeyDown={(e) => {
-        setKeyDownState(e.nativeEvent.key)
+        setKeyDownState(e.nativeEvent.key);
+        if (onlyMap) {
+          if (e.nativeEvent.keyCode == 13) {
+            console.log(e.nativeEvent);
+            writeOnlyMapSetting();
+          }
+        }
       }}
       onKeyUp={() => setKeyDownState(null)}
       onMouseMove={(e) => setMousePos(e.nativeEvent)}
@@ -302,8 +322,11 @@ export default function Map(props) {
         controller={{
           touchZoom: onlyMap || pitchMap ? false : true,
           touchRotate: onlyMap || pitchMap ? false : true,
-          scrollZoom: onlyMap || pitchMap ? false : true,
-          dragPan: onlyMap || pitchMap ? false : !draggingWhileEditing,
+          scrollZoom: {
+            speed: 0.001,
+            smooth: true,
+          },
+          dragPan: !draggingWhileEditing,
           dragRotate: onlyMap || pitchMap ? false : !draggingWhileEditing,
           keyboard: true,
         }}

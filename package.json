@@ -11,6 +11,7 @@
     "@turf/turf": "^6.3.0",
     "axios": "^0.21.1",
     "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
     "deck.gl": "^8.4.11",
     "express": "^4.17.1",
     "gh-pages": "^3.1.0",
