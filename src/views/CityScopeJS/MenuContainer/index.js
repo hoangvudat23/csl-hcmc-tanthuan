@@ -119,9 +119,9 @@ function MenuContainer(props) {
                         color="default"
                         onClick={handleToggle("EDIT")}
                     ></Button>
-                </ListItem> */}
+                </ListItem>
 
-                {/* <EditMenu />
+                <EditMenu />
 
                 <ListItem>
                     <Typography variant={"h2"}>Scenarios</Typography>

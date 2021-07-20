@@ -181,7 +181,7 @@ export default function Map(props) {
       // latitude: header.latitude,
       // bearing: 360 - header.rotation,
       longitude: onlyMapSetting.longitude ?? 106.704854, // District 4
-      latitude:onlyMapSetting.latitude ?? 10.760616, // District 4
+      latitude: onlyMapSetting.latitude ?? 10.760616, // District 4
       bearing: 0.35, // District 4
       zoom: zoomMap ?? (onlyMapSetting.zoom ?? 15.95), // 4k
       pitch: pitchMap ?? 0,
@@ -212,25 +212,27 @@ export default function Map(props) {
       cityioData,
       ABMmode,
     }),
-    // GRID: GridLayer({
-    //   data: GEOGRID,
-    //   editOn: menu.includes('EDIT'),
-    //   state: {
-    //     selectedType,
-    //     keyDownState,
-    //     selectedCellsState,
-    //     pickingRadius,
-    //   },
-    //   updaters: {
-    //     setSelectedCellsState,
-    //     setDraggingWhileEditing,
-    //     setHoveredObj,
-    //   },
-    //   deckGL,
-    // }),
-    GRID: GeojsonLayer({
+    GRID: !onlyMap ? GridLayer({
+      data: GEOGRID,
+      editOn: menu.includes('EDIT'),
+      state: {
+        selectedType,
+        keyDownState,
+        selectedCellsState,
+        pickingRadius,
+      },
+      updaters: {
+        setSelectedCellsState,
+        setDraggingWhileEditing,
+        setHoveredObj,
+      },
+      deckGL,
+    }) : GeojsonLayer({
       data: GEOGRID,
     }),
+    // GRID: GeojsonLayer({
+    //   data: GEOGRID,
+    // }),
     ACCESS: AccessLayer({
       data: access,
       cellSize: cityioData.GEOGRID?.properties?.header.cellSize,
@@ -274,7 +276,6 @@ export default function Map(props) {
       // }
       /* --! Add Building */
     }
-    // console.log('layers', layers);
     return layers
   }
   return (
@@ -323,7 +324,7 @@ export default function Map(props) {
           touchZoom: onlyMap || pitchMap ? false : true,
           touchRotate: onlyMap || pitchMap ? false : true,
           scrollZoom: {
-            speed: 0.001,
+            speed:  onlyMap ? 0.001 : 0.1,
             smooth: true,
           },
           dragPan: !draggingWhileEditing,

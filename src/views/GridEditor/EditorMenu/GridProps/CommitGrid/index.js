@@ -125,8 +125,8 @@ export default function CommitGrid(props) {
   const postGridToCityIO = () => {
     let GEOGRIDstruct = settings.GEOGRID
     let typesList = reduxState.TYPES_LIST
-    // let geoJsonFeatures = reduxState.GRID_CREATED.features
-    let geoJsonFeatures = scenario.features
+    let geoJsonFeatures = reduxState.GRID_CREATED.features
+    // let geoJsonFeatures = scenario.features
     let gridProps = props.gridProps
     // take grid struct from settings
     // console.log('GEOGRIDstruct', GEOGRIDstruct);

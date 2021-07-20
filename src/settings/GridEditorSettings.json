@@ -36,329 +36,410 @@
                 "projection": "+proj=tmerc +lat_0=0 +lon_0=107.75 +k=0.9999 +x_0=500000 +y_0=0 +ellps=WGS84 +units=m +no_defs"
             },
             "types": {
-                "Security land": {
-                    "TypeCode": "CAN",
-                    "IDSColor": 53,
-                    "RGB": "255,80,70",
-                    "color": "#ff5046"
+                "Residential": {
+                    "NAICS": null,
+                    "LBCS": [
+                        {
+                            "proportion": 1,
+                            "use": {
+                                "1000": 1.0
+                            }
+                        }
+                    ],
+                    "height": [
+                        10
+                    ],
+                    "color": [
+                        255,
+                        255,
+                        0,
+                        180
+                    ],
+                    "sqm_pperson": 6.97,
+                    "res_income": {
+                        "2": 0.5,
+                        "3": 0.5
+                    }
                 },
-                "Land with public purposes": {
-                    "TypeCode": "CCC",
-                    "IDSColor": 59,
-                    "RGB": "255,170,160",
-                    "color": "#ffaaa0"
+                "Commercial": {
+                    "NAICS": [
+                        {
+                            "proportion": 1,
+                            "use": {
+                                "520000": 1.0
+                            }
+                        }
+                    ],
+                    "LBCS": [
+                        {
+                            "proportion": 1,
+                            "use": {
+                                "2000": 1.0
+                            }
+                        }
+                    ],
+                    "height": [
+                        10
+                    ],
+                    "color": [
+                        255,
+                        0,
+                        0,
+                        180
+                    ],
+                    "sqm_pperson": 10.0
                 },
-                "Defense land": {
-                    "TypeCode": "CQP",
-                    "IDSColor": 52,
-                    "RGB": "255,100,80",
-                    "color": "#ff6450"
+                "Administrative": {
+                    "NAICS": [
+                        {
+                            "proportion": 1,
+                            "use": {
+                                "920000": 1.0
+                            }
+                        }
+                    ],
+                    "LBCS": [
+                        {
+                            "proportion": 1,
+                            "use": {
+                                "2300": 1.0
+                            }
+                        }
+                    ],
+                    "height": [
+                        10
+                    ],
+                    "color": [
+                        255,
+                        6,
+                        0,
+                        180
+                    ],
+                    "sqm_pperson": 0.36
                 },
-                "Land for post and telecommunications": {
-                    "TypeCode": "DBV",
-                    "IDSColor": 67,
-                    "RGB": "255,170,160",
-                    "color": "#ffaaa0"
+                "Industrial": {
+                    "NAICS": [
+                        {
+                            "proportion": 1,
+                            "use": {
+                                "320000": 0.5,
+                                "330000": 0.5
+                            }
+                        }
+                    ],
+                    "LBCS": [
+                        {
+                            "proportion": 1,
+                            "use": {
+                                "3000": 1.0
+                            }
+                        }
+                    ],
+                    "height": [
+                        10
+                    ],
+                    "color": [
+                        160,
+                        32,
+                        240,
+                        180
+                    ],
+                    "sqm_pperson": 0.03
                 },
-                "Market land": {
-                    "TypeCode": "DCH",
-                    "IDSColor": 81,
-                    "RGB": "255,170,160",
-                    "color": "#ffaaa0"
+                "Educational": {
+                    "NAICS": [
+                        {
+                            "proportion": 1,
+                            "use": {
+                                "610000": 1.0
+                            }
+                        }
+                    ],
+                    "LBCS": [
+                        {
+                            "proportion": 1,
+                            "use": {
+                                "4100": 1.0
+                            }
+                        }
+                    ],
+                    "height": [
+                        10
+                    ],
+                    "color": [
+                        0,
+                        0,
+                        255,
+                        180
+                    ],
+                    "sqm_pperson": 0.95
                 },
-                "Land with historical-cultural relics": {
-                    "TypeCode": "DDT",
-                    "IDSColor": 84,
-                    "RGB": "255,170,160",
-                    "color": "#ffaaa0"
+                "Healthcare": {
+                    "NAICS": [
+                        {
+                            "proportion": 1,
+                            "use": {
+                                "620000": 1.0
+                            }
+                        }
+                    ],
+                    "LBCS": [
+                        {
+                            "proportion": 1,
+                            "use": {
+                                "4500": 1.0
+                            }
+                        }
+                    ],
+                    "height": [
+                        10
+                    ],
+                    "color": [
+                        0,
+                        70,
+                        255,
+                        180
+                    ],
+                    "sqm_pperson": 4.6
                 },
-                "Land for construction of education and training": {
-                    "TypeCode": "DGD",
-                    "IDSColor": 75,
-                    "RGB": "255,170,160",
-                    "color": "#ffaaa0"
+                "National defense": {
+                    "NAICS": [
+                        {
+                            "proportion": 1,
+                            "use": {
+                                "480000": 1.0
+                            }
+                        }
+                    ],
+                    "LBCS": [
+                        {
+                            "proportion": 1,
+                            "use": {
+                                "4700": 1.0
+                            }
+                        }
+                    ],
+                    "height": [
+                        10
+                    ],
+                    "color": [
+                        70,
+                        0,
+                        255,
+                        180
+                    ],
+                    "sqm_pperson": 0.02
                 },
-                "Transportation QHSDDTNMT": {
-                    "TypeCode": "DGT",
-                    "IDSColor": 60,
-                    "RGB": "255,170,50",
-                    "color": "#ffaa32"
-                },
-                "Land for energy facility": {
-                    "TypeCode": "DNL",
-                    "IDSColor": 66,
-                    "RGB": "255,170,160",
-                    "color": "#ffaaa0"
-                },
-                "Land for disposal, waste treatment": {
-                    "TypeCode": "DRA",
-                    "IDSColor": 85,
-                    "RGB": "205,170,205",
-                    "color": "#cdaacd"
-                },
-                "Irrigation land": {
-                    "TypeCode": "DTL",
-                    "IDSColor": 63,
-                    "RGB": "170,255,255",
-                    "color": "#aaffff"
-                },
-                "Land for construction of offices of non - business units": {
-                    "TypeCode": "DTS",
-                    "IDSColor": 48,
-                    "RGB": "250,170,160",
-                    "color": "#faaaa0"
-                },
-                "Land for construction of physical training and sport": {
-                    "TypeCode": "DTT",
-                    "IDSColor": 78,
-                    "RGB": "255,170,160",
-                    "color": "#ffaaa0"
-                },
-                "Land for construction of cultural": {
-                    "TypeCode": "DVH",
-                    "IDSColor": 69,
-                    "RGB": "255,170,160",
-                    "color": "#ffaaa0"
-                },
-                "Land for construction of health facilities": {
-                    "TypeCode": "DYT",
-                    "IDSColor": 72,
-                    "RGB": "255,170,160",
-                    "color": "#ffaaa0"
-                },
-                "Urban residential land": {
-                    "TypeCode": "ODT",
-                    "IDSColor": 42,
-                    "RGB": "255,160,255",
-                    "color": "#ffa0ff"
-                },
-                "Land non-agricultural production facilities": {
-                    "TypeCode": "SKC",
-                    "IDSColor": 56,
-                    "RGB": "250,170,160",
-                    "color": "#faaaa0"
-                },
-                "Land with rivers, streams, canals, springs": {
-                    "TypeCode": "SON",
-                    "IDSColor": 91,
-                    "RGB": "160,255,255",
-                    "color": "#a0ffff"
-                },
-                "Land for beliefs facility": {
-                    "TypeCode": "TIN",
-                    "IDSColor": 88,
-                    "RGB": "255,170,160",
-                    "color": "#ffaaa0"
-                },
-                "Land for religious facility": {
-                    "TypeCode": "TON",
-                    "IDSColor": 87,
-                    "RGB": "255,170,160",
-                    "color": "#ffaaa0"
-                },
-                "Land for construction of offices": {
-                    "TypeCode": "TSC",
-                    "IDSColor": 45,
-                    "RGB": "255,170,160",
-                    "color": "#ffaaa0"
-                },
-                "Thematic park (amusement park)": {
-                    "TypeCode": "CXCD",
-                    "IDSColor": 94,
-                    "RGB": "0,127,0",
-                    "color": "#007f00"
-                },
-                "Greenary - park land QHPK": {
-                    "TypeCode": "CXCL",
-                    "IDSColor": 126,
-                    "RGB": "0,76,57",
-                    "color": "#004c39"
-                },
-                "Water surface QHPK": {
-                    "TypeCode": "MN",
-                    "IDSColor": 152,
-                    "RGB": "0,82,165",
-                    "color": "#0052a5"
-                },
-                "Educational NCDT": {
-                    "TypeCode": "NCDT",
-                    "IDSColor": 144,
-                    "RGB": "0,95,127",
-                    "color": "#005f7f"
-                },
-                "Educational GD2": {
-                    "TypeCode": "GD2",
-                    "IDSColor": 24,
-                    "RGB": "127,31,0",
-                    "color": "#7f1f00"
-                },
-                "Office - production and trading": {
-                    "TypeCode": "CQCT",
-                    "IDSColor": 34,
-                    "RGB": "127,63,0",
-                    "color": "#7f3f00"
-                },
-                "Educational GD1": {
-                    "TypeCode": "GD1",
-                    "IDSColor": 15,
-                    "RGB": "127,63,63",
-                    "color": "#7f3f3f"
-                },
-                "School": {
-                    "TypeCode": "GD",
-                    "IDSColor": 15,
-                    "RGB": "127,63,63",
-                    "color": "#7f3f3f"
-                },
-                "Existing and Renovated Residential": {
-                    "TypeCode": "NNO",
-                    "IDSColor": 42,
-                    "RGB": "165,124,0",
-                    "color": "#a57c00"
-                },
-                "Wetland": {
-                    "TypeCode": "DK",
-                    "IDSColor": 254,
-                    "RGB": "204,204,204",
-                    "color": "#cccccc"
-                },
-                "Public Facility": {
-                    "TypeCode": "CCDVO",
-                    "IDSColor": 1,
-                    "RGB": "255,0,0",
-                    "color": "#ff0000"
-                },
-                "Resort/Outdoor entertainment": {
-                    "TypeCode": "CCDT",
-                    "IDSColor": 1,
-                    "RGB": "255,0,0",
-                    "color": "#ff0000"
-                },
-                "Mixed-use": {
-                    "TypeCode": "HH",
-                    "IDSColor": 21,
-                    "RGB": "255,159,127",
-                    "color": "#ff9f7f"
-                },
-                "Transportation QHPK": {
-                    "TypeCode": "DGT",
-                    "IDSColor": 7,
-                    "RGB": "255,255,255",
-                    "color": "#ffffff"
-                },
-                "National defense - security": {
-                    "TypeCode": "ANQP",
-                    "IDSColor": 69,
-                    "RGB": "33,38,19",
-                    "color": "#212613"
-                },
-                "Production land - warehouse": {
-                    "TypeCode": "KTBB",
-                    "IDSColor": 177,
-                    "RGB": "38,38,126",
-                    "color": "#26267e"
-                },
-                "Sport - Greenery": {
-                    "TypeCode": "CXDVO",
-                    "IDSColor": 76,
-                    "RGB": "38,76,0",
-                    "color": "#264c00"
+                "Transportation": {
+                    "NAICS": [
+                        {
+                            "proportion": 1,
+                            "use": {
+                                "480000": 1.0
+                            }
+                        }
+                    ],
+                    "LBCS": [
+                        {
+                            "proportion": 1,
+                            "use": {
+                                "5000": 1.0
+                            }
+                        }
+                    ],
+                    "height": [
+                        10
+                    ],
+                    "color": [
+                        190,
+                        190,
+                        190,
+                        180
+                    ],
+                    "sqm_pperson": 4.0
                 },
                 "Religious": {
-                    "TypeCode": "TGDT",
-                    "IDSColor": 16,
-                    "RGB": "76,0,0",
-                    "color": "#4c0000"
+                    "NAICS": [
+                        {
+                            "proportion": 1,
+                            "use": {
+                                "710000": 1.0
+                            }
+                        }
+                    ],
+                    "LBCS": [
+                        {
+                            "proportion": 1,
+                            "use": {
+                                "6600": 1.0
+                            }
+                        }
+                    ],
+                    "height": [
+                        10
+                    ],
+                    "color": [
+                        47,
+                        79,
+                        79,
+                        180
+                    ],
+                    "sqm_pperson": 0.18
                 },
-                "Greenary - park land QHSSK": {
-                    "TypeCode": "CXDT",
-                    "IDSColor": 72,
-                    "RGB": "82,165,0",
-                    "color": "#52a500"
+                "Recreational": {
+                    "NAICS": [
+                        {
+                            "proportion": 1,
+                            "use": {
+                                "710000": 1.0
+                            }
+                        }
+                    ],
+                    "LBCS": [
+                        {
+                            "proportion": 1,
+                            "use": {
+                                "7100": 1.0
+                            }
+                        }
+                    ],
+                    "height": [
+                        10
+                    ],
+                    "color": [
+                        144,
+                        238,
+                        144,
+                        180
+                    ],
+                    "sqm_pperson": 0.09
                 },
-                "Technical Infrastructure": {
-                    "TypeCode": "HTKT",
-                    "IDSColor": 195,
-                    "RGB": "95,63,127",
-                    "color": "#5f3f7f"
+                "Open space": {
+                    "NAICS": [
+                        {
+                            "proportion": 1,
+                            "use": {
+                                "712190": 1.0
+                            }
+                        }
+                    ],
+                    "LBCS": [
+                        {
+                            "proportion": 1,
+                            "use": {
+                                "7600": 1.0
+                            }
+                        }
+                    ],
+                    "height": [
+                        1
+                    ],
+                    "color": [
+                        0,
+                        238,
+                        0,
+                        180
+                    ],
+                    "sqm_pperson": 2.18
                 },
-                "Transportation QHSSK": {
-                    "TypeCode": "DGT",
-                    "IDSColor": 7,
-                    "RGB": "255,255,255",
-                    "color": "#ffffff"
+                "Water": {
+                    "NAICS": [
+                        {
+                            "proportion": 1,
+                            "use": {
+                                "712190": 1.0
+                            }
+                        }
+                    ],
+                    "LBCS": [
+                        {
+                            "proportion": 1,
+                            "use": {
+                                "9310": 1.0
+                            }
+                        }
+                    ],
+                    "height": [
+                        1
+                    ],
+                    "color": [
+                        34,
+                        139,
+                        34,
+                        180
+                    ],
+                    "sqm_pperson": 3.02
                 },
-                "Water surface": {
-                    "TypeCode": "MN",
-                    "IDSColor": 152,
-                    "RGB": "0,82,165",
-                    "color": "#0052a5"
+                "Wetland": {
+                    "NAICS": [
+                        {
+                            "proportion": 1,
+                            "use": {
+                                "712190": 1.0
+                            }
+                        }
+                    ],
+                    "LBCS": [
+                        {
+                            "proportion": 1,
+                            "use": {
+                                "9390": 1.0
+                            }
+                        }
+                    ],
+                    "height": [
+                        1
+                    ],
+                    "color": [
+                        34,
+                        100,
+                        34,
+                        180
+                    ],
+                    "sqm_pperson": 0.13
                 },
-                "Open Space": {
-                    "TypeCode": "CXCD",
-                    "IDSColor": 94,
-                    "RGB": "0,127,0",
-                    "color": "#007f00"
+                "Mix-used": {
+                    "NAICS": [
+                        {
+                            "proportion": 1,
+                            "use": {
+                                "520000": 0.3
+                            }
+                        }
+                    ],
+                    "LBCS": [
+                        {
+                            "proportion": 1,
+                            "use": {
+                                "1000": 0.7,
+                                "2000": 0.3
+                            }
+                        }
+                    ],
+                    "height": [
+                        10
+                    ],
+                    "color": [
+                        165,
+                        72,
+                        72,
+                        180
+                    ],
+                    "sqm_pperson": 7.879,
+                    "res_income": {
+                        "2": 0.15,
+                        "3": 0.15
+                    }
                 },
-                "New Residential": {
-                    "TypeCode": "DVO",
-                    "IDSColor": 30,
-                    "RGB": "255,127,0",
-                    "color": "#ff7f00"
-                },
-                "Hotel": {
-                    "TypeCode": "DL",
-                    "IDSColor": 210,
-                    "RGB": "255,0,255",
-                    "color": "#ff00ff"
-                },
-                "Community": {
-                    "TypeCode": "CCDT",
-                    "IDSColor": 1,
-                    "RGB": "255,0,0",
-                    "color": "#ff0000"
-                },
-                "Schools": {
-                    "TypeCode": "GD",
-                    "IDSColor": 15,
-                    "RGB": "127,63,63",
-                    "color": "#7f3f3f"
-                },
-                "Religion - Relic": {
-                    "TypeCode": "TGDT",
-                    "IDSColor": 16,
-                    "RGB": "76,0,0",
-                    "color": "#4c0000"
-                },
-                "Existing agency": {
-                    "TypeCode": "CQCT",
-                    "IDSColor": 34,
-                    "RGB": "127,63,0",
-                    "color": "#7f3f00"
-                },
-                "Institutional Buildings": {
-                    "TypeCode": "NCDT",
-                    "IDSColor": 144,
-                    "RGB": "0,95,127",
-                    "color": "#005f7f"
-                },
-                "Urban Hybrid": {
-                    "TypeCode": "HH",
-                    "IDSColor": 21,
-                    "RGB": "255,159,127",
-                    "color": "#ff9f7f"
-                },
-                "Parking Garage": {
-                    "TypeCode": "HTKT",
-                    "IDSColor": 195,
-                    "RGB": "95,63,127",
-                    "color": "#5f3f7f"
-                },
-                "Cemetery": {
-                    "TypeCode": "NT",
-                    "IDSColor": 251,
-                    "RGB": "101,101,101",
-                    "color": "#656565"
+                "None": {
+                    "LBCS": null,
+                    "NAICS": null,
+                    "color": [
+                        250,
+                        250,
+                        250,
+                        50
+                    ]
                 }
             }
         },

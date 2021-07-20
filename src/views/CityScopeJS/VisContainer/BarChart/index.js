@@ -12,8 +12,8 @@ import sampleIndicatorData from "../../../../settings/sampleIndicatorData.json";
 export default function BarChart(props) {
     // const radarSize = 400;
     // const radarFontSize = 20;
-    const radarSize = props.radarSize;
-    const radarFontSize = props.radarFontSize;
+    const radarSize = props.radarSize ?? 400;
+    const radarFontSize = props.radarFontSize ?? 20;
 
     /**
    data format 

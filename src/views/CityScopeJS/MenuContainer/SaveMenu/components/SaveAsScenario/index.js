@@ -67,7 +67,7 @@ export default function SaveAsScenario(props) {
             },
         };
 
-        var postURL = `${settings.cityIO.baseUR}update/${tableName}/scenarios${id}/`;
+        var postURL = `${settings.cityIO.baseURL}update/${tableName}/scenarios${id}/`;
 
         const options = {
             method: "post",

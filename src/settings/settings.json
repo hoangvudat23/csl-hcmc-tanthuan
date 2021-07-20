@@ -22,7 +22,7 @@
     "toggles": {
       "GRID": {
         "displayName": "Interactive Grid",
-        "showOnInit": true,
+        "showOnInit": false,
         "requireModule": "GEOGRID"
       },
       "ABM": {
@@ -32,7 +32,7 @@
       },
       "GEOJSON": {
         "displayName": "Geojson Layer",
-        "showOnInit": false,
+        "showOnInit": true,
         "requireModule": "geojson"
       },
       "AGGREGATED_TRIPS": {
@@ -57,7 +57,7 @@
       },
       "SHADOWS": {
         "displayName": "Toggle Shadows",
-        "showOnInit": true,
+        "showOnInit": false,
         "requireModule": "GEOGRID"
       }
     }
@@ -78,11 +78,8 @@
       },
       "heatmap": {
         "colors": [
-          [233, 62, 58],
-          [237, 104, 60],
-          [243, 144, 63],
-          [253, 199, 12],
-          [255, 243, 59]
+          [255, 0, 130],
+          [0, 150, 255]
         ]
       }
     },

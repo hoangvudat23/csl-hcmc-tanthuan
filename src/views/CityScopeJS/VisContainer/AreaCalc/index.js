@@ -9,8 +9,8 @@ import "../../../../../node_modules/react-vis/dist/style.css";
 export default function AreaCalc(props) {
     // const radialRadius = 400;
     // const areaFontSize =  15;
-    const radialRadius = props.radialRadius;
-    const areaFontSize =  props.areaFontSize;
+    const radialRadius = props.radialRadius ?? 400;
+    const areaFontSize =  props.areaFontSize ?? 15;
     const [hoveredRadial, setHoveredRadial] = useState(false);
     const [areaData, setAreaData] = useState(null);
     const header = props.cityioData.GEOGRID?.properties?.header;
