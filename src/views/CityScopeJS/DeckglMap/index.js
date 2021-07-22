@@ -22,7 +22,8 @@ import {
   GeojsonLayer,
 } from './deckglLayers'
 
-import building from "../../../settings/LandUse_0_white_color.json";
+import building0 from "../../../settings/Building_0.json";
+// import building2 from "../../../settings/LandUse_0_white_color.json";
 import axios from 'axios'
 import onlyMapSetting from '../../../settings/onlyMapSetting.json';
 
@@ -199,6 +200,17 @@ export default function Map(props) {
       .addEventListener('contextmenu', (evt) => evt.preventDefault())
   }
 
+  const getBuildingByCurrentScenario = () => {
+    switch (currentScennario) {
+      case 'hcm_scenario_0':
+        return building0;
+      // case 'hcm_scenario_2':
+      //   return building2;
+      default:
+        return building0;
+    }
+  }
+
   const layersKey = {
     ABM: ABMLayer({
       data: ABM.trips,
@@ -244,10 +256,11 @@ export default function Map(props) {
 
     GEOJSON: GeojsonLayer({
       data: geojsonData && geojsonData,
+      alphaColor: 220
     }),
 
     OUTSIDE_INTERACTIVE_AREA: GeojsonLayer({
-      data: building
+      data: getBuildingByCurrentScenario(),
     }),
   }
 
@@ -324,7 +337,7 @@ export default function Map(props) {
           touchZoom: onlyMap || pitchMap ? false : true,
           touchRotate: onlyMap || pitchMap ? false : true,
           scrollZoom: {
-            speed:  onlyMap ? 0.001 : 0.1,
+            speed: onlyMap ? 0.001 : 0.1,
             smooth: true,
           },
           dragPan: !draggingWhileEditing,

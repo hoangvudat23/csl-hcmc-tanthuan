@@ -2,6 +2,7 @@ import proj4 from "proj4";
 import { _hexToRgb } from "../../../EditorMap/EditorMap";
 import { featureCollection, centroid, bbox, tag } from "@turf/turf";
 import scenario from '../../../../../settings/settings.json'; // just skip error
+import { rgbToHex } from "../../../../../utils/utils";
 function deg_to_rad(deg) {
     return (deg * Math.PI) / 180;
 }
@@ -18,21 +19,19 @@ const convertScenarioToWGS84 = (types) => {
     let features = scenario.features;
     // console.log(types);
     for (let i = 0; i < features.length; i++) {
-        var color = types.find((el) => {
-            // console.log(el.TypeCode);
-            return el.TypeCode === features[i].properties['TypeCode']
-        });
-        // console.log(features[i].properties['TypeCode']);
-        // console.log(color);
-        color = color.color
-        // if(typeof color !== 'undefined'){
+        // var color = types.find((el) => {
+        //     // console.log(el.TypeCode);
+        //     return el.TypeCode === features[i].properties['TypeCode']
+        // });
+        // color = color.color
+        // if (typeof color == 'undefined') {
+        //     console.log('undefine TypeCode', features[i].properties['TypeCode']);
         // }
-        if (typeof color == 'undefined') {
-            console.log('undefine TypeCode', features[i].properties['TypeCode']);
-        }
         let rgbArr = (features[i].properties['RGB']).split(',')
         rgbArr = rgbArr.map(el => parseFloat(el));
         rgbArr.push(220);
+
+        let hexColor = rgbToHex(rgbArr[0], rgbArr[1], rgbArr[2])
 
         if (features[i].properties['InPoly_FID'] >= 0) {
             delete features[i].properties['InPoly_FID'];
@@ -70,7 +69,81 @@ const convertScenarioToWGS84 = (types) => {
         features[i].properties.stroke = '#3f3f3f';
         features[i].properties['stroke-width'] = 0.5;
         features[i].properties['stroke-opacity'] = 1;
-        features[i].properties['fill'] = color;
+        features[i].properties['fill'] = hexColor;
+        features[i].properties['fill-opacity'] = 1;
+    }
+    let geojson = {
+        "type": "FeatureCollection",
+        "features": features,
+    }
+    // console.log(geojson);
+    console.log(JSON.stringify(geojson));
+}
+
+const convertBuildingToWGS84 = () => {
+    let features = scenario.features;
+    // console.log(types);
+    for (let i = 0; i < features.length; i++) {
+        let rgbArr = [255, 255, 255, 255]
+        if (features[i].properties['RGB']) {
+            console.log(features[i].properties['RGB']);
+            rgbArr = (features[i].properties['RGB']).split(',')
+            rgbArr = rgbArr.map(el => parseFloat(el));
+            rgbArr.push(255);
+        }
+        let hexColor = rgbToHex(rgbArr[0], rgbArr[1], rgbArr[2])
+
+        if (features[i].properties['OBJECTID']) {
+            delete features[i].properties['OBJECTID'];
+        }
+        if (features[i].properties['Storey'] != null) {
+            delete features[i].properties['Storey'];
+        }
+        if (features[i].properties['FAR'] != null) {
+            delete features[i].properties['FAR'];
+        }
+        if (features[i].properties['BCR'] != null) {
+            delete features[i].properties['BCR'];
+        }
+        if (features[i].properties['B_Area'] != null) {
+            delete features[i].properties['B_Area'];
+        }
+        if (features[i].properties['Shape_Leng'] != null) {
+            delete features[i].properties['Shape_Leng'];
+        }
+        if (features[i].properties['Shape_Area'] != null) {
+            delete features[i].properties['Shape_Area'];
+        }
+        if (features[i].properties['Type'] != null) {
+            delete features[i].properties['Type'];
+        }
+        if (features[i].properties['LandUseTyp']) {
+            delete features[i].properties['LandUseTyp'];
+        }
+        if (features[i].properties['TypeCode']) {
+            delete features[i].properties['TypeCode'];
+        }
+        if (features[i].properties['CSLLandTyp']) {
+            delete features[i].properties['CSLLandTyp'];
+        }
+
+        let height = 0;
+        if (features[i].properties.Height) {
+            height = features[i].properties.Height
+            // if (height.index("-") > -1) {
+            //     height = height.split('');
+            //     height = height[height.length - 1];
+            // }
+            height = parseFloat(height);
+        }
+
+        features[i].properties.height = height;
+        features[i].properties.id = i;
+        features[i].properties.color = rgbArr;
+        features[i].properties.stroke = '#3f3f3f';
+        features[i].properties['stroke-width'] = 0.5;
+        features[i].properties['stroke-opacity'] = 1;
+        features[i].properties['fill'] = hexColor;
         features[i].properties['fill-opacity'] = 1;
     }
     let geojson = {
@@ -265,6 +338,7 @@ export const gridCreator = (gridProps, typesList) => {
     geojsonFeatureCollection.features = gridPnts;
     // joinGridAndPrivateGeojson(scenario, geojsonFeatureCollection, types);
     // convertScenarioToWGS84(types);
+    convertBuildingToWGS84();
     // addIdScenario();
     return geojsonFeatureCollection;
 };
