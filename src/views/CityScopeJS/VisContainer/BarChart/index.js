@@ -37,7 +37,13 @@ export default function BarChart(props) {
             props.cityioData.indicators.length > 0
         ) {
             const d = generateData(props.cityioData.indicators);
-            setBarChartData(d.barChartData);
+            if (d.barChartData.length > 0) {
+                setBarChartData(d.barChartData);
+            }
+            else {
+                const sampleBarChartData = generateData(sampleIndicatorData);
+                setSampleBarChartData(sampleBarChartData.barChartData);
+            }
         } else {
             const sampleBarChartData = generateData(sampleIndicatorData);
             setSampleBarChartData(sampleBarChartData.barChartData);

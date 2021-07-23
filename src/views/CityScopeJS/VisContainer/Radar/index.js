@@ -30,15 +30,27 @@ export default function Radar(props) {
     };
 
     useEffect(() => {
-        if (
-            props &&
-            props.cityioData &&
-            props.cityioData.indicators &&
-            props.cityioData.indicators.length > 0
-        ) {
-            const d = createRadarData(props.cityioData.indicators);
-            setRadarData(d);
-        } else {
+        try {
+            if (
+                props &&
+                props.cityioData &&
+                props.cityioData.indicators &&
+                props.cityioData.indicators.length > 0
+            ) {
+                const d = createRadarData(props.cityioData.indicators);
+                if (d.domains.length > 0) {
+                    setRadarData(d);
+                }
+                else {
+                    let sampleData = createRadarData(sampleIndicatorData);
+                    setSampleRadarData(sampleData);
+                }
+            } else {
+                let sampleData = createRadarData(sampleIndicatorData);
+                setSampleRadarData(sampleData);
+            }
+        } catch (error) {
+            console.log(error);
             let sampleData = createRadarData(sampleIndicatorData);
             setSampleRadarData(sampleData);
         }
