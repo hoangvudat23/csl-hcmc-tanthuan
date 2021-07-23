@@ -114,9 +114,6 @@ const convertBuildingToWGS84 = () => {
         if (features[i].properties['Shape_Area'] != null) {
             delete features[i].properties['Shape_Area'];
         }
-        if (features[i].properties['Type'] != null) {
-            delete features[i].properties['Type'];
-        }
         if (features[i].properties['LandUseTyp']) {
             delete features[i].properties['LandUseTyp'];
         }

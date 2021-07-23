@@ -256,7 +256,7 @@ export default function Map(props) {
 
     GEOJSON: GeojsonLayer({
       data: geojsonData && geojsonData,
-      alphaColor: 220
+      alphaColor: 180
     }),
 
     OUTSIDE_INTERACTIVE_AREA: GeojsonLayer({
