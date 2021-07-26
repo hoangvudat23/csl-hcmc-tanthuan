@@ -86,7 +86,6 @@ const convertBuildingToWGS84 = () => {
     for (let i = 0; i < features.length; i++) {
         let rgbArr = [255, 255, 255, 255]
         if (features[i].properties['RGB']) {
-            console.log(features[i].properties['RGB']);
             rgbArr = (features[i].properties['RGB']).split(',')
             rgbArr = rgbArr.map(el => parseFloat(el));
             rgbArr.push(255);
@@ -335,7 +334,7 @@ export const gridCreator = (gridProps, typesList) => {
     geojsonFeatureCollection.features = gridPnts;
     // joinGridAndPrivateGeojson(scenario, geojsonFeatureCollection, types);
     // convertScenarioToWGS84(types);
-    convertBuildingToWGS84();
+    // convertBuildingToWGS84();
     // addIdScenario();
     return geojsonFeatureCollection;
 };

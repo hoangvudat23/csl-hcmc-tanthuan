@@ -4,6 +4,7 @@ const express = require('express')
 var bodyParser = require('body-parser');
 const cors = require('cors');
 const fs = require('fs');
+const { default: axios } = require("axios");
 const app = express();
 const port = setting.expressPort;
 
@@ -15,6 +16,7 @@ localStorage.removeItem('scenario');
 localStorage.removeItem('scenario_table');
 localStorage.removeItem('chart');
 localStorage.removeItem('chart_table');
+localStorage.removeItem('access_property_index');
 
 // for parsing application/json
 app.use(bodyParser.json());
@@ -29,14 +31,15 @@ app.options('*', cors());
 
 let arrayOptionAllowance = ["GRID", "ABM", "GEOJSON", "AGGREGATED_TRIPS", "ACCESS", "TEXTUAL", "SHADOWS",]
 let arrayModeAllowance = ["ON", "OFF"]
-let arrayScenarioAllowance = ["hcm_scenario_0", "hcm_scenario_1", "hcm_scenario_2", "hcm_scenario_3"]
+let arrayScenarioAllowance = ["hcm_scenario_0", "hcm_scenario_2", "hcm_scenario_3"]
 let arrayChartAllowance = ["pie", "radar", "bar", "all"];
 
 app.get('/get-option', (req, res) => {
     let option = localStorage.getItem('view-option');
     let mode = localStorage.getItem('mode');
     let table = localStorage.getItem('table');
-    res.send({ option, mode, table });
+    let access_property_index = localStorage.getItem('access_property_index');
+    res.send({ option, mode, table, access_property_index });
 })
 
 app.get('/get-scenario', (req, res) => {
@@ -51,17 +54,50 @@ app.get('/get-chart', (req, res) => {
     res.send({ chart, chart_table });
 })
 
+app.get('/get-access-properties', (req, res) => {
+    let scenario = req.query.scenario;
+    if (!scenario || !arrayScenarioAllowance.includes(scenario)) {
+        res.status('422').send(`"scenario" is not valid!`);
+    }
+    let url = `https://cityio.media.mit.edu/api/table/${scenario}/access/`;
+    axios.get(url).then(response => {
+        let mapArray = response.data.properties.map((item, index) => {
+            return {
+                index: index,
+                name: item
+            }
+        })
+        res.send(mapArray);
+    }).catch(err => {
+        if (err.response.status == 404) {
+            res.status('404').send('Table or data not found!');
+        }
+        else {
+            res.status('500').send('Something went wrong!');
+        }
+    });
+})
+
 app.post('/set-option', (req, res) => {
     let reqParams = req.body;
     let option = reqParams.option
     let mode = reqParams.mode;
     let table = reqParams.table;
+    let access_property_index = reqParams.access_property_index;
     if (arrayOptionAllowance.includes(option) && arrayModeAllowance.includes(mode)) {
         localStorage.setItem('view-option', option);
         localStorage.setItem('mode', mode);
         localStorage.setItem('table', table);
         console.log(table, option, mode);
+
+        /* check if is access mode */
+        if (option == "ACCESS") {
+            access_property_index = access_property_index && Number.isInteger(access_property_index) ? access_property_index : 0;
+            localStorage.setItem('access_property_index', access_property_index);
+        }
+
         res.send(`${mode} ${option} ${table}`);
+
     }
     else {
         res.status('422').send(`Params is not valid!`);
@@ -106,7 +142,7 @@ app.post('/save-only-map-settings', (req, res) => {
     try {
         fs.writeFileSync('../settings/onlyMapSetting.json', data, (err) => {
             // In case of a error throw err.
-            if (err){
+            if (err) {
                 res.status('500').send(err);
             };
         })

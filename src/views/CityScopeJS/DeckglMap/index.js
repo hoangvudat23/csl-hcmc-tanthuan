@@ -23,6 +23,8 @@ import {
 } from './deckglLayers'
 
 import building0 from "../../../settings/Building_0.json";
+import building2 from "../../../settings/Building_2.json";
+import building3 from "../../../settings/Building_3.json";
 // import building2 from "../../../settings/LandUse_0_white_color.json";
 import axios from 'axios'
 import onlyMapSetting from '../../../settings/onlyMapSetting.json';
@@ -204,8 +206,10 @@ export default function Map(props) {
     switch (currentScennario) {
       case 'hcm_scenario_0':
         return building0;
-      // case 'hcm_scenario_2':
-      //   return building2;
+      case 'hcm_scenario_2':
+        return building2;
+      case 'hcm_scenario_3':
+        return building3;
       default:
         return building0;
     }

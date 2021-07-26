@@ -15,7 +15,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import settings from "../../settings/settings.json";
 import { useSelector, useDispatch } from "react-redux";
-import { listenToMenuUI, setCurrentScenario } from "../../redux/actions";
+import { listenToMenuUI, setCurrentScenario, listenToAccessToggle } from "../../redux/actions";
 import ChooseScenario from "./MenuContainer/ChooseScenario"
 
 
@@ -56,6 +56,7 @@ export default function CSjsMainCustom(props) {
   let myChosenScenario = 'hcm_scenario_0';
   const [chosenChart, setChosenChart] = useState("all");
   let myChosenChart = 'all';
+  let myAccessPropertyIndex = 0;
 
   /* Listening View Option Change */
   useEffect(() => {
@@ -81,6 +82,14 @@ export default function CSjsMainCustom(props) {
             if (mode == "ON") {
               if (i === -1) {
                 myMenuState.push(option);
+              }
+              /* Check access and its sub menu */
+              if (option == 'ACCESS') {
+                let access_property_index = options.access_property_index;
+                if (access_property_index && myAccessPropertyIndex != access_property_index) {
+                  myAccessPropertyIndex = access_property_index
+                  dispatch(listenToAccessToggle(myAccessPropertyIndex));
+                }
               }
             }
             else {
