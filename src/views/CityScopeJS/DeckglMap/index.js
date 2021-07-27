@@ -22,10 +22,6 @@ import {
   GeojsonLayer,
 } from './deckglLayers'
 
-import building0 from "../../../settings/Building_0.json";
-import building2 from "../../../settings/Building_2.json";
-import building3 from "../../../settings/Building_3.json";
-// import building2 from "../../../settings/LandUse_0_white_color.json";
 import axios from 'axios'
 import onlyMapSetting from '../../../settings/onlyMapSetting.json';
 
@@ -72,6 +68,9 @@ export default function Map(props) {
   ])
 
   const currentScennario = useSelector((state) => state.CURRENT_SCENARIO);
+  const [building0, setBuilding0] = useState(null)
+  const [building2, setBuilding2] = useState(null)
+  const [building3, setBuilding3] = useState(null)
 
   var ABMOn = menu.includes('ABM')
   if (autoRotate) {
@@ -82,6 +81,7 @@ export default function Map(props) {
   var shadowsOn = menu.includes('SHADOWS')
   var editOn = menu.includes('EDIT')
   var resetViewOn = menu.includes('RESET_VIEW')
+
 
   useEffect(() => {
     // fix deck view rotate
@@ -98,6 +98,17 @@ export default function Map(props) {
       brightTime += cityioData.GEOGRID.properties.header.tz;
     }
     updateSunDirection(brightTime, effectsRef)
+
+    // Fetch building data
+    async function fetchBuildingData() {
+      const resBuilding0 = await fetch('./Building_0.json');
+      setBuilding0(await resBuilding0.json());
+      const resBuilding2 = await fetch('./Building_2.json');
+      setBuilding2(await resBuilding2.json());
+      const resBuilding3 = await fetch('./Building_3.json');
+      setBuilding2(await resBuilding3.json());
+    }
+    fetchBuildingData();
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])

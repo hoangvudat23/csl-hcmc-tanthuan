@@ -58,7 +58,6 @@ export default function AreaCalc(props) {
                 children: radialData,
                 color: 1,
             };
-            console.log('radialData', radialData);
 
             return data;
         };
@@ -104,7 +103,6 @@ export default function AreaCalc(props) {
                 children: radialData,
                 color: 1,
             };
-            // console.log('radialData', radialData);
 
             return data;
         };
