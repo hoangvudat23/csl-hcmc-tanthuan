@@ -166,14 +166,16 @@ export default function Map(props) {
   }, [resetViewOn])
 
   const writeOnlyMapSetting = () => {
-    axios.post(`${process.env.REACT_APP_EXPRESS_PUBLIC_URL}/save-only-map-settings`, {
-      setting: JSON.stringify(viewState)
-    }).then(res => {
-      alert(res.data);
-    }).catch(err => {
-      alert(err.response.data);
-      console.log(err);
-    })
+    if (window.confirm("Are you sure to save this?")) {
+      axios.post(`${process.env.REACT_APP_EXPRESS_PUBLIC_URL}/save-only-map-settings`, {
+        setting: JSON.stringify(viewState)
+      }).then(res => {
+        alert(res.data);
+      }).catch(err => {
+        alert('Failed to save settings');
+        console.log(err);
+      })
+    }
   }
 
   const onViewStateChange = ({ viewState }) => {
