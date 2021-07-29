@@ -39,25 +39,25 @@ app.get('/get-option', (req, res) => {
     let mode = localStorage.getItem('mode');
     let table = localStorage.getItem('table');
     let access_property_index = localStorage.getItem('access_property_index');
-    res.send({ option, mode, table, access_property_index });
+    return res.send({ option, mode, table, access_property_index });
 })
 
 app.get('/get-scenario', (req, res) => {
     let scenario = localStorage.getItem('scenario');
     let scenario_table = localStorage.getItem('scenario_table');
-    res.send({ scenario, scenario_table });
+    return res.send({ scenario, scenario_table });
 })
 
 app.get('/get-chart', (req, res) => {
     let chart = localStorage.getItem('chart');
     let chart_table = localStorage.getItem('chart_table');
-    res.send({ chart, chart_table });
+    return res.send({ chart, chart_table });
 })
 
 app.get('/get-access-properties', (req, res) => {
     let scenario = req.query.scenario;
     if (!scenario || !arrayScenarioAllowance.includes(scenario)) {
-        res.status('422').send(`"scenario" is not valid!`);
+        return res.status('422').send(`"scenario" is not valid!`);
     }
     let url = `https://cityio.media.mit.edu/api/table/${scenario}/access/`;
     axios.get(url).then(response => {
@@ -67,13 +67,13 @@ app.get('/get-access-properties', (req, res) => {
                 name: item
             }
         })
-        res.send(mapArray);
+        return res.send(mapArray);
     }).catch(err => {
         if (err.response.status == 404) {
-            res.status('404').send('Table or data not found!');
+            return res.status('404').send('Table or data not found!');
         }
         else {
-            res.status('500').send('Something went wrong!');
+            return res.status(err.response.status).send('Something went wrong!');
         }
     });
 })
@@ -100,7 +100,7 @@ app.post('/set-option', (req, res) => {
 
     }
     else {
-        res.status('422').send(`Params is not valid!`);
+        return res.status('422').send(`Params is not valid!`);
     }
 })
 
@@ -113,10 +113,10 @@ app.post('/choose-scenario', (req, res) => {
         localStorage.setItem('scenario_table', table);
         console.log(scenario);
         console.log(table);
-        res.send(`Scenario: ${scenario}`);
+        return res.send(`Scenario: ${scenario}`);
     }
     else {
-        res.status('422').send(`Scenario is not valid!`);
+        return res.status('422').send(`Scenario is not valid!`);
     }
 })
 
@@ -129,10 +129,10 @@ app.post('/display-chart', (req, res) => {
         localStorage.setItem('chart_table', table);
         console.log(chart);
         console.log(table);
-        res.send(`Chart: ${chart}`);
+        return res.send(`Chart: ${chart}`);
     }
     else {
-        res.status('422').send(`Chart is not valid!`);
+        return res.status('422').send(`Chart is not valid!`);
     }
 })
 
@@ -143,13 +143,13 @@ app.post('/save-only-map-settings', (req, res) => {
         fs.writeFileSync('../settings/onlyMapSetting.json', data, (err) => {
             // In case of a error throw err.
             if (err) {
-                res.status('500').send(err);
+                return res.status('500').send(err);
             };
         })
     } catch (err) {
-        res.status('500').send(err);
+        return res.status('500').send(err);
     }
-    res.send(`Save settings successfully`);
+    return res.send(`Save settings successfully`);
 })
 
 
