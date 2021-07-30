@@ -33,4 +33,4 @@ pm2 start ./src/Express/index.js
     proxy_pass http://localhost:<express_port>/;
   }
 ```
-• API will be: `<domain>/api/get-option`
+• API will be: `<domain>/api/get-option` (there is a sample Postman file to load API: `CSL_HCMC_CityScopeJS.postman_collection.json`).

@@ -1,0 +1,182 @@
+{
+	"info": {
+		"_postman_id": "28dd7d63-2f00-45bb-85ef-93a9ed2b677c",
+		"name": "CSL_HCMC_CityScopeJS",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Set options",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"option\": \"SHADOWS\",\r\n    \"mode\" : \"OFF\",\r\n    \"table\": \"hcm_scenario_0\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://csl-hcmc.com/api/set-option",
+					"protocol": "https",
+					"host": [
+						"csl-hcmc",
+						"com"
+					],
+					"path": [
+						"api",
+						"set-option"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Choose scenario",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"table\": \"hcm_scenario_0\",\r\n    \"scenario\": \"hcm_scenario_1\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://csl-hcmc.com/api/choose-scenario",
+					"protocol": "https",
+					"host": [
+						"csl-hcmc",
+						"com"
+					],
+					"path": [
+						"api",
+						"choose-scenario"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Display chart",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"table\": \"hcm_scenario_0\",\r\n    \"chart\": \"all\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://csl-hcmc.com/api/display-chart",
+					"protocol": "https",
+					"host": [
+						"csl-hcmc",
+						"com"
+					],
+					"path": [
+						"api",
+						"display-chart"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get access properties",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://csl-hcmc.com/api/get-access-properties?scenario=hcm_scenario_3",
+					"protocol": "https",
+					"host": [
+						"csl-hcmc",
+						"com"
+					],
+					"path": [
+						"api",
+						"get-access-properties"
+					],
+					"query": [
+						{
+							"key": "scenario",
+							"value": "hcm_scenario_3"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get options",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://csl-hcmc.com/api/get-option",
+					"protocol": "https",
+					"host": [
+						"csl-hcmc",
+						"com"
+					],
+					"path": [
+						"api",
+						"get-option"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get scenario",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://csl-hcmc.com/api/get-scenario",
+					"protocol": "https",
+					"host": [
+						"csl-hcmc",
+						"com"
+					],
+					"path": [
+						"api",
+						"get-scenario"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get chart",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://csl-hcmc.com/api/get-chart",
+					"protocol": "https",
+					"host": [
+						"csl-hcmc",
+						"com"
+					],
+					"path": [
+						"api",
+						"get-chart"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
