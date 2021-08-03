@@ -34,3 +34,6 @@ pm2 start ./src/Express/index.js
   }
 ```
 • API will be: `<domain>/api/get-option` (there is a sample Postman file to load API: `CSL_HCMC_CityScopeJS.postman_collection.json`).
+
+## Cityscope APIs
+• To change data on CityIO, reference to CityIO docs: `https://cityscope.media.mit.edu/backend/API`
