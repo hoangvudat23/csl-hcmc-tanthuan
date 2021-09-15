@@ -8,6 +8,9 @@ Documentation are here: https://cityscope.media.mit.edu/docs/frontend/CityScopeJ
 npm install
 ```
 ## Usage
+```bash
+npm run start
+```
 To use Express API
 ```bash
 cd src/Express
