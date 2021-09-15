@@ -106,7 +106,7 @@ export default function Map(props) {
       const resBuilding2 = await fetch('./Building_2.json');
       setBuilding2(await resBuilding2.json());
       const resBuilding3 = await fetch('./Building_3.json');
-      setBuilding2(await resBuilding3.json());
+      setBuilding3(await resBuilding3.json());
     }
     fetchBuildingData();
 
