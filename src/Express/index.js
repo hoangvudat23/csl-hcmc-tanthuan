@@ -60,7 +60,7 @@ app.get('/get-access-properties', (req, res) => {
         return res.status('422').send(`"scenario" is not valid!`);
     }
     //let url = `https://cityio.media.mit.edu/api/table/${scenario}/access/`;
-    let url = `https://csl-hcmc.com/usv/table/${scenario}/access/`;
+    let url = `https://csl-hcmc.com/cityio/api/table/${scenario}/access/`;
     axios.get(url).then(response => {
         let mapArray = response.data.properties.map((item, index) => {
             return {
