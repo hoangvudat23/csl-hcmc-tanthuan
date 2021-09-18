@@ -34,9 +34,11 @@ const theme = createMuiTheme({
     MuiListItem: {
       root: {
         '&$selected': {
-          backgroundColor: '#18191a',
+          // backgroundColor: '#18191a',
+          backgroundColor: '#192c48',
           boxShadow:
-            '12px 12px 16px 0 rgba(0,0,0),-8px -8px 12px 0 rgba(40,41,42)',
+            // '12px 12px 16px 0 rgba(0,0,0),-8px -8px 12px 0 rgba(40,41,42)',
+            '12px 12px 16px 0 rgba(0,0,0),-8px -8px 12px 0 rgb(25, 44, 72)',
           '&:hover': {
             backgroundColor: '#ff5278',
           },
@@ -66,13 +68,15 @@ const theme = createMuiTheme({
     MuiCard: {
       root: {
         boxShadow:
-          '12px 12px 16px 0 rgba(0,0,0),-8px -8px 12px 0 rgba(40,41,42)',
+          // '12px 12px 16px 0 rgba(0,0,0),-8px -8px 12px 0 rgba(40,41,42)',
+          '12px 12px 16px 0 rgba(0,0,0),-8px -8px 12px 0 rgb(25, 44, 72)',
       },
     },
     MuiButton: {
       root: {
         boxShadow:
-          '12px 12px 16px 0 rgba(0,0,0),-8px -8px 12px 0 rgba(40,41,42)',
+          // '12px 12px 16px 0 rgba(0,0,0),-8px -8px 12px 0 rgba(40,41,42)',
+          '12px 12px 16px 0 rgba(0,0,0),-8px -8px 12px 0 rgb(25, 44, 72)',
         '&:hover': {
           boxShadow: '12px 12px 16px 0  #000,-2px -2px 16px 0  #ff5278',
         },

@@ -42,6 +42,10 @@ function ABMSubmenu(props) {
     const sliders = useSelector((state) => state.SLIDERS);
     const dispatch = useDispatch();
 
+    // useEffect(() => {
+    //     _setupSunEffects(effectsRef, cityioData.GEOGRID.properties.header, false)
+    // }, [])
+
     const handleSetTimeValue = (e, newValue) => {
         dispatch(
             listenToSlidersEvents({

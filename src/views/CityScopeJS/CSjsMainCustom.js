@@ -182,7 +182,8 @@ export default function CSjsMainCustom(props) {
                 maxHeight: '100%',
                 height: '100%',
                 overflow: 'hidden',
-                boxShadow: 'none'
+                boxShadow: 'none',
+                background: '#192c48'
               }}
             >
               <VisContainer cityIOdata={cityIOdata} chosenChart={chosenChart} />
@@ -196,7 +197,8 @@ export default function CSjsMainCustom(props) {
                 width: '100%',
                 overflow: 'hidden',
                 position: 'relative',
-                boxShadow: 'none'
+                boxShadow: 'none',
+                background: '#192c48'
               }}
             >
               {/* <Test/> */}

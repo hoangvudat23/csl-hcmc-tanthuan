@@ -39,6 +39,7 @@ export default function CSjsMain(props) {
                   style={{
                     maxHeight: '85vh',
                     overflow: 'auto',
+                    background: '#192c48'
                   }}
                 >
                   <CardContent>
@@ -56,6 +57,7 @@ export default function CSjsMain(props) {
                 height: '85vh',
                 width: '100%',
                 position: 'relative',
+                background: '#192c48'
               }}
             >
               {/* <Test/> */}
@@ -68,6 +70,7 @@ export default function CSjsMain(props) {
               style={{
                 maxHeight: '85vh',
                 overflow: 'auto',
+                background: '#192c48'
               }}
             >
               <VisContainer cityIOdata={cityIOdata} />

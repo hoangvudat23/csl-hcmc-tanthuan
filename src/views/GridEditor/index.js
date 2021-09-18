@@ -32,6 +32,7 @@ export default function GridEditor() {
                                 style={{
                                     maxHeight: "85vh",
                                     overflow: "auto",
+                                    background: '#192c48'
                                 }}
                             >
                                 <CardContent>

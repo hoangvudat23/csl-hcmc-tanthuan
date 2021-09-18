@@ -273,21 +273,22 @@ export default function Map(props) {
 
     GEOJSON: GeojsonLayer({
       data: geojsonData && geojsonData,
-      alphaColor: 180
+      alphaColor: 180,
     }),
 
     OUTSIDE_INTERACTIVE_AREA: GeojsonLayer({
       data: getBuildingByCurrentScenario(),
+      isTv1: false,
     }),
   }
 
   const layerOrder = [
     'TEXTUAL',
-    'ABM',
     'AGGREGATED_TRIPS',
     'GEOJSON',
     'GRID',
     'ACCESS',
+    'ABM',
   ]
 
   const _renderLayers = () => {
