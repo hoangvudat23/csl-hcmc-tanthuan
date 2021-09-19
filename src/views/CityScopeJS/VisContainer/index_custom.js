@@ -7,8 +7,9 @@ function VisContainer(props) {
     const chosenChart = props.chosenChart;
     const [displayPieChart, setDisplayPieChart] = useState({
         'display': false,
-        'chartSize': 400,
-        'fontSize': 15,
+        'chartWidthSize': 2000,
+        'chartHeightSize': 900,
+        'fontSize': 22,
     });
     const [displayRadarChart, setDisplayRadarChart] = useState({
         'display': false,
@@ -26,8 +27,9 @@ function VisContainer(props) {
             case 'all':
                 setDisplayPieChart({
                     'display': true,
-                    'chartSize': 400,
-                    'fontSize': 15,
+                    'chartWidthSize': 2000,
+                    'chartHeightSize': 900,
+                    'fontSize': 22,
                 });
                 setDisplayRadarChart({
                     'display': true,
@@ -43,8 +45,9 @@ function VisContainer(props) {
             case 'pie':
                 setDisplayPieChart({
                     'display': true,
-                    'chartSize': 1500,
-                    'fontSize': 24,
+                    'chartWidthSize': 2500,
+                    'chartHeightSize': 2000,
+                    'fontSize': 35,
                 });
                 setDisplayRadarChart({
                     'display': false
@@ -88,9 +91,9 @@ function VisContainer(props) {
             {props.cityIOdata && (
                 <Container style={{ height: '100%' }}>
                     <Box display="flex" alignItems="center" justifyContent="center" flexDirection="column" style={{ height: '90%' }}>
-                        {(displayPieChart.display) && (<AreaCalc cityioData={props.cityIOdata} radialRadius={displayPieChart.chartSize} areaFontSize={displayPieChart.fontSize} />)}
-                        {displayRadarChart.display && (<Radar cityioData={props.cityIOdata} radarSize={displayRadarChart.chartSize} radarFontSize={displayRadarChart.fontSize} /> )}
-                        {displayBarChart.display && (<BarChart cityioData={props.cityIOdata} radarSize={displayBarChart.chartSize} radarFontSize={displayBarChart.fontSize} /> )}
+                        {(displayPieChart.display) && (<AreaCalc cityioData={props.cityIOdata} widthChart={displayPieChart.chartWidthSize} heightChart={displayPieChart.chartHeightSize} areaFontSize={displayPieChart.fontSize} />)}
+                        {displayRadarChart.display && (<Radar cityioData={props.cityIOdata} radarSize={displayRadarChart.chartSize} radarFontSize={displayRadarChart.fontSize} />)}
+                        {displayBarChart.display && (<BarChart cityioData={props.cityIOdata} radarSize={displayBarChart.chartSize} radarFontSize={displayBarChart.fontSize} />)}
                     </Box>
                     <Box display="flex" alignItems="center" justifyContent="end" flexDirection="column" mt={8}>
                         <Typography color="textPrimary" variant="h1">

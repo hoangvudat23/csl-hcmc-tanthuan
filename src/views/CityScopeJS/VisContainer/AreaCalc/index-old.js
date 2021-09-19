@@ -5,18 +5,14 @@ import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import Typography from "@material-ui/core/Typography";
 import "../../../../../node_modules/react-vis/dist/style.css";
-import { Chart } from "react-google-charts";
 
 export default function AreaCalc(props) {
     // const radialRadius = 400;
     // const areaFontSize =  15;
-    const widthChart = `${props.widthChart}px` ?? '2000px';
-    const heightChart = `${props.heightChart}px` ?? '900px';
-    const areaFontSize = props.areaFontSize ?? 22;
-    const [fakeControls, setFakeControls] = useState([]);
+    const radialRadius = props.radialRadius ?? 400;
+    const areaFontSize =  props.areaFontSize ?? 15;
     const [hoveredRadial, setHoveredRadial] = useState(false);
     const [areaData, setAreaData] = useState(null);
-    const [sliceColors, setSliceColors] = useState([]);
     const header = props.cityioData.GEOGRID?.properties?.header;
     useEffect(() => {
         const calcArea = () => {
@@ -53,33 +49,16 @@ export default function AreaCalc(props) {
                 }
             });
             //  convert to react-vis happy data format
-            // let radialData = [];
-
-            // for (const k in calcAreaObj) {
-            //     radialData.push(calcAreaObj[k]);
-            // }
-
-            // let data = {
-            //     children: radialData,
-            //     color: 1,
-            // };
-
-            let newRadialData = [
-                ['Plot', 'Area']
-            ];
-            let sumArea = 0;
-            let sliceColors = []
+            let radialData = [];
             for (const k in calcAreaObj) {
-                sumArea = sumArea + calcAreaObj[k].area;
+                radialData.push(calcAreaObj[k]);
             }
-            for (const k in calcAreaObj) {
-                newRadialData.push([`${Math.round((calcAreaObj[k].area / sumArea * 100) * 10) / 10}% - ${calcAreaObj[k].name}`, calcAreaObj[k].area]);
-                sliceColors.push({ color: calcAreaObj[k].color });
-            }
+
             let data = {
-                data: newRadialData,
-                color: sliceColors
-            }
+                children: radialData,
+                color: 1,
+            };
+
             return data;
         };
         const calcAreaForHCM = () => {
@@ -128,49 +107,78 @@ export default function AreaCalc(props) {
             return data;
         };
         let d;
-        // Calculate for general area
-        // if (header.tableName && header.tableName.includes('hcmc_')) {
-        //     d = calcAreaForHCM();
-        // }
-        // else {
-        d = calcArea();
-        // }
-        setAreaData(d.data);
-        setSliceColors(d.color);
+        if (header.tableName && header.tableName.includes('hcm_')) {
+            d = calcAreaForHCM();
+        }
+        else {
+            d = calcArea();
+        }
+        setAreaData(d);
     }, [props]);
-
-    useEffect(() => {
-        // change reference to trigger chart rerender
-        setFakeControls([]);
-      }, [widthChart, heightChart]);
 
     return (
         <List>
-            {areaData && sliceColors && (
+            {areaData && areaData.children && (
                 <ListItem alignItems="center">
-                    <Chart
-                        controls={fakeControls}
-                        width={widthChart}
-                        height={heightChart}
-                        chartType="PieChart"
-                        loader={<div>Loading Chart</div>}
-                        data={areaData}
-                        options={{
-                            backgroundColor: 'transparent',
-                            legend: {
-                                textStyle: {
-                                    color: 'white',
-                                    fontName: 'sans-serif',
-                                    fontSize: areaFontSize,
-                                },
-                                position: 'right',
-                                alignment: 'center'
-                            },
-                            slices: sliceColors,
+                    <RadialChart
+                        colorType="literal"
+                        animation={true}
+                        className={"donut-chart-example"}
+                        innerRadius={radialRadius / 2 - radialRadius / 5}
+                        radius={radialRadius / 2}
+                        getLabel={(d) => d.name}
+                        labelsRadiusMultiplier={0.95}
+                        labelsStyle={{
+                            textAnchor: "middle",
+                            font: "sans-serif",
+                            fontSize: areaFontSize,
+                            whiteSpace: "pre-line",
+                            fill: "#FFF",
+                            textShadow: "2px 2px 2px #000",
+                            fontFamily: "Roboto Mono",
                         }}
-                    />
+                        showLabels
+                        getAngle={(d) => d.area}
+                        data={areaData.children}
+                        onValueMouseOver={(evt) => setHoveredRadial(evt)}
+                        onSeriesMouseOut={() => setHoveredRadial(false)}
+                        width={radialRadius}
+                        height={radialRadius}
+                        padAngle={0.01}
+                    >
+                        {/* {hoveredRadial !== false && (
+                            <Hint value={hoveredRadial}>
+                                <div
+                                    style={{
+                                        background: "rgba(0,0,0,0.8)",
+                                        fontSize: 14,
+                                    }}
+                                >
+                                    <Typography
+                                        variant={"caption"}
+                                        gutterBottom
+                                    >
+                                        Area: {hoveredRadial.area} sqm
+                                    </Typography>
+                                </div>
+                            </Hint>
+                        )} */}
+                    </RadialChart>
                 </ListItem>
             )}
+
+            {/* {hoveredRadial.name && (
+                <List>
+                    <ListItem>
+                        <Typography variant="caption">
+                            {hoveredRadial.name}
+                        </Typography>
+                    </ListItem>
+                    <ListItem>
+                        <Typography>{hoveredRadial.area} sqm</Typography>
+                    </ListItem>
+                </List>
+            )} */}
         </List>
     );
 }
