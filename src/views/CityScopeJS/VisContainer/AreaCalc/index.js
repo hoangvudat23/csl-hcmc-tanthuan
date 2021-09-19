@@ -13,6 +13,7 @@ export default function AreaCalc(props) {
     const widthChart = `${props.widthChart}px` ?? '2000px';
     const heightChart = `${props.heightChart}px` ?? '900px';
     const areaFontSize = props.areaFontSize ?? 22;
+    const soloMode = props.soloMode ?? false;
     const [fakeControls, setFakeControls] = useState([]);
     const [hoveredRadial, setHoveredRadial] = useState(false);
     const [areaData, setAreaData] = useState(null);
@@ -142,7 +143,7 @@ export default function AreaCalc(props) {
     useEffect(() => {
         // change reference to trigger chart rerender
         setFakeControls([]);
-      }, [widthChart, heightChart]);
+    }, [widthChart, heightChart]);
 
     return (
         <List>
@@ -164,9 +165,15 @@ export default function AreaCalc(props) {
                                     fontSize: areaFontSize,
                                 },
                                 position: 'right',
-                                alignment: 'center'
+                                alignment: 'center',
                             },
                             slices: sliceColors,
+                            chartArea: soloMode ? null :{
+                                left: 550,
+                                top: 100,
+                                width: "100%",
+                                height: "75%"
+                            }
                         }}
                     />
                 </ListItem>
