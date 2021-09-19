@@ -40,14 +40,15 @@ export default function BarChart(props) {
             if (d.barChartData.length > 0) {
                 setBarChartData(d.barChartData);
             }
-            else {
-                const sampleBarChartData = generateData(sampleIndicatorData);
-                setSampleBarChartData(sampleBarChartData.barChartData);
-            }
-        } else {
-            const sampleBarChartData = generateData(sampleIndicatorData);
-            setSampleBarChartData(sampleBarChartData.barChartData);
-        }
+            // else {
+            //     const sampleBarChartData = generateData(sampleIndicatorData);
+            //     setSampleBarChartData(sampleBarChartData.barChartData);
+            // }
+        } 
+        // else {
+        //     const sampleBarChartData = generateData(sampleIndicatorData);
+        //     setSampleBarChartData(sampleBarChartData.barChartData);
+        // }
     }, [props]);
 
     const generateData = (indicators) => {
@@ -120,42 +121,44 @@ export default function BarChart(props) {
                     </Box>
                 </>
             ) :
-                (
-                    <>
-                        <Box flexDirection="column">
-                            <Box alignContent="center" p={3}>
-                                <FlexibleWidthXYPlot
-                                    opacity={0.2}
-                                    xType="ordinal"
-                                    width={radarSize}
-                                    height={radarSize}
-                                    stackBy="y"
-                                    yDomain={[0, 1]}
-                                >
-                                    <XAxis
-                                        style={{
-                                            text: {
-                                                fill: "#FFF",
-                                                fontFamily: "Roboto Mono",
-                                                fontSize: radarFontSize
-                                            },
-                                        }}
-                                        tickLabelAngle={90}
-                                    />
-                                    <YAxis style={{ text: { fill: "#FFF", fontSize: radarFontSize } }} />
-                                    <VerticalBarSeries
-                                        animation={true}
-                                        onValueMouseOver={(d) => {
-                                            setHoveredNode(d);
-                                        }}
-                                        data={sampleBarChartData}
-                                    />
-                                </FlexibleWidthXYPlot>
-                            </Box>
-                        </Box>
-                    </>
-                )
+                (null)
             }
         </>
     );
 }
+// replace null if need sample data display
+//  (
+    //                 <>
+    //                     <Box flexDirection="column">
+    //                         <Box alignContent="center" p={3}>
+    //                             <FlexibleWidthXYPlot
+    //                                 opacity={0.2}
+    //                                 xType="ordinal"
+    //                                 width={radarSize}
+    //                                 height={radarSize}
+    //                                 stackBy="y"
+    //                                 yDomain={[0, 1]}
+    //                             >
+    //                                 <XAxis
+    //                                     style={{
+    //                                         text: {
+    //                                             fill: "#FFF",
+    //                                             fontFamily: "Roboto Mono",
+    //                                             fontSize: radarFontSize
+    //                                         },
+    //                                     }}
+    //                                     tickLabelAngle={90}
+    //                                 />
+    //                                 <YAxis style={{ text: { fill: "#FFF", fontSize: radarFontSize } }} />
+    //                                 <VerticalBarSeries
+    //                                     animation={true}
+    //                                     onValueMouseOver={(d) => {
+    //                                         setHoveredNode(d);
+    //                                     }}
+    //                                     data={sampleBarChartData}
+    //                                 />
+    //                             </FlexibleWidthXYPlot>
+    //                         </Box>
+    //                     </Box>
+    //                 </>
+    //             )
