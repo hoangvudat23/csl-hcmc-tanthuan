@@ -9,8 +9,8 @@ import sampleIndicatorData from "../../../../settings/sampleIndicatorData.json";
 const colorRange = ["#ff5278", "#660016"];
 
 export default function Radar(props) {
-    const radarSize = props.radarSize ?? 1000;
-    const radarFontSize = props.radarFontSize ?? 20;
+    const radarSize = props.radarSize ? props.radarSize : 1000;
+    const radarFontSize = props.radarFontSize ? props.radarFontSize : 20;
     const [radarData, setRadarData] = useState(null);
     const [sampleRadarData, setSampleRadarData] = useState(null);
 

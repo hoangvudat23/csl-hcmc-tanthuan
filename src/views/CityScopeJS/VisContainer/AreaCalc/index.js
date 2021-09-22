@@ -10,10 +10,10 @@ import { Chart } from "react-google-charts";
 export default function AreaCalc(props) {
     // const radialRadius = 400;
     // const areaFontSize =  15;
-    const widthChart = `${props.widthChart}px` ?? '2000px';
-    const heightChart = `${props.heightChart}px` ?? '900px';
-    const areaFontSize = props.areaFontSize ?? 22;
-    const soloMode = props.soloMode ?? false;
+    const widthChart = props.widthChart ? `${props.widthChart}px` : '2000px';
+    const heightChart = props.heightChart ? `${props.heightChart}px` : '900px';
+    const areaFontSize = props.areaFontSize ? props.areaFontSize : 22;
+    const soloMode = props.soloMode ? props.soloMode : false;
     const [fakeControls, setFakeControls] = useState([]);
     const [hoveredRadial, setHoveredRadial] = useState(false);
     const [areaData, setAreaData] = useState(null);
@@ -144,7 +144,7 @@ export default function AreaCalc(props) {
         // change reference to trigger chart rerender
         setFakeControls([]);
     }, [widthChart, heightChart]);
-
+    console.log(widthChart, heightChart);
     return (
         <List>
             {areaData && sliceColors && (
@@ -168,7 +168,7 @@ export default function AreaCalc(props) {
                                 alignment: 'center',
                             },
                             slices: sliceColors,
-                            chartArea: soloMode ? null :{
+                            chartArea: soloMode ? null : {
                                 left: 550,
                                 top: 100,
                                 width: "100%",

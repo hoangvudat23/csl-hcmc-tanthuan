@@ -10,19 +10,19 @@ function VisContainer(props) {
             {props.cityIOdata && (
                 <List>
                     <ListItem style={{justifyContent: "center"}}>
-                        <AreaCalc cityioData={props.cityIOdata} />
+                        <AreaCalc cityioData={props.cityIOdata} widthChart={650} heightChart={450} areaFontSize={12} soloMode={true}/>
                     </ListItem>
 
                     <Divider />
 
                     <ListItem style={{justifyContent: "center"}}>
-                        <Radar cityioData={props.cityIOdata} />
+                        <Radar cityioData={props.cityIOdata} radarSize={400} radarFontSize={12}/>
                     </ListItem>
 
                     <Divider />
 
                     <ListItem style={{justifyContent: "center"}}>
-                        <BarChart cityioData={props.cityIOdata} />
+                        <BarChart cityioData={props.cityIOdata} radarSize={400} radarFontSize={14}/>
                     </ListItem>
                 </List>
             )}
