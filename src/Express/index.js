@@ -141,13 +141,15 @@ app.post('/save-only-map-settings', (req, res) => {
     let reqParams = req.body;
     let data = reqParams.setting;
     try {
-        fs.writeFileSync('../settings/onlyMapSetting.json', data, (err) => {
+        fs.unlinkSync('src/settings/onlyMapSetting.json');
+        fs.writeFileSync('src/settings/onlyMapSetting.json', data, (err) => {
             // In case of a error throw err.
             if (err) {
                 return res.status('500').send(err);
             };
         })
     } catch (err) {
+        console.log(err);
         return res.status('500').send(err);
     }
     return res.send(`Save settings successfully`);

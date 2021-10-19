@@ -121,8 +121,10 @@ export default function Map(props) {
 
   useEffect(() => {
     if (!loaded) return
-    let shadowColor = shadowsOn ? [0, 0, 0, 0.5] : [0, 0, 0, 0]
-    effectsRef.current[0].shadowColor = shadowColor
+    let shadowColor = shadowsOn ? [0, 0, 0, 0.5] : [0, 0, 0, 0];
+    if (effectsRef.current && effectsRef.current[0]) {
+      effectsRef.current[0].shadowColor = shadowColor;
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [shadowsOn])
 
