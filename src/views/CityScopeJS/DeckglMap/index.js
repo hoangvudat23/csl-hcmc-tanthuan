@@ -71,7 +71,7 @@ export default function Map(props) {
   const [building0, setBuilding0] = useState(null)
   const [building2, setBuilding2] = useState(null)
   const [building3, setBuilding3] = useState(null)
-  const [onlyMapSetting, setOnlyMapSetting] = useState({"width":1427,"height":937,"latitude":10.762432187528878,"longitude":106.69711471364123,"zoom":15.813606546855755,"bearing":0.35,"pitch":0,"altitude":1.5,"maxZoom":20,"minZoom":0,"maxPitch":60,"minPitch":0})
+  const [onlyMapSetting, setOnlyMapSetting] = useState({"width":3840,"height":2160,"latitude":10.760653375134037,"longitude":106.70481804447535,"zoom":15.95557891525241,"bearing":0.35,"pitch":0,"altitude":1.5,"maxZoom":20,"minZoom":0,"maxPitch":60,"minPitch":0})
 
   var ABMOn = menu.includes('ABM')
   if (autoRotate) {
