@@ -4,6 +4,7 @@ const express = require('express')
 var bodyParser = require('body-parser');
 const cors = require('cors');
 const fs = require('fs');
+const path = require('path');
 const { default: axios } = require("axios");
 const app = express();
 const port = setting.expressPort;
@@ -141,10 +142,12 @@ app.post('/save-only-map-settings', (req, res) => {
     let reqParams = req.body;
     let data = reqParams.setting;
     try {
-        fs.unlink('src/settings/onlyMapSetting.json', (res) => {
+        var myPath = path.join('src', 'settings', 'onlyMapSetting.json');
+        console.log(myPath);
+        fs.unlink(myPath, (res) => {
             console.log(res);
         });
-        fs.writeFileSync('src/settings/onlyMapSetting.json', data, (err) => {
+        fs.writeFileSync(myPath, data, (err) => {
             // In case of a error throw err.
             if (err) {
                 return res.status('500').send(err);
