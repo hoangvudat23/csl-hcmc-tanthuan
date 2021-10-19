@@ -144,7 +144,11 @@ app.post('/save-only-map-settings', (req, res) => {
     try {
         var myPath = path.join(__dirname, '..', '..', 'public', 'onlyMapSetting.json');
         console.log(myPath);
-        fs.unlinkSync(myPath);
+        try {
+            fs.unlinkSync(myPath);
+        } catch (error) {
+            console.log("File not exists!");
+        }
         fs.writeFileSync(myPath, data, (err) => {
             // In case of a error throw err.
             if (err) {
