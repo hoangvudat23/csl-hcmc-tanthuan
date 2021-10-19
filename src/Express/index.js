@@ -34,6 +34,7 @@ let arrayOptionAllowance = ["GRID", "ABM", "GEOJSON", "AGGREGATED_TRIPS", "ACCES
 let arrayModeAllowance = ["ON", "OFF"]
 let arrayScenarioAllowance = ["hcm_scenario_0", "hcm_scenario_2", "hcm_scenario_3"]
 let arrayChartAllowance = ["pie", "radar", "bar", "all"];
+var onlyMapSettingPath = path.join(__dirname, '..', '..', 'public', 'onlyMapSetting.json');
 
 app.get('/get-option', (req, res) => {
     let option = localStorage.getItem('view-option');
@@ -80,6 +81,11 @@ app.get('/get-access-properties', (req, res) => {
     });
 })
 
+app.get('/get-only-map-setting', (req, res) => {
+    let onlyMapSetting = fs.readFileSync(onlyMapSettingPath);
+    return res.send(onlyMapSetting);
+});
+
 app.post('/set-option', (req, res) => {
     let reqParams = req.body;
     let option = reqParams.option
@@ -98,7 +104,7 @@ app.post('/set-option', (req, res) => {
             localStorage.setItem('access_property_index', access_property_index);
         }
 
-        res.send(`${mode} ${option} ${table}`);
+        return res.send(`${mode} ${option} ${table}`);
 
     }
     else {
@@ -142,14 +148,13 @@ app.post('/save-only-map-settings', (req, res) => {
     let reqParams = req.body;
     let data = reqParams.setting;
     try {
-        var myPath = path.join(__dirname, '..', '..', 'public', 'onlyMapSetting.json');
-        console.log(myPath);
+        console.log(onlyMapSettingPath);
         try {
-            fs.unlinkSync(myPath);
+            fs.unlinkSync(onlyMapSettingPath);
         } catch (error) {
             console.log("File not exists!");
         }
-        fs.writeFileSync(myPath, data, (err) => {
+        fs.writeFileSync(onlyMapSettingPath, data, (err) => {
             // In case of a error throw err.
             if (err) {
                 return res.status('500').send(err);

@@ -83,6 +83,14 @@ export default function Map(props) {
   var editOn = menu.includes('EDIT')
   var resetViewOn = menu.includes('RESET_VIEW')
 
+  const getAPICall = async (URL) => {
+    try {
+      const response = await axios.get(URL);
+      return response.data;
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   useEffect(() => {
     // fix deck view rotate
@@ -102,8 +110,9 @@ export default function Map(props) {
 
     // Fetch onlyMapSetting data
     async function fetchOnlyMapSettingData() {
-      const resOnlyMapSetting = await fetch('./onlyMapSetting.json');
-      setOnlyMapSetting(await resOnlyMapSetting.json());
+      const resOnlyMapSetting = await getAPICall(`${process.env.REACT_APP_EXPRESS_PUBLIC_URL}/get-only-map-setting`);
+      setOnlyMapSetting(resOnlyMapSetting);
+      console.log(resOnlyMapSetting);
     }
     fetchOnlyMapSettingData();
 
