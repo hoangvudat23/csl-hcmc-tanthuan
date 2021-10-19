@@ -34,7 +34,7 @@ let arrayOptionAllowance = ["GRID", "ABM", "GEOJSON", "AGGREGATED_TRIPS", "ACCES
 let arrayModeAllowance = ["ON", "OFF"]
 let arrayScenarioAllowance = ["hcm_scenario_0", "hcm_scenario_2", "hcm_scenario_3"]
 let arrayChartAllowance = ["pie", "radar", "bar", "all"];
-var onlyMapSettingPath = path.join(__dirname, '..', '..', 'public', 'onlyMapSetting.json');
+var onlyMapSettingPath = path.join(__dirname, '..', 'settings', 'onlyMapSetting.json');
 
 app.get('/get-option', (req, res) => {
     let option = localStorage.getItem('view-option');
