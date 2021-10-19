@@ -311,7 +311,6 @@ export default function Map(props) {
     }
     return layers
   }
-  console.log(viewState);
   return (
     <div
       className="baseMap"
