@@ -196,11 +196,11 @@ export default function Map(props) {
       // longitude: header.longitude,
       // latitude: header.latitude,
       // bearing: 360 - header.rotation,
-      longitude: onlyMapSetting.longitude ?? 106.704854, // District 4
-      latitude: onlyMapSetting.latitude ?? 10.760616, // District 4
+      longitude: onlyMapSetting.longitude ? onlyMapSetting.longitude : 106.704854, // District 4
+      latitude: onlyMapSetting.latitude ? onlyMapSetting.latitude : 10.760616, // District 4
       bearing: 0.35, // District 4
-      zoom: zoomMap ?? (onlyMapSetting.zoom ?? 15.95), // 4k
-      pitch: pitchMap ?? 0,
+      zoom: zoomMap ? zoomMap : (onlyMapSetting.zoom ? onlyMapSetting.zoom : 15.95), // 4k
+      pitch: pitchMap ? pitchMap : 0,
       orthographic: true,
     })
   }
@@ -309,6 +309,7 @@ export default function Map(props) {
     }
     return layers
   }
+  console.log(viewState);
   return (
     <div
       className="baseMap"
