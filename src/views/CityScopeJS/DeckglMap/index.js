@@ -23,7 +23,7 @@ import {
 } from './deckglLayers'
 
 import axios from 'axios'
-import onlyMapSetting from '../../../settings/onlyMapSetting.json';
+// import onlyMapSetting from '../../../settings/onlyMapSetting.json';
 
 export default function Map(props) {
   const pitchMap = props.pitchMap
@@ -71,6 +71,7 @@ export default function Map(props) {
   const [building0, setBuilding0] = useState(null)
   const [building2, setBuilding2] = useState(null)
   const [building3, setBuilding3] = useState(null)
+  const [onlyMapSetting, setOnlyMapSetting] = useState({"width":1427,"height":937,"latitude":10.762432187528878,"longitude":106.69711471364123,"zoom":15.813606546855755,"bearing":0.35,"pitch":0,"altitude":1.5,"maxZoom":20,"minZoom":0,"maxPitch":60,"minPitch":0})
 
   var ABMOn = menu.includes('ABM')
   if (autoRotate) {
@@ -88,8 +89,8 @@ export default function Map(props) {
     _rightClickViewRotate()
     // setup sun effects
     _setupSunEffects(effectsRef, cityioData.GEOGRID.properties.header)
-    // zoom map on CS table location
-    _setViewStateToTableHeader()
+    // // zoom map on CS table location
+    // _setViewStateToTableHeader()
     setLoaded(true)
 
     // set bright time
@@ -98,6 +99,13 @@ export default function Map(props) {
       brightTime += cityioData.GEOGRID.properties.header.tz;
     }
     updateSunDirection(brightTime, effectsRef)
+
+    // Fetch onlyMapSetting data
+    async function fetchOnlyMapSettingData() {
+      const resOnlyMapSetting = await fetch('./onlyMapSetting.json');
+      setOnlyMapSetting(await resOnlyMapSetting.json());
+    }
+    fetchOnlyMapSettingData();
 
     // Fetch building data
     async function fetchBuildingData() {
@@ -109,9 +117,14 @@ export default function Map(props) {
       setBuilding3(await resBuilding3.json());
     }
     fetchBuildingData();
-
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
+
+  useEffect(() => {
+    // zoom map on CS table location
+    _setViewStateToTableHeader()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [onlyMapSetting])
 
   useEffect(() => {
     if (!loaded) return
@@ -190,7 +203,7 @@ export default function Map(props) {
   //  * https://github.com/uber/deck.gl/blob/master/test/apps/viewport-transitions-flyTo/src/app.js
   //  */
 
-  const _setViewStateToTableHeader = () => {
+  const _setViewStateToTableHeader =  () => {
     const header = cityioData.GEOGRID.properties.header
 
     setViewState({
@@ -198,10 +211,10 @@ export default function Map(props) {
       // longitude: header.longitude,
       // latitude: header.latitude,
       // bearing: 360 - header.rotation,
-      longitude: onlyMapSetting.longitude ? onlyMapSetting.longitude : 106.704854, // District 4
-      latitude: onlyMapSetting.latitude ? onlyMapSetting.latitude : 10.760616, // District 4
+      longitude:  onlyMapSetting.longitude ? onlyMapSetting.longitude : 106.704854, // District 4
+      latitude:  onlyMapSetting.latitude ? onlyMapSetting.latitude : 10.760616, // District 4
       bearing: 0.35, // District 4
-      zoom: zoomMap ? zoomMap : (onlyMapSetting.zoom ? onlyMapSetting.zoom : 15.95), // 4k
+      zoom: zoomMap ? zoomMap : ( onlyMapSetting.zoom ? onlyMapSetting.zoom : 15.95), // 4k
       pitch: pitchMap ? pitchMap : 0,
       orthographic: true,
     })
@@ -311,7 +324,6 @@ export default function Map(props) {
     }
     return layers
   }
-  console.log(viewState);
   return (
     <div
       className="baseMap"
@@ -358,7 +370,7 @@ export default function Map(props) {
           touchZoom: onlyMap || pitchMap ? false : true,
           touchRotate: onlyMap || pitchMap ? false : true,
           scrollZoom: {
-            speed: onlyMap ? 0.001 : 0.1,
+            speed: onlyMap ? 0.0001 : 0.1,
             smooth: true,
           },
           dragPan: !draggingWhileEditing,
