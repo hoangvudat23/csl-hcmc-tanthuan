@@ -15,7 +15,6 @@ export default function ABMLayer({
   zoomLevel,
   sliders,
 }) {
-  // console.log('abm_data',data);
   return new TripsLayer({
     id: 'ABM',
     data,

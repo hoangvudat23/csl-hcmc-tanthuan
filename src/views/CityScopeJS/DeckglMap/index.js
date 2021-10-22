@@ -387,6 +387,9 @@ export default function Map(props) {
           dragRotate: onlyMap || pitchMap ? false : !draggingWhileEditing,
           keyboard: true,
         }}
+        style={{
+          marginTop: pitchMap ? '-50px' : '0', // If onlyChartSidebar 
+        }}
       >
         <StaticMap
           asyncRender={false}

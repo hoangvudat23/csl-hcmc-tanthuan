@@ -144,7 +144,6 @@ export default function AreaCalc(props) {
         // change reference to trigger chart rerender
         setFakeControls([]);
     }, [widthChart, heightChart]);
-    console.log(widthChart, heightChart);
     return (
         <List>
             {areaData && sliceColors && (

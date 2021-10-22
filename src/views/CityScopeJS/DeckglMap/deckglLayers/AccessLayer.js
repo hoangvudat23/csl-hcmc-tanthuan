@@ -5,13 +5,12 @@ import { useSelector } from 'react-redux'
 
 export default function AccessLayer({ data, cellSize }) {
   const accessToggle = useSelector((state) => [state.ACCESS_TOGGLE])
-  // console.log('accessToggle',accessToggle);
   // return new HeatmapLayer({
-  //   id: 'ACCESS',
+  //   id: 'heatmap-layer',
   //   colorRange: settings.map.layers.heatmap.colors,
-  //   radiusPixels: 200,
-  //   opacity: 0.5,
-  //   threshold: 0.5,
+  //   radiusPixels: 30,
+  //   opacity: 0.3,
+  //   threshold: 0.05,
   //   data,
   //   getPosition: (d) => d.coordinates,
   //   getWeight: (d) => d.values[accessToggle],
@@ -19,6 +18,7 @@ export default function AccessLayer({ data, cellSize }) {
   //     getWeight: [accessToggle],
   //   },
   // })
+
   return new ColumnLayer({
     id: 'column-layer',
     data,
@@ -28,7 +28,7 @@ export default function AccessLayer({ data, cellSize }) {
     radius: cellSize,
     extruded: true,
     pickable: true,
-    elevationScale: 100,
+    elevationScale: 0.5,
     getPosition: (d) => d.coordinates,
     colorRange: settings.map.layers.heatmap.colors,
     getFillColor: (d) => [255 * d.values[accessToggle], 82, 120, 200],
@@ -38,9 +38,9 @@ export default function AccessLayer({ data, cellSize }) {
       getElevation: [accessToggle],
       getFillColor: [accessToggle],
     },
-    transitions: {
-      getFillColor: 500,
-      getElevation: 200,
-    },
+    // transitions: {
+    //   getFillColor: 500,
+    //   getElevation: 200,
+    // },
   })
 }

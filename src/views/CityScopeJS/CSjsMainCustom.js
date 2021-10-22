@@ -8,6 +8,9 @@ import {
   Card,
   CardContent,
   Container,
+  Box,
+  Typography,
+  Avatar
 } from '@material-ui/core'
 import Page from '../../layouts/Page'
 
@@ -57,6 +60,11 @@ export default function CSjsMainCustom(props) {
   const [chosenChart, setChosenChart] = useState("all");
   let myChosenChart = 'all';
   let myAccessPropertyIndex = 0;
+  let mapChoosenScenario = {
+    'hcm_scenario_0': 'SCENARIO 0',
+    'hcm_scenario_2': 'SCENARIO 2',
+    'hcm_scenario_3': 'SCENARIO 3',
+  }
 
   /* Listening View Option Change */
   useEffect(() => {
@@ -128,7 +136,7 @@ export default function CSjsMainCustom(props) {
   }
 
   /* END Listening */
-
+  console.log(mapChoosenScenario[myChosenScenario]);
   return (
     <Page className={classes.root} title="CitySCopeJS">
       <LoadingSpinner />
@@ -201,9 +209,23 @@ export default function CSjsMainCustom(props) {
                 background: '#192c48'
               }}
             >
-              {/* <Test/> */}
-              {/* <iframe title="cityScience" allowfullscreen="true" width="100%" height="100%" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://www.arcgis.com/apps/CEWebViewer/viewer.html?&3dWebScene=31d84c469a404bcbb13797d501286217&view=686441.41,11.16,-1189886.87,686778.3,2828.18,-1185381.71,0.95&lyr=1,1,1,1&wkid=32648&v=2"></iframe> */}
-              <MapContainer pitchMap={60} zoomMap={15} autoRotate={true} />
+              <Box display="flex" alignItems="center" justifyContent="end" flexDirection="column" mt={8}>
+                <Typography color="textPrimary" variant="h1">
+                  {mapChoosenScenario[chosenScenario] ? mapChoosenScenario[chosenScenario] : mapChoosenScenario[myChosenScenario]}
+                </Typography>
+              </Box>
+              <Box display="flex" alignItems="center"
+                style={{
+                  height: '88%',
+                  position: 'relative'
+                }}
+              >
+                <MapContainer pitchMap={60} zoomMap={15} autoRotate={true} />
+              </Box>
+              <Box display="flex" alignItems="center" justifyContent="flex-end" mr={8}>
+                <img src="images/CSL_HCMC.jpeg" alt="CSL HCMC" width="100px" style={{ marginRight: '20px', borderRadius: '10px' }}></img>
+                <img src="images/MIT_Media_Lab_Logo.jpg" alt="MIT Media Lab" width="100px" style={{ borderRadius: '10px' }}></img>
+              </Box>
             </Card>
           </Grid>}
           <Grid>
