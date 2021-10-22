@@ -74,7 +74,8 @@
         "startSimHour": 0,
         "endSimHour": 86400,
         "currentSimHour": 43200,
-        "animationSpeed": 20
+        "animationSpeed": 20,
+        "hexColor": "#FFA500"
       },
       "heatmap": {
         "colors": [

@@ -5,6 +5,7 @@ import { useSelector } from 'react-redux'
 
 export default function AccessLayer({ data, cellSize }) {
   const accessToggle = useSelector((state) => [state.ACCESS_TOGGLE])
+  // console.log('accessToggle',accessToggle);
   // return new HeatmapLayer({
   //   id: 'ACCESS',
   //   colorRange: settings.map.layers.heatmap.colors,
@@ -22,7 +23,6 @@ export default function AccessLayer({ data, cellSize }) {
     id: 'column-layer',
     data,
     shadowEnabled: false,
-
     material: false,
     diskResolution: 15,
     radius: cellSize,

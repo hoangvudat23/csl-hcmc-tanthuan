@@ -111,8 +111,9 @@ export default function Map(props) {
     // Fetch onlyMapSetting data
     async function fetchOnlyMapSettingData() {
       const resOnlyMapSetting = await getAPICall(`${process.env.REACT_APP_EXPRESS_PUBLIC_URL}/get-only-map-setting`);
-      setOnlyMapSetting(resOnlyMapSetting);
-      console.log(resOnlyMapSetting);
+      if(resOnlyMapSetting){
+        setOnlyMapSetting(resOnlyMapSetting);
+      }
     }
     fetchOnlyMapSettingData();
 

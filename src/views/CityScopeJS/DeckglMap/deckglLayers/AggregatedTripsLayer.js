@@ -1,5 +1,6 @@
 import { PathLayer } from "deck.gl";
 import { hexToRgb } from "../../../../utils/utils";
+import settings from "../../../../settings/settings.json";
 
 export default function AggregatedTripsLayer({ data, cityioData, ABMmode }) {
     return new PathLayer({
@@ -19,7 +20,8 @@ export default function AggregatedTripsLayer({ data, cityioData, ABMmode }) {
             return d.path;
         },
         getColor: (d) => {
-            let col = hexToRgb(cityioData.ABM2.attr[ABMmode][d[ABMmode]].color);
+            // let col = hexToRgb(cityioData.ABM2.attr[ABMmode][d[ABMmode]].color);
+            let col = hexToRgb(settings.map.layers.ABM.hexColor);
             return col;
         },
         opacity: 0.2,
