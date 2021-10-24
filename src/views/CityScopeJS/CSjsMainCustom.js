@@ -210,7 +210,7 @@ export default function CSjsMainCustom(props) {
               }}
             >
               <Box display="flex" alignItems="center" justifyContent="end" flexDirection="column" mt={8}>
-                <Typography color="textPrimary" variant="h1">
+                <Typography color="textPrimary" variant="h1" style={{fontSize: '55px'}}>
                   {mapChoosenScenario[chosenScenario] ? mapChoosenScenario[chosenScenario] : mapChoosenScenario[myChosenScenario]}
                 </Typography>
               </Box>

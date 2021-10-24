@@ -9,13 +9,13 @@ function VisContainer(props) {
         'display': false,
         'chartWidthSize': 2000,
         'chartHeightSize': 900,
-        'fontSize': 22,
+        'fontSize': 28,
         'soloMode': false,
     });
     const [displayRadarChart, setDisplayRadarChart] = useState({
         'display': false,
         'chartSize': 1000,
-        'fontSize': 20,
+        'fontSize': 26,
     });
     const [displayBarChart, setDisplayBarChart] = useState({
         'display': false,
@@ -30,18 +30,18 @@ function VisContainer(props) {
                     'display': true,
                     'chartWidthSize': 2000,
                     'chartHeightSize': 900,
-                    'fontSize': 22,
+                    'fontSize': 28,
                     'soloMode': false,
                 });
                 setDisplayRadarChart({
                     'display': true,
                     'chartSize': 1000,
-                    'fontSize': 20,
+                    'fontSize': 26,
                 });
                 setDisplayBarChart({
                     'display': true,
                     'chartSize': 400,
-                    'fontSize': 20,
+                    'fontSize': 22,
                 });
                 break;
             case 'pie':
@@ -99,7 +99,7 @@ function VisContainer(props) {
                         {displayBarChart.display && (<BarChart cityioData={props.cityIOdata} radarSize={displayBarChart.chartSize} radarFontSize={displayBarChart.fontSize} />)}
                     </Box>
                     <Box display="flex" alignItems="center" justifyContent="end" flexDirection="column" mt={8}>
-                        <Typography color="textPrimary" variant="h1">
+                        <Typography color="textPrimary" variant="h1" style={{fontSize: '55px'}}>
                             MIT CityScope
                         </Typography>
                     </Box>
