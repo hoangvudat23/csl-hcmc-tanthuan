@@ -22,6 +22,10 @@ function VisContainer(props) {
         'chartSize': 400,
         'fontSize': 20,
     });
+    const [cssChart, setCssChart] = useState({
+        marginLeft: '-40px',
+        height: '100%'
+    });
 
     useEffect(() => {
         switch (chosenChart) {
@@ -43,6 +47,10 @@ function VisContainer(props) {
                     'chartSize': 400,
                     'fontSize': 22,
                 });
+                setCssChart({
+                    marginLeft: '-40px',
+                    height: '100%'
+                });
                 break;
             case 'pie':
                 setDisplayPieChart({
@@ -58,11 +66,14 @@ function VisContainer(props) {
                 setDisplayBarChart({
                     'display': false
                 });
+                setCssChart({
+                    height: '100%'
+                });
                 break;
             case 'radar':
                 setDisplayRadarChart({
                     'display': true,
-                    'chartSize': 2000,
+                    'chartSize': 1800,
                     'fontSize': 30,
                 });
                 setDisplayPieChart({
@@ -70,6 +81,9 @@ function VisContainer(props) {
                 });
                 setDisplayBarChart({
                     'display': false,
+                });
+                setCssChart({
+                    height: '100%'
                 });
                 break;
             case 'bar':
@@ -84,6 +98,9 @@ function VisContainer(props) {
                 setDisplayRadarChart({
                     'display': false,
                 });
+                setCssChart({
+                    height: '100%'
+                });
                 break;
             default:
                 break;
@@ -92,13 +109,13 @@ function VisContainer(props) {
     return (
         <>
             {props.cityIOdata && (
-                <Container style={{ height: '100%' }}>
+                <Container style={cssChart}>
                     <Box display="flex" alignItems="center" justifyContent="center" flexDirection="column" style={{ height: '90%' }}>
                         {(displayPieChart.display) && (<AreaCalc cityioData={props.cityIOdata} widthChart={displayPieChart.chartWidthSize} heightChart={displayPieChart.chartHeightSize} areaFontSize={displayPieChart.fontSize} soloMode={displayPieChart.soloMode} />)}
                         {displayRadarChart.display && (<Radar cityioData={props.cityIOdata} radarSize={displayRadarChart.chartSize} radarFontSize={displayRadarChart.fontSize} />)}
                         {displayBarChart.display && (<BarChart cityioData={props.cityIOdata} radarSize={displayBarChart.chartSize} radarFontSize={displayBarChart.fontSize} />)}
                     </Box>
-                    <Box display="flex" alignItems="center" justifyContent="end" flexDirection="column" mt={8}>
+                    <Box display="flex" alignItems='center' justifyContent="center" mt={8}>
                         <Typography color="textPrimary" variant="h1" style={{ fontSize: '55px' }}>
                             MIT CityScope
                         </Typography>

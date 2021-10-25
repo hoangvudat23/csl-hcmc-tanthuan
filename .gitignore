@@ -11,6 +11,9 @@
 # production
 /build
 
+# express
+/scratch
+
 # misc
 .DS_Store
 .env

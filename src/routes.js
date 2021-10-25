@@ -7,6 +7,7 @@ import ProjectionMapping from './views/ProjectionMapping'
 import CityScopeJSMapCenter from './views/CityScopeJS/indexMapCenter'
 import CityScopeJSChartSidebar from './views/CityScopeJS/indexChartSidebar'
 import CityScopeJSOptionsMenu from './views/CityScopeJS/indexOptionsMenu'
+import CityScopeJSChartSidebarMenu from './views/CityScopeJS/indexChartSidebarMenu'
 
 const routes = [
   {
@@ -17,6 +18,7 @@ const routes = [
       { path: '/onlyMap', element: <CityScopeJSMapCenter /> },
       { path: '/onlyChartSidebar', element: <CityScopeJSChartSidebar /> },
       { path: '/onlyOptionsMenu', element: <CityScopeJSOptionsMenu /> },
+      { path: '/onlyChartSidebar2', element: <CityScopeJSChartSidebarMenu /> },
       { path: '/editor/', element: <GridEditor /> },
       { path: '/projection', element: <ProjectionMapping /> },
       { path: '/cityioviewer', element: <Navigate to="/" /> },

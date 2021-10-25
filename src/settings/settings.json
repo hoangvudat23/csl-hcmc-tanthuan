@@ -60,6 +60,28 @@
         "showOnInit": false,
         "requireModule": "GEOGRID"
       }
+    },
+    "toggles_mapchartmenu": {
+      "GEOJSON": {
+        "displayName": "Geojson Layer",
+        "showOnInit": true,
+        "requireModule": "geojson"
+      },
+      "ABM": {
+        "displayName": "Mobility Simulation",
+        "showOnInit": false,
+        "requireModule": "ABM2"
+      },
+      "AGGREGATED_TRIPS": {
+        "displayName": "Aggregated Trips",
+        "showOnInit": false,
+        "requireModule": "ABM2"
+      },
+      "ACCESS": {
+        "displayName": "Accessibility Analysis",
+        "showOnInit": false,
+        "requireModule": "access"
+      }
     }
   },
 

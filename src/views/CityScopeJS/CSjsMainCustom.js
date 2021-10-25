@@ -1,7 +1,9 @@
 import MenuContainer from './MenuContainer'
+import MenuContainer2 from './MenuContainer/index_mapchartmenu'
 import MapContainer from './DeckglMap'
 import LoadingSpinner from './CityIO/LoadingSpinner'
 import VisContainer from './VisContainer/index_custom'
+import VisContainer2 from './VisContainer/index_custom_mapchartmenu'
 import {
   makeStyles,
   Grid,
@@ -46,8 +48,8 @@ export default function CSjsMainCustom(props) {
   const cityIOdata = props.cityIOdata
   const onlyMap = props.onlyMap
   const onlyOptionMenu = props.onlyOptionMenu
-  const onlyChartSidebar = props.onlyChartSidebar
   const mapAndChartSidebar = props.mapAndChartSidebar
+  const mapAndChartSidebarAndMenu = props.mapAndChartSidebarAndMenu
 
   const menuState = useSelector((state) => state.MENU);
   const loadedModules = Object.keys(cityIOdata);
@@ -136,7 +138,6 @@ export default function CSjsMainCustom(props) {
   }
 
   /* END Listening */
-  console.log(mapChoosenScenario[myChosenScenario]);
   return (
     <Page className={classes.root} title="CitySCopeJS">
       <LoadingSpinner />
@@ -179,7 +180,6 @@ export default function CSjsMainCustom(props) {
                 position: 'relative',
               }}
             >
-              {/* <Test/> */}
               <MapContainer onlyMap={true} />
             </Card>
           </Grid>}
@@ -210,7 +210,78 @@ export default function CSjsMainCustom(props) {
               }}
             >
               <Box display="flex" alignItems="center" justifyContent="end" flexDirection="column" mt={8}>
-                <Typography color="textPrimary" variant="h1" style={{fontSize: '55px'}}>
+                <Typography color="textPrimary" variant="h1" style={{ fontSize: '55px' }}>
+                  {mapChoosenScenario[chosenScenario] ? mapChoosenScenario[chosenScenario] : mapChoosenScenario[myChosenScenario]}
+                </Typography>
+              </Box>
+              <Box display="flex" alignItems="center"
+                style={{
+                  height: '88%',
+                  position: 'relative'
+                }}
+              >
+                <MapContainer pitchMap={60} zoomMap={15} autoRotate={true} />
+              </Box>
+              <Box display="flex" alignItems="center" justifyContent="flex-end" mr={8}>
+                <img src="images/CSL_HCMC.jpeg" alt="CSL HCMC" width="100px" style={{ marginRight: '20px', borderRadius: '10px' }}></img>
+                <img src="images/MIT_Media_Lab_Logo.jpg" alt="MIT Media Lab" width="100px" style={{ borderRadius: '10px' }}></img>
+              </Box>
+            </Card>
+          </Grid>}
+          {/* mapAndChartSidebarAndMenu */}
+          {mapAndChartSidebarAndMenu && <Grid item xs={2} l={2} md={2} xl={2} container>
+            <Grid item container direction="column">
+              <Grid item xs={12} l={12} md={12} xl={12}>
+                <Card
+                  elevation={15}
+                  style={{
+                    height: '90%',
+                    overflow: 'none',
+                    background: '#192c48',
+                    boxShadow: 'none',
+                    borderRadius: 'none',
+                    display: 'flex',
+                    alignItems: 'center',
+                    paddingLeft: '50px'
+                  }}
+                >
+                  <CardContent>
+                    {/* <Box display="flex" alignItems="center" justifyContent="center" flexDirection="column"> */}
+                      <MenuContainer2 tableName={tableName} />
+                    {/* </Box> */}
+                  </CardContent>
+                </Card>
+              </Grid>
+            </Grid>
+          </Grid>}
+          {mapAndChartSidebarAndMenu && <Grid item xs={5} l={5} md={5} xl={5}>
+            <Card
+              elevation={15}
+              style={{
+                maxHeight: '100%',
+                height: '100%',
+                overflow: 'hidden',
+                boxShadow: 'none',
+                background: '#192c48'
+              }}
+            >
+              <VisContainer2 cityIOdata={cityIOdata} chosenChart={chosenChart} />
+            </Card>
+          </Grid>}
+          {mapAndChartSidebarAndMenu && <Grid item xs={5} l={5} md={5} xl={5}>
+            <Card
+              elevation={15}
+              style={{
+                height: '100%',
+                width: '100%',
+                overflow: 'hidden',
+                position: 'relative',
+                boxShadow: 'none',
+                background: '#192c48'
+              }}
+            >
+              <Box display="flex" alignItems="center" justifyContent="end" flexDirection="column" mt={8}>
+                <Typography color="textPrimary" variant="h1" style={{ fontSize: '55px' }}>
                   {mapChoosenScenario[chosenScenario] ? mapChoosenScenario[chosenScenario] : mapChoosenScenario[myChosenScenario]}
                 </Typography>
               </Box>
