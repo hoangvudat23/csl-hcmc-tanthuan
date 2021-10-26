@@ -18,6 +18,8 @@ localStorage.removeItem('scenario_table');
 localStorage.removeItem('chart');
 localStorage.removeItem('chart_table');
 localStorage.removeItem('access_property_index');
+localStorage.removeItem('list_on_options');
+setInitialValueOptions();
 
 // for parsing application/json
 app.use(bodyParser.json());
@@ -41,7 +43,8 @@ app.get('/get-option', (req, res) => {
     let mode = localStorage.getItem('mode');
     let table = localStorage.getItem('table');
     let access_property_index = localStorage.getItem('access_property_index');
-    return res.send({ option, mode, table, access_property_index });
+    let list_on_options = localStorage.getItem('list_on_options');
+    return res.send({ option, mode, table, access_property_index, list_on_options });
 })
 
 app.get('/get-scenario', (req, res) => {
@@ -86,6 +89,15 @@ app.get('/get-only-map-setting', (req, res) => {
     return res.send(onlyMapSetting);
 });
 
+app.get('/get-all-on-options', (req, res) => {
+    let existingOnOptions = localStorage.getItem('list_on_options');
+    let lastOption = localStorage.getItem('view-option');
+    let mode = localStorage.getItem('mode');
+    let table = localStorage.getItem('table');
+
+   
+});
+
 app.post('/set-option', (req, res) => {
     let reqParams = req.body;
     let option = reqParams.option
@@ -104,7 +116,32 @@ app.post('/set-option', (req, res) => {
             localStorage.setItem('access_property_index', access_property_index);
         }
 
-        return res.send(`${mode} ${option} ${table}`);
+        // update list on-options
+        let listOnOptions = localStorage.getItem('list_on_options');
+        listOnOptions = JSON.parse(listOnOptions);
+        if(listOnOptions && Array.isArray(listOnOptions)){
+            let index = listOnOptions.indexOf(option);
+            if(mode == "ON"){
+                if(index == -1){
+                    listOnOptions.push(option);
+                }
+            }
+            else{
+                if(index != -1){
+                    listOnOptions.splice(index, 1);
+                }
+            }
+        }
+        else{
+            listOnOptions = [];
+            if(mode == "ON"){
+                listOnOptions.push(option);
+            }
+        }
+        localStorage.setItem('list_on_options', JSON.stringify(listOnOptions));
+        // Done update list on-options
+
+        return res.send(`${mode} ${option} ${table}, ${listOnOptions}`);
 
     }
     else {
@@ -171,3 +208,11 @@ app.post('/save-only-map-settings', (req, res) => {
 app.listen(port, () => {
     console.log(`Example app listening at http://localhost:${port}`)
 })
+
+function setInitialValueOptions(){
+    localStorage.setItem('view-option', 'GEOJSON');
+    localStorage.setItem('mode', 'ON');
+    localStorage.setItem('table', 'hcm_scenario_0');
+    localStorage.setItem('list_on_options', JSON.stringify(['GEOJSON']));
+    console.log('Init value!');
+}

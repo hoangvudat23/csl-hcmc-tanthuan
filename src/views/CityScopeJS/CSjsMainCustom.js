@@ -84,16 +84,40 @@ export default function CSjsMainCustom(props) {
       let table = options.table;
       let option = options.option;
       let mode = options.mode;
+      let listOnOptions = JSON.parse(options.list_on_options);
+      console.log(listOnOptions);
       if (table == tableName) {
-        if (option) {
-          let requireModule = togglesMeta[option].requireModule;
-          if (loadedModules.includes(requireModule) || requireModule === false) {
-            const i = myMenuState.indexOf(option);
-            if (mode == "ON") {
-              if (i === -1) {
-                myMenuState.push(option);
-              }
-              /* Check access and its sub menu */
+        // if (option) {
+        //   let requireModule = togglesMeta[option].requireModule;
+        //   if (loadedModules.includes(requireModule) || requireModule === false) {
+        //     const i = myMenuState.indexOf(option);
+        //     if (mode == "ON") {
+        //       if (i === -1) {
+        //         myMenuState.push(option);
+        //       }
+        //       /* Check access and its sub menu */
+        //       if (option == 'ACCESS') {
+        //         let access_property_index = options.access_property_index;
+        //         if (access_property_index && myAccessPropertyIndex != access_property_index) {
+        //           myAccessPropertyIndex = access_property_index
+        //           dispatch(listenToAccessToggle(myAccessPropertyIndex));
+        //         }
+        //       }
+        //     }
+        //     else {
+        //       if (i !== -1) {
+        //         myMenuState.splice(i, 1);
+        //       }
+        //     }
+        //     dispatch(listenToMenuUI(myMenuState));
+        //   }
+        // }
+        if (Array.isArray(listOnOptions)) {
+          myMenuState = listOnOptions;
+          for (let i = 0; i < myMenuState.length; i++) {
+            let option = myMenuState[i];
+            let requireModule = togglesMeta[option].requireModule;
+            if (loadedModules.includes(requireModule) || requireModule === false) {
               if (option == 'ACCESS') {
                 let access_property_index = options.access_property_index;
                 if (access_property_index && myAccessPropertyIndex != access_property_index) {
@@ -103,12 +127,10 @@ export default function CSjsMainCustom(props) {
               }
             }
             else {
-              if (i !== -1) {
-                myMenuState.splice(i, 1);
-              }
+              myMenuState.splice(i, 1);
             }
-            dispatch(listenToMenuUI(myMenuState));
           }
+          dispatch(listenToMenuUI(myMenuState));
         }
       }
     }
@@ -247,7 +269,7 @@ export default function CSjsMainCustom(props) {
                 >
                   <CardContent>
                     {/* <Box display="flex" alignItems="center" justifyContent="center" flexDirection="column"> */}
-                      <MenuContainer2 tableName={tableName} />
+                    <MenuContainer2 tableName={tableName} />
                     {/* </Box> */}
                   </CardContent>
                 </Card>

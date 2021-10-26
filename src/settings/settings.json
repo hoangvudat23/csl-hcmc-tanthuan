@@ -32,7 +32,7 @@
       },
       "GEOJSON": {
         "displayName": "Geojson Layer",
-        "showOnInit": true,
+        "showOnInit": false,
         "requireModule": "geojson"
       },
       "AGGREGATED_TRIPS": {
@@ -64,7 +64,7 @@
     "toggles_mapchartmenu": {
       "GEOJSON": {
         "displayName": "Geojson Layer",
-        "showOnInit": true,
+        "showOnInit": false,
         "requireModule": "geojson"
       },
       "ABM": {
