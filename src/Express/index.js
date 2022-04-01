@@ -153,16 +153,17 @@ app.post('/choose-scenario', (req, res) => {
     let reqParams = req.body;
     let scenario = reqParams.scenario;
     let table = reqParams.table;
-    if (arrayScenarioAllowance.includes(scenario)) {
-        localStorage.setItem('scenario', scenario);
+    localStorage.setItem('scenario', scenario);
         localStorage.setItem('scenario_table', table);
         console.log(scenario);
         console.log(table);
         return res.send(`Scenario: ${scenario}`);
-    }
-    else {
-        return res.status('422').send(`Scenario is not valid!`);
-    }
+    // if (arrayScenarioAllowance.includes(scenario)) {
+        
+    // }
+    // else {
+    //     return res.status('422').send(`Scenario is not valid!`);
+    // }
 })
 
 app.post('/display-chart', (req, res) => {

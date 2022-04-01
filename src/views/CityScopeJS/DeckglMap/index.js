@@ -223,7 +223,7 @@ export default function Map(props) {
       // bearing: 360 - header.rotation,
       longitude:  onlyMapSetting.longitude ? onlyMapSetting.longitude : 106.704854, // District 4
       latitude:  onlyMapSetting.latitude ? onlyMapSetting.latitude : 10.760616, // District 4
-      bearing: 270, // District 4
+      bearing: -90, // District 4
       zoom: zoomMap ? zoomMap : ( onlyMapSetting.zoom ? onlyMapSetting.zoom : 15.95), // 4k
       pitch: pitchMap ? pitchMap : 0,
       orthographic: true,
@@ -380,7 +380,7 @@ export default function Map(props) {
           touchZoom: onlyMap || pitchMap ? false : true,
           touchRotate: onlyMap || pitchMap ? false : true,
           scrollZoom: {
-            speed: onlyMap ? 0.0001 : 0.1,
+            speed: onlyMap ? 0.01 : 0.1,
             smooth: true,
           },
           dragPan: !draggingWhileEditing,

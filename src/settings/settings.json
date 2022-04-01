@@ -32,7 +32,7 @@
       },
       "GEOJSON": {
         "displayName": "Geojson Layer",
-        "showOnInit": false,
+        "showOnInit": true,
         "requireModule": "geojson"
       },
       "AGGREGATED_TRIPS": {
