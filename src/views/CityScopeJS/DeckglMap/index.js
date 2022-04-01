@@ -223,7 +223,7 @@ export default function Map(props) {
       // bearing: 360 - header.rotation,
       longitude:  onlyMapSetting.longitude ? onlyMapSetting.longitude : 106.704854, // District 4
       latitude:  onlyMapSetting.latitude ? onlyMapSetting.latitude : 10.760616, // District 4
-      bearing: 0.35, // District 4
+      bearing: 270, // District 4
       zoom: zoomMap ? zoomMap : ( onlyMapSetting.zoom ? onlyMapSetting.zoom : 15.95), // 4k
       pitch: pitchMap ? pitchMap : 0,
       orthographic: true,
