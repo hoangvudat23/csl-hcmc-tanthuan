@@ -154,10 +154,10 @@ app.post('/choose-scenario', (req, res) => {
     let scenario = reqParams.scenario;
     let table = reqParams.table;
     localStorage.setItem('scenario', scenario);
-        localStorage.setItem('scenario_table', table);
-        console.log(scenario);
-        console.log(table);
-        return res.send(`Scenario: ${scenario}`);
+    localStorage.setItem('scenario_table', table);
+    console.log(scenario);
+    console.log(table);
+    return res.send(`Scenario: ${scenario}`);
     // if (arrayScenarioAllowance.includes(scenario)) {
         
     // }
