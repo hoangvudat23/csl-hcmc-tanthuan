@@ -23,7 +23,6 @@ import { useSelector, useDispatch } from "react-redux";
 import { listenToMenuUI, setCurrentScenario, listenToAccessToggle } from "../../redux/actions";
 import ChooseScenario from "./MenuContainer/ChooseScenario"
 
-
 const useStyles = makeStyles((theme) => ({
   root: {
     margin: 'auto',
@@ -42,6 +41,7 @@ const getAPICall = async (URL) => {
   }
 };
 
+
 export default function CSjsMainCustom(props) {
   const classes = useStyles()
   const tableName = props.tableName
@@ -58,14 +58,19 @@ export default function CSjsMainCustom(props) {
   const dispatch = useDispatch();
   let myMenuState = [...menuState];
   const [chosenScenario, setChosenScenario] = useState("");
-  let myChosenScenario = 'hcm_scenario_0';
+  let myChosenScenario = 'tanthuan_a0b0c0d0';
   const [chosenChart, setChosenChart] = useState("all");
   let myChosenChart = 'all';
   let myAccessPropertyIndex = 0;
-  let mapChoosenScenario = {
-    'hcm_scenario_0': 'SCENARIO 0',
-    'hcm_scenario_2': 'SCENARIO 2',
-    'hcm_scenario_3': 'SCENARIO 3',
+  // let mapChoosenScenario = {
+  //   'hcm_scenario_0': 'SCENARIO 0',
+  //   'hcm_scenario_2': 'SCENARIO 2',
+  //   'hcm_scenario_3': 'SCENARIO 3',
+  // }
+  const DisplayScenarioName = () => {
+    // ex: scenarioName = tanthuan_a0b1c2d3 => displayName = SCENARIO A0B1C2D3
+    let displayName = chosenScenario ? chosenScenario.split("_")[1].toUpperCase() : myChosenScenario.split("_")[1].toUpperCase()
+    return `SCENARIO ${displayName}`;
   }
 
   /* Listening View Option Change */
@@ -233,7 +238,8 @@ export default function CSjsMainCustom(props) {
             >
               <Box display="flex" alignItems="center" justifyContent="end" flexDirection="column" mt={8}>
                 <Typography color="textPrimary" variant="h1" style={{ fontSize: '55px' }}>
-                  {mapChoosenScenario[chosenScenario] ? mapChoosenScenario[chosenScenario] : mapChoosenScenario[myChosenScenario]}
+                  {/* {mapChoosenScenario[chosenScenario] ? mapChoosenScenario[chosenScenario] : mapChoosenScenario[myChosenScenario]} */}
+                  <DisplayScenarioName />
                 </Typography>
               </Box>
               <Box display="flex" alignItems="center"
@@ -304,7 +310,8 @@ export default function CSjsMainCustom(props) {
             >
               <Box display="flex" alignItems="center" justifyContent="end" flexDirection="column" mt={8}>
                 <Typography color="textPrimary" variant="h1" style={{ fontSize: '55px' }}>
-                  {mapChoosenScenario[chosenScenario] ? mapChoosenScenario[chosenScenario] : mapChoosenScenario[myChosenScenario]}
+                  {/* {mapChoosenScenario[chosenScenario] ? mapChoosenScenario[chosenScenario] : mapChoosenScenario[myChosenScenario]} */}
+                  <DisplayScenarioName />
                 </Typography>
               </Box>
               <Box display="flex" alignItems="center"
