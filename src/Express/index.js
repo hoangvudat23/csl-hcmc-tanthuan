@@ -151,7 +151,7 @@ app.post('/set-option', (req, res) => {
 
 app.post('/choose-scenario', (req, res) => {
     let reqParams = req.body;
-    let scenario = reqParams.scenario;
+    let scenario = reqParams.scenario.toLowerCase();
     let table = reqParams.table;
     localStorage.setItem('scenario', scenario);
     localStorage.setItem('scenario_table', table);

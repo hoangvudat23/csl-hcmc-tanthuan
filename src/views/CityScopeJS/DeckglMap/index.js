@@ -24,6 +24,25 @@ import {
 
 import axios from 'axios'
 // import onlyMapSetting from '../../../settings/onlyMapSetting.json';
+import { tables } from "../../../settings/tableList.json";
+
+// const mergeBuilding = (currentScennario) => {
+//   // currentSceanrio = "tanthuan_a1b2c3d4" -> then split by "_" and get arr[1]
+//   let buildingPhrase = (currentScennario.split("_"))[1];
+//   // get two characters by step: a1b2c3d4 => [a1, b2, c3, d4];
+//   let buildingSegments = buildingPhrase.match(/.{1,2}/g);
+//   // get data building then merge into 1
+//   async function fetchBuildingData() {
+//     let resBuilding0 = await fetch(`./Building_${buildingSegments[0]}_geo.json`);
+//     let resBuilding1 = await fetch(`./Building_${buildingSegments[1]}_geo.json`);
+//     let resBuilding2 = await fetch(`./Building_${buildingSegments[2]}_geo.json`);
+//     let resBuilding3 = await fetch(`./Building_${buildingSegments[3]}_geo.json`);
+//     let building = resBuilding0;
+//     building.features.push(...resBuilding1.features, ...resBuilding2.features, ...resBuilding3.features);
+//     return building;
+//   }
+//   return fetchBuildingData();
+// }
 
 export default function Map(props) {
   const pitchMap = props.pitchMap
@@ -68,10 +87,12 @@ export default function Map(props) {
   ])
 
   const currentScennario = useSelector((state) => state.CURRENT_SCENARIO);
-  const [building0, setBuilding0] = useState(null)
-  const [building2, setBuilding2] = useState(null)
-  const [building3, setBuilding3] = useState(null)
-  const [onlyMapSetting, setOnlyMapSetting] = useState({"width":3840,"height":2160,"latitude":10.760653375134037,"longitude":106.70481804447535,"zoom":15.95557891525241,"bearing":0.35,"pitch":0,"altitude":1.5,"maxZoom":20,"minZoom":0,"maxPitch":60,"minPitch":0})
+  // init building params - old
+  // const [building0, setBuilding0] = useState(null)
+  // const [building2, setBuilding2] = useState(null)
+  // const [building3, setBuilding3] = useState(null)
+  const [building, setBuilding] = useState(null);
+  const [onlyMapSetting, setOnlyMapSetting] = useState({ "width": 3840, "height": 2160, "latitude": 10.760653375134037, "longitude": 106.70481804447535, "zoom": 15.95557891525241, "bearing": 0.35, "pitch": 0, "altitude": 1.5, "maxZoom": 20, "minZoom": 0, "maxPitch": 60, "minPitch": 0 })
 
   var ABMOn = menu.includes('ABM')
   if (autoRotate) {
@@ -111,24 +132,49 @@ export default function Map(props) {
     // Fetch onlyMapSetting data
     async function fetchOnlyMapSettingData() {
       const resOnlyMapSetting = await getAPICall(`${process.env.REACT_APP_EXPRESS_PUBLIC_URL}/get-only-map-setting`);
-      if(resOnlyMapSetting){
+      if (resOnlyMapSetting) {
         setOnlyMapSetting(resOnlyMapSetting);
       }
     }
     fetchOnlyMapSettingData();
 
-    // Fetch building data
-    async function fetchBuildingData() {
-      const resBuilding0 = await fetch('./Building_0.json');
-      setBuilding0(await resBuilding0.json());
-      const resBuilding2 = await fetch('./Building_2.json');
-      setBuilding2(await resBuilding2.json());
-      const resBuilding3 = await fetch('./Building_3.json');
-      setBuilding3(await resBuilding3.json());
-    }
-    fetchBuildingData();
+    // Fetch building data - old
+    // async function fetchBuildingData() {
+    //   const resBuilding0 = await fetch('./Building_0.json');
+    //   setBuilding0(await resBuilding0.json());
+    //   const resBuilding2 = await fetch('./Building_2.json');
+    //   setBuilding2(await resBuilding2.json());
+    //   const resBuilding3 = await fetch('./Building_3.json');
+    //   setBuilding3(await resBuilding3.json());
+    // }
+    // fetchBuildingData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
+
+  // MERGE BUILDING
+  useEffect(() => {
+    // currentSceanrio = "tanthuan_a1b2c3d4" -> then split by "_" and get arr[1]
+    let buildingPhrase = (currentScennario.split("_"))[1];
+    // get two characters by step: a1b2c3d4 => [a1, b2, c3, d4];
+    let buildingSegments = buildingPhrase.match(/.{1,2}/g);
+    // get data building then merge into 1
+    async function fetchBuildingData() {
+      let resBuildingBase = await fetch(`./Building_Noninteractive_geo.json`);
+      resBuildingBase = await resBuildingBase.json();
+      let resBuilding0 = await fetch(`./Building_${buildingSegments[0]}_geo.json`);
+      resBuilding0 = await resBuilding0.json();
+      let resBuilding1 = await fetch(`./Building_${buildingSegments[1]}_geo.json`);
+      resBuilding1 = await resBuilding1.json();
+      let resBuilding2 = await fetch(`./Building_${buildingSegments[2]}_geo.json`);
+      resBuilding2 = await resBuilding2.json();
+      let resBuilding3 = await fetch(`./Building_${buildingSegments[3]}_geo.json`);
+      resBuilding3 = await resBuilding3.json();
+      let building = resBuildingBase;
+      building.features.push(...resBuilding0.features, ...resBuilding1.features, ...resBuilding2.features, ...resBuilding3.features);
+      setBuilding(building);
+    }
+    fetchBuildingData();
+  }, [currentScennario]);
 
   useEffect(() => {
     // zoom map on CS table location
@@ -213,7 +259,7 @@ export default function Map(props) {
   //  * https://github.com/uber/deck.gl/blob/master/test/apps/viewport-transitions-flyTo/src/app.js
   //  */
 
-  const _setViewStateToTableHeader =  () => {
+  const _setViewStateToTableHeader = () => {
     const header = cityioData.GEOGRID.properties.header
 
     setViewState({
@@ -221,10 +267,10 @@ export default function Map(props) {
       // longitude: header.longitude,
       // latitude: header.latitude,
       // bearing: 360 - header.rotation,
-      longitude:  onlyMapSetting.longitude ? onlyMapSetting.longitude : 106.704854, // District 4
-      latitude:  onlyMapSetting.latitude ? onlyMapSetting.latitude : 10.760616, // District 4
+      longitude: onlyMapSetting.longitude ? onlyMapSetting.longitude : 106.704854, // District 4
+      latitude: onlyMapSetting.latitude ? onlyMapSetting.latitude : 10.760616, // District 4
       bearing: -90, // District 4
-      zoom: zoomMap ? zoomMap : ( onlyMapSetting.zoom ? onlyMapSetting.zoom : 15.95), // 4k
+      zoom: zoomMap ? zoomMap : (onlyMapSetting.zoom ? onlyMapSetting.zoom : 15.95), // 4k
       pitch: pitchMap ? pitchMap : 0,
       orthographic: true,
     })
@@ -239,19 +285,19 @@ export default function Map(props) {
       .getElementById('deckgl-wrapper')
       .addEventListener('contextmenu', (evt) => evt.preventDefault())
   }
-
-  const getBuildingByCurrentScenario = () => {
-    switch (currentScennario) {
-      case 'hcm_scenario_0':
-        return building0;
-      case 'hcm_scenario_2':
-        return building2;
-      case 'hcm_scenario_3':
-        return building3;
-      default:
-        return building0;
-    }
-  }
+  // map building - old
+  // const getBuildingByCurrentScenario = () => {
+  //   switch (currentScennario) {
+  //     case 'hcm_scenario_0':
+  //       return building0;
+  //     case 'hcm_scenario_2':
+  //       return building2;
+  //     case 'hcm_scenario_3':
+  //       return building3;
+  //     default:
+  //       return building0;
+  //   }
+  // }
 
   const layersKey = {
     ABM: ABMLayer({
@@ -302,7 +348,7 @@ export default function Map(props) {
     }),
 
     OUTSIDE_INTERACTIVE_AREA: GeojsonLayer({
-      data: getBuildingByCurrentScenario(),
+      data: building,
       isTv1: false,
     }),
   }

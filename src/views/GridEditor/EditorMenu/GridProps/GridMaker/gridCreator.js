@@ -1,5 +1,5 @@
 import proj4 from "proj4";
-import { _hexToRgb } from "../../../EditorMap/EditorMap";
+import { _hexToRgb, _hexToRgbV2 } from "../../../EditorMap/EditorMap";
 import { featureCollection, centroid, bbox, tag } from "@turf/turf";
 import scenario from '../../../../../settings/settings.json'; // just skip error
 import { rgbToHex } from "../../../../../utils/utils";
@@ -84,13 +84,22 @@ const convertBuildingToWGS84 = () => {
     let features = scenario.features;
     // console.log(types);
     for (let i = 0; i < features.length; i++) {
-        let rgbArr = [255, 255, 255, 255]
-        if (features[i].properties['RGB']) {
-            rgbArr = (features[i].properties['RGB']).split(',')
-            rgbArr = rgbArr.map(el => parseFloat(el));
-            rgbArr.push(255);
+        // FOR DISTRICT 4
+        // let rgbArr = [255, 255, 255, 255]
+        // if (features[i].properties['RGB']) {
+        //     rgbArr = (features[i].properties['RGB']).split(',')
+        //     rgbArr = rgbArr.map(el => parseFloat(el));
+        //     rgbArr.push(255);
+        // }
+        // let hexColor = rgbToHex(rgbArr[0], rgbArr[1], rgbArr[2])
+
+        // FOR DISTRICT 7
+        let rgbArr = [255, 255, 255, 255];
+        let hexColor = features[i].properties['fill'];
+        if(hexColor){
+            rgbArr = _hexToRgbV2(hexColor);
         }
-        let hexColor = rgbToHex(rgbArr[0], rgbArr[1], rgbArr[2])
+
 
         if (features[i].properties['OBJECTID']) {
             delete features[i].properties['OBJECTID'];
@@ -122,10 +131,28 @@ const convertBuildingToWGS84 = () => {
         if (features[i].properties['CSLLandTyp']) {
             delete features[i].properties['CSLLandTyp'];
         }
+        if (features[i].properties['BuildingTy']) {
+            delete features[i].properties['BuildingTy'];
+        }
+        if (typeof features[i].properties['S_Roof'] != 'undefined' ) {
+            delete features[i].properties['S_Roof'];
+        }
+        if (features[i].properties['ShapeArea'] != null) {
+            delete features[i].properties['ShapeArea'];
+        }
+        if (features[i].properties['Shape_Le_1'] != null) {
+            delete features[i].properties['Shape_Le_1'];
+        }
+        if (features[i].properties['SHAPE_Leng'] != null) {
+            delete features[i].properties['SHAPE_Leng'];
+        }
+        if (features[i].properties['Zone']) {
+            delete features[i].properties['Zone'];
+        }
 
         let height = 0;
-        if (features[i].properties.Height) {
-            height = features[i].properties.Height
+        if (features[i].properties.height) {
+            height = features[i].properties.height
             // if (height.index("-") > -1) {
             //     height = height.split('');
             //     height = height[height.length - 1];

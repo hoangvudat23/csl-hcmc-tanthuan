@@ -30,7 +30,7 @@ const initialState = {
     SELECTED_TYPE: null,
     READY: false,
     LOADING: false,
-    CURRENT_SCENARIO: "hcm_scenario_0",
+    CURRENT_SCENARIO: "tanthuan_a0b0c0d0",
     /**
      * ! EDITOR INIT STATE
      */
