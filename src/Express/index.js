@@ -41,7 +41,7 @@ var onlyMapSettingPath = path.join(__dirname, '..', 'settings', 'onlyMapSetting.
 app.get('/get-option', (req, res) => {
     let option = localStorage.getItem('view-option');
     let mode = localStorage.getItem('mode');
-    let table = localStorage.getItem('table');
+    let table = localStorage.getItem('scenario_table');
     let access_property_index = localStorage.getItem('access_property_index');
     let list_on_options = localStorage.getItem('list_on_options');
     return res.send({ option, mode, table, access_property_index, list_on_options });
@@ -61,7 +61,8 @@ app.get('/get-chart', (req, res) => {
 
 app.get('/get-access-properties', (req, res) => {
     let scenario = req.query.scenario;
-    if (!scenario || !arrayScenarioAllowance.includes(scenario)) {
+    // if (!scenario || !arrayScenarioAllowance.includes(scenario)) {
+    if (!scenario) {
         return res.status('422').send(`"scenario" is not valid!`);
     }
     //let url = `https://cityio.media.mit.edu/api/table/${scenario}/access/`;
