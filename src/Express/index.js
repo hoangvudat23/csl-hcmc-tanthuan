@@ -41,7 +41,7 @@ var onlyMapSettingPath = path.join(__dirname, '..', 'settings', 'onlyMapSetting.
 app.get('/get-option', (req, res) => {
     let option = localStorage.getItem('view-option');
     let mode = localStorage.getItem('mode');
-    let table = localStorage.getItem('scenario_table');
+    let table = localStorage.getItem('table');
     let access_property_index = localStorage.getItem('access_property_index');
     let list_on_options = localStorage.getItem('list_on_options');
     return res.send({ option, mode, table, access_property_index, list_on_options });
@@ -214,7 +214,7 @@ app.listen(port, () => {
 function setInitialValueOptions(){
     localStorage.setItem('view-option', 'GEOJSON');
     localStorage.setItem('mode', 'ON');
-    localStorage.setItem('table', 'hcm_scenario_0');
+    localStorage.setItem('table', 'tanthuan_a0b0c0d0');
     localStorage.setItem('list_on_options', JSON.stringify(['GEOJSON']));
     console.log('Init value!');
 }
