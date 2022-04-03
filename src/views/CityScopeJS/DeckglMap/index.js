@@ -426,7 +426,7 @@ export default function Map(props) {
           touchZoom: onlyMap || pitchMap ? false : true,
           touchRotate: onlyMap || pitchMap ? false : true,
           scrollZoom: {
-            speed: onlyMap ? 0.01 : 0.1,
+            speed: onlyMap ? 0.0001 : 0.1,
             smooth: true,
           },
           dragPan: !draggingWhileEditing,

@@ -250,10 +250,7 @@ export default function CSjsMainCustom(props) {
               >
                 <MapContainer pitchMap={60} zoomMap={15} autoRotate={true} />
               </Box>
-              <Box display="flex" alignItems="center" justifyContent="flex-end" mr={8}>
-                <img src="images/CSL_HCMC.jpeg" alt="CSL HCMC" width="100px" style={{ marginRight: '20px', borderRadius: '10px' }}></img>
-                <img src="images/MIT_Media_Lab_Logo.jpg" alt="MIT Media Lab" width="100px" style={{ borderRadius: '10px' }}></img>
-              </Box>
+            
             </Card>
           </Grid>}
           {/* mapAndChartSidebarAndMenu */}
@@ -322,10 +319,10 @@ export default function CSjsMainCustom(props) {
               >
                 <MapContainer pitchMap={60} zoomMap={15} autoRotate={true} />
               </Box>
-              <Box display="flex" alignItems="center" justifyContent="flex-end" mr={8}>
+              {/* <Box display="flex" alignItems="center" justifyContent="flex-end" mr={8}>
                 <img src="images/CSL_HCMC.jpeg" alt="CSL HCMC" width="100px" style={{ marginRight: '20px', borderRadius: '10px' }}></img>
                 <img src="images/MIT_Media_Lab_Logo.jpg" alt="MIT Media Lab" width="100px" style={{ borderRadius: '10px' }}></img>
-              </Box>
+              </Box> */}
             </Card>
           </Grid>}
           <Grid>
