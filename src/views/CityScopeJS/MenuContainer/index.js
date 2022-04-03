@@ -43,8 +43,8 @@ function MenuContainer(props) {
     };
 
     let myMenuState = [...menuState];
-    const [chosenScenario, setChosenScenario] = useState("hcm_scenario_0");
-    let myChosenScenario = 'hcm_scenario_0';
+    const [chosenScenario, setChosenScenario] = useState("tanthuan_a0b0c0d0");
+    let myChosenScenario = 'tanthuan_a0b0c0d0';
 
     useEffect(() => {
         // listenChangingOption();

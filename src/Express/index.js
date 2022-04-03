@@ -61,7 +61,8 @@ app.get('/get-chart', (req, res) => {
 
 app.get('/get-access-properties', (req, res) => {
     let scenario = req.query.scenario;
-    if (!scenario || !arrayScenarioAllowance.includes(scenario)) {
+    // if (!scenario || !arrayScenarioAllowance.includes(scenario)) {
+    if (!scenario) {
         return res.status('422').send(`"scenario" is not valid!`);
     }
     //let url = `https://cityio.media.mit.edu/api/table/${scenario}/access/`;
@@ -213,7 +214,7 @@ app.listen(port, () => {
 function setInitialValueOptions(){
     localStorage.setItem('view-option', 'GEOJSON');
     localStorage.setItem('mode', 'ON');
-    localStorage.setItem('table', 'hcm_scenario_0');
+    localStorage.setItem('table', 'tanthuan_a0b0c0d0');
     localStorage.setItem('list_on_options', JSON.stringify(['GEOJSON']));
     console.log('Init value!');
 }
