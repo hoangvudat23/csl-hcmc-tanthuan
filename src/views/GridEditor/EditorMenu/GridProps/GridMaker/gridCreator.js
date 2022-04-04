@@ -81,12 +81,12 @@ const convertScenarioToWGS84 = (types) => {
 }
 
 const convertBuildingToWGS84 = async() => {
-    // let features = scenario.features;
+    let features = scenario.features;
     // console.log(types);
 
-    let features = await fetch(process.env.PUBLIC_URL + '/Building_A0.json');
+    // let features = await fetch(process.env.PUBLIC_URL + '/Building_A0.json');
 
-    features = await features.json();
+    // features = await features.json();
 
 
     for (let i = 0; i < features.length; i++) {
@@ -367,7 +367,7 @@ export const gridCreator = (gridProps, typesList) => {
     geojsonFeatureCollection.features = gridPnts;
     // joinGridAndPrivateGeojson(scenario, geojsonFeatureCollection, types);
     // convertScenarioToWGS84(types);
-    convertBuildingToWGS84();
+    // convertBuildingToWGS84();
     // addIdScenario();
     return geojsonFeatureCollection;
 };

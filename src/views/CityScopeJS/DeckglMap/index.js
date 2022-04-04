@@ -24,25 +24,6 @@ import {
 
 import axios from 'axios'
 // import onlyMapSetting from '../../../settings/onlyMapSetting.json';
-import { tables } from "../../../settings/tableList.json";
-
-// const mergeBuilding = (currentScennario) => {
-//   // currentSceanrio = "tanthuan_a1b2c3d4" -> then split by "_" and get arr[1]
-//   let buildingPhrase = (currentScennario.split("_"))[1];
-//   // get two characters by step: a1b2c3d4 => [a1, b2, c3, d4];
-//   let buildingSegments = buildingPhrase.match(/.{1,2}/g);
-//   // get data building then merge into 1
-//   async function fetchBuildingData() {
-//     let resBuilding0 = await fetch(`./Building_${buildingSegments[0]}_geo.json`);
-//     let resBuilding1 = await fetch(`./Building_${buildingSegments[1]}_geo.json`);
-//     let resBuilding2 = await fetch(`./Building_${buildingSegments[2]}_geo.json`);
-//     let resBuilding3 = await fetch(`./Building_${buildingSegments[3]}_geo.json`);
-//     let building = resBuilding0;
-//     building.features.push(...resBuilding1.features, ...resBuilding2.features, ...resBuilding3.features);
-//     return building;
-//   }
-//   return fetchBuildingData();
-// }
 
 export default function Map(props) {
   const pitchMap = props.pitchMap
