@@ -103,12 +103,23 @@ const convertBuildingToWGS84 = async() => {
         // FOR INTERACTIVE BUILDING
         let rgbArr = [255, 255, 255, 255];
         let hexColor = features[i].properties['fill'];
+        let strokeOpacity = 1;
         if(hexColor){
             rgbArr = _hexToRgbV2(hexColor);
+        }
+        if(features[i].properties['TypeCode'] == 'MN'){
+            strokeOpacity = 0;
         }
         // FOR NON-INTERACTIVE BUILDING
         // let rgbArr = [255, 255, 255, 255];
         // let hexColor = '#ffffff';
+        // let strokeOpacity = 1;
+        // if(features[i].properties['TypeCode'] == 'MN'){
+        //     hexColor = features[i].properties['fill'];
+        //     rgbArr = _hexToRgbV2(hexColor);
+                // strokeOpacity = 0;
+        // }
+
 
 
         if (features[i].properties['OBJECTID']) {
@@ -175,7 +186,7 @@ const convertBuildingToWGS84 = async() => {
         features[i].properties.color = rgbArr;
         features[i].properties.stroke = '#3f3f3f';
         features[i].properties['stroke-width'] = 0.5;
-        features[i].properties['stroke-opacity'] = 1;
+        features[i].properties['stroke-opacity'] = strokeOpacity;
         features[i].properties['fill'] = hexColor;
         features[i].properties['fill-opacity'] = 1;
     }
@@ -371,7 +382,7 @@ export const gridCreator = (gridProps, typesList) => {
     geojsonFeatureCollection.features = gridPnts;
     // joinGridAndPrivateGeojson(scenario, geojsonFeatureCollection, types);
     // convertScenarioToWGS84(types);
-    convertBuildingToWGS84();
+    // convertBuildingToWGS84();
     // addIdScenario();
     return geojsonFeatureCollection;
 };
