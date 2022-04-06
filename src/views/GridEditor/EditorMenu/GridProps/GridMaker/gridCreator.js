@@ -100,11 +100,15 @@ const convertBuildingToWGS84 = async() => {
         // let hexColor = rgbToHex(rgbArr[0], rgbArr[1], rgbArr[2])
 
         // FOR DISTRICT 7
+        // FOR INTERACTIVE BUILDING
         let rgbArr = [255, 255, 255, 255];
         let hexColor = features[i].properties['fill'];
         if(hexColor){
             rgbArr = _hexToRgbV2(hexColor);
         }
+        // FOR NON-INTERACTIVE BUILDING
+        // let rgbArr = [255, 255, 255, 255];
+        // let hexColor = '#ffffff';
 
 
         if (features[i].properties['OBJECTID']) {
@@ -367,7 +371,7 @@ export const gridCreator = (gridProps, typesList) => {
     geojsonFeatureCollection.features = gridPnts;
     // joinGridAndPrivateGeojson(scenario, geojsonFeatureCollection, types);
     // convertScenarioToWGS84(types);
-    // convertBuildingToWGS84();
+    convertBuildingToWGS84();
     // addIdScenario();
     return geojsonFeatureCollection;
 };
